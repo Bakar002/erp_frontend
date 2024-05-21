@@ -4,7 +4,7 @@ const loadCurrentAdminAction = () => async (dispatch) => {
     dispatch({
       type: "LoadAdminRequest",
     });
-    const response = await axios.get("/api/v1/admin/load-current-admin/");
+    const response = await axios.get("https://belikeerp.onrender.com/load-current-admin/");
     dispatch({
       type: "LoadAdminRequestSuccess",
       payload: await response.data,
