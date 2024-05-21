@@ -9,7 +9,7 @@ const StudentViewAtttendance = () => {
   const [attendance, setAttendance] = useState(null);
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, []);
+  }, [dispatch]);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
@@ -24,7 +24,7 @@ const StudentViewAtttendance = () => {
       }
     };
     loadCurrentStudentAttendance();
-  }, []);
+  }, );
   console.log(attendance);
   return (
     <>

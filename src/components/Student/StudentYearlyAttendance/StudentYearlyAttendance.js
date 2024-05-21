@@ -8,7 +8,7 @@ const StudentYearlyAtttendance = () => {
   const [attendance, setAttendance] = useState(null);
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, []);
+  }, [dispatch]);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
@@ -26,11 +26,13 @@ const StudentYearlyAtttendance = () => {
       }
     };
     loadCurrentStudentAttendance();
-  }, []);
+  }, );
   const months = [[], [], [], [], [], [], [], [], [], [], [], []];
   if (attendanceStudents) {
     attendanceStudents.map((attendance) => {
       months[attendance.currentMonth - 1].push(attendance.attendanceStudents);
+    return months;
+
     });
   }
   console.log(months);

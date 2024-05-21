@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RiMenuFoldLine, RiMenuUnfoldLine } from "react-icons/ri";
+
 import { AddCourse } from "./AdminAddCourse/AdminAddCourse";
 import { AdminAddTeacher } from "./AdminAddTeacher/AdminnAddTeachers";
 import { AdminAddStudent } from "./AdminAddStudent/AdminAddStudent";
@@ -18,7 +18,7 @@ function AdminDashboard() {
   const [isShowing, setShowing] = useState(false);
   useEffect(() => {
     dispatch(loadCurrentAdminAction());
-  }, []);
+  }, );
 
   const { currentAdminData } = useSelector((state) => state.currentAdminData);
   const adminLogoutHandler = async () => {

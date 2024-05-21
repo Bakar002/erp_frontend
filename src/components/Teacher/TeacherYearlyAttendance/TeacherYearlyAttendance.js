@@ -7,7 +7,7 @@ const TeacherYearlyAtttendance = () => {
   const [gradeAttendance, setGradeAttendance] = useState(null);
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, []);
+  }, [dispatch]);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
@@ -29,6 +29,7 @@ const TeacherYearlyAtttendance = () => {
   if (gradeAttendance) {
     gradeAttendance.map((attendance) => {
       months[attendance.currentMonth - 1].push(attendance.attendanceStudents);
+      return months;
     });
   }
   console.log(months);

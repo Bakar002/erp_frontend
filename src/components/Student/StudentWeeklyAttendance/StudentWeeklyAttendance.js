@@ -25,7 +25,7 @@ const StudentWeeklyAtttendance = () => {
       }
     };
     loadCurrentStudentAttendance();
-  }, []);
+  }, );
   console.log(attendance);
   return (
     <>

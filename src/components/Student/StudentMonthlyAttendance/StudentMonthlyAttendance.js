@@ -9,7 +9,7 @@ const StudentMonthlyAtttendance = () => {
   const [presents, setPresents] = useState([]);
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, []);
+  }, [dispatch]);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );

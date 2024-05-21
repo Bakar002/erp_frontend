@@ -43,17 +43,17 @@ export default function Navbar() {
           >
             <ul className="md:flex   w-full justify-between">
               <li className="nav-item mt-1 md:mt-0">
-                <Link to="/" className=" text-white" href="#">
+                <Link to="/" className=" text-white" href="https://example.com">
                   Home
                 </Link>
               </li>
               <li className="nav-ite mt-1 md:mt-0">
-                <a href="#">Services</a>
+                <a href="https://example.com">Services</a>
               </li>
               <li className="nav-item dropdown mt-1 md:mt-0">
                 <a
                   className="dropdown-toggle"
-                  href="#"
+                  href="https://example.com"
                   id="navbarDropdown1"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -65,7 +65,7 @@ export default function Navbar() {
               <li className="nav-item dropdown mt-1 md:mt-0">
                 <a
                   className=" dropdown-toggle"
-                  href="#"
+                  href="https://example.com"
                   id="navbarDropdown2"
                   role="button"
                   data-bs-toggle="dropdown"
