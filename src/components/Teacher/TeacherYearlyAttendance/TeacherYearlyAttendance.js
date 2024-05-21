@@ -15,7 +15,7 @@ const TeacherYearlyAtttendance = () => {
     const loadCurrentStudentAttendance = async () => {
       try {
         const response = await axios.get(
-          "https://belikeerp.onrender.com/view-grade-attendance/"
+          "/api/v1/teacher/view-grade-attendance/"
         );
         console.log(response.data);
         setGradeAttendance(response.data.gradeStudentsAttendance);

@@ -22,7 +22,7 @@ export const TeacherAddResult = () => {
     const loadSameGradeStudents = async () => {
       try {
         const response = await axios.get(
-          `https://belikeerp.onrender.com/load-students-with-grade/${grade}`
+          `/api/v1/teacher/load-students-with-grade/${grade}`
         );
         setStudents(response.data.students);
       } catch (error) {

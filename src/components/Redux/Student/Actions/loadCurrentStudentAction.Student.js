@@ -4,7 +4,7 @@ const loadCurrentStudentAction = () => async (dispatch) => {
     dispatch({
       type: "LoadStudentRequest",
     });
-    const response = await axios.get("https://belikeerp.onrender.com/load-current-student/");
+    const response = await axios.get("/api/v1/student/load-current-student/");
     dispatch({
       type: "LoadStudentRequestSuccess",
       payload: await response.data,

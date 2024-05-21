@@ -25,7 +25,7 @@ const StudentAddFeedback = () => {
     console.log(data);
     try {
       const response = await axios.post(
-        `https://belikeerp.onrender.com/submit-feedback/${data.course}`,
+        `/api/v1/student/submit-feedback/${data.course}`,
         {
           feedbackMessage: data.feedback,
         }

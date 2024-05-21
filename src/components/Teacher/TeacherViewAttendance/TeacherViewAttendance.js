@@ -10,7 +10,7 @@ export default function TeacherViewAttendance() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://belikeerp.onrender.com/view-grade-attendance"
+          "/api/v1/teacher/view-grade-attendance"
         );
         setAttendanceData(response.data.gradeStudentsAttendance);
       } catch (error) {
