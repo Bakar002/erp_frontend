@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import loadCurrentStudentAction from "../../Redux/Student/Actions/loadCurrentStudentAction.Student";
 import axios from "axios";
-import Image from "../../../Assets/bgp.jpg";
+
 const StudentViewAtttendance = () => {
   const dispatch = useDispatch();
   const [studentAttendance, setStudentAttendance] = useState(null);

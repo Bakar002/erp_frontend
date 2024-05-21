@@ -169,7 +169,7 @@ const SignUp = () => {
             <h3 className="mt-3">
               {" "}
               <a
-                to="/"
+                href="/"
                 className="text-blue-700 hover:underline cursor-pointer"
               >
                 Forgot Password ?

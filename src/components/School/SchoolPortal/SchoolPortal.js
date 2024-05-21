@@ -54,19 +54,19 @@ export default function SchoolPortal() {
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <a
                 className="text-reset text-decoration-none text-center"
-                href="school/past-papers/form.html"
+                href="https://example.com"
               >
                 <i className="fa-solid fa-temperature-high text-center fa-2x mt-3" />
               </a>
               <div className="card-body">
                 <a
                   className="text-reset text-decoration-none text-center"
-                  href="school/past-papers/form.html"
+                  href="https://example.com"
                 ></a>
                 <h6 className="text-center pt-2">
                   <a
                     className="text-reset text-decoration-none text-center"
-                    href="school/past-papers/form.html"
+                    href="https://example.com"
                   />
                   <a
                     className="text-decoration-none text-dark"
@@ -80,19 +80,19 @@ export default function SchoolPortal() {
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <a
                 className="text-reset text-decoration-none text-center"
-                href="/school/past-papers/form.html"
+                href="https://example.com"
               >
                 <i className="fa-solid fa-atom text-center fa-2x mt-3" />
               </a>
               <div className="card-body">
                 <a
                   className="text-reset text-decoration-none text-center"
-                  href="/school/past-papers/form.html"
+                  href="https://example.com"
                 ></a>
                 <h6 className="text-center pt-2">
                   <a
                     className="text-reset text-decoration-none text-center"
-                    href="/school/past-papers/form.html"
+                    href="https://example.com"
                   />
                   <a
                     className="text-decoration-none text-dark"
@@ -135,7 +135,7 @@ export default function SchoolPortal() {
                 <h6 className="text-center pt-2">
                   <a
                     className="text-decoration-none text-dark"
-                    href="admissions/Home Tuition/index.php"
+                    href="https://example.com"
                   >
                     Home Tuition
                   </a>
@@ -151,7 +151,7 @@ export default function SchoolPortal() {
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3 flex flex-col gap-4 h-full">
               <a
                 className="text-center text-decoration-none"
-                href="past-papers/lhr.html"
+                href="https://example.com"
               >
                 <img
                   alt=""
@@ -260,7 +260,7 @@ export default function SchoolPortal() {
           <div className="row d-flex justify-content-center">
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-1 text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-one">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -284,7 +284,7 @@ export default function SchoolPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-4 text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-four">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -292,7 +292,7 @@ export default function SchoolPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-5 text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-five">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -300,7 +300,7 @@ export default function SchoolPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-6 text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-six">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -308,7 +308,7 @@ export default function SchoolPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-7 text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-seven">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -316,7 +316,7 @@ export default function SchoolPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-8 text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-eight">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -324,7 +324,7 @@ export default function SchoolPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-9 text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-nine">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -335,7 +335,7 @@ export default function SchoolPortal() {
                 <i className="fa-solid fa-1 text-center fa-2x mt-3" />
                 <i className="fa-solid fa-0 text-center fa-2x mt-3" />
               </div>
-              <a className="text-decoration-none" href="/school/grade-ten">
+              <a className="text-decoration-none" href="https://example.com">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Get books</h6>
                 </div>
@@ -427,7 +427,7 @@ export default function SchoolPortal() {
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3 flex flex-col justify-center items-center">
                   <a
                     className="text-center text-decoration-none text-reset"
-                    href="lms.html"
+                    href="https://example.com"
                   >
                     <img
                       alt="learning"
@@ -439,7 +439,7 @@ export default function SchoolPortal() {
                   <div className="card-body">
                     <a
                       className="text-center text-decoration-none text-reset"
-                      href="lms.html"
+                      href="https://example.com"
                     >
                       <h6 className="text-center pt-2">
                         Learning Management System
@@ -492,7 +492,7 @@ export default function SchoolPortal() {
                   <div className="card-body">
                     <NavLink
                       className="text-center text-decoration-none text-reset"
-                      href="past-papers/timetable.html"
+                      href="https://example.com"
                     >
                       <h6 className="text-center pt-2">Time Table</h6>
                     </NavLink>
@@ -581,7 +581,7 @@ export default function SchoolPortal() {
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3 flex flex-col justify-center items-center">
                   <a
                     className="text-center text-decoration-none text-reset"
-                    href="lms.html"
+                    href="https://example.com"
                   >
                     <img
                       alt="learning"
@@ -593,7 +593,7 @@ export default function SchoolPortal() {
                   <div className="card-body">
                     <a
                       className="text-center text-decoration-none text-reset"
-                      href="lms.html"
+                      href="https://example.com"
                     >
                       <h6 className="text-center pt-2">
                         Learning Management System
@@ -642,7 +642,7 @@ export default function SchoolPortal() {
                     <h6 className="text-center pt-2">
                       <a
                         className="text-decoration-none text-dark"
-                        href="accounts.html"
+                        href="https://example.com"
                       >
                         Accounts
                       </a>
@@ -655,7 +655,7 @@ export default function SchoolPortal() {
                     <h6 className="text-center pt-2">
                       <a
                         className="text-decoration-none text-dark"
-                        href="past-papers/attendance.html"
+                        href="https://example.com"
                       >
                         Employment{" "}
                       </a>
@@ -714,7 +714,7 @@ export default function SchoolPortal() {
                     <h6 className="text-center pt-2">
                       <a
                         className="text-decoration-none text-dark"
-                        href="p.meeting.html"
+                        href="https://example.com"
                       >
                         Parent's Meeting
                       </a>
@@ -735,14 +735,14 @@ export default function SchoolPortal() {
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
                   <a
                     className="text-center text-decoration-none text-reset"
-                    href="/school/past-papers/attendance.html"
+                    href="https://example.com"
                   >
                     <i className="fa-solid fa-book text-center fa-2x mt-3" />
                   </a>
                   <div className="card-body">
                     <a
                       className="text-center text-decoration-none text-reset"
-                      href="/school/past-papers/attendance.html"
+                      href="https://example.com"
                     >
                       <h6 className="text-center pt-2">Books</h6>
                     </a>

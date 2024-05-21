@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import loadCurrentStudentAction from "../../Redux/Student/Actions/loadCurrentStudentAction.Student";
-import { handleShowFailureToast } from "../../ToastMessages/ToastMessage";
+
 
 export default function StudentResult() {
   const dispatch = useDispatch();
