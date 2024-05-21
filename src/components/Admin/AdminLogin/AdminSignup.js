@@ -118,7 +118,7 @@ const AdminSignup = () => {
             <div className=" flex flex-col justify-center items-center mb-4">
               <img src={Logo} className="h-[4rem] w-[6rem]" alt="" />
             </div>
-            <h1 className="text-center font-bold text-2xl">Admin Signup Portal</h1>
+            <h1 className="text-center font-bold text-2xl">Admin Signup Portal 2222</h1>
             <div className="mt-4">
   <input
     type="text"
