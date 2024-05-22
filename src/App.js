@@ -15,6 +15,7 @@ import StudentViewAtttendance from "./components/Student/StudentViewAttendance/S
 
 import TeacherTakeAttendance from "./components/Teacher/TeacherTakeAttendance/TeacherTakeAttendance.js";
 import TeacherViewAttendance from "./components/Teacher/TeacherViewAttendance/TeacherViewAttendance.js";
+import axios from "axios";
 
 import { AddCourse } from "./components/Admin/AdminAddCourse/AdminAddCourse";
 import StudentDashboard from "./components/Student/StudentDashboard";
@@ -51,10 +52,14 @@ import AdminFeedback from "./components/Admin/AdminFeedback/AdminFeedback.js";
 import { TeacherAddResult } from "./components/Teacher/TeacherAddResult/TeacherAddResult.js";
 import AddResult from "./components/Student/StudentResult/StudentResult.js";
 function App() {
+
+
   const dispatch = useDispatch();
   const [studentLoading, setStudentLoading] = useState(true);
   const [adminLoading, setAdminLoading] = useState(true);
   const [teacherLoading, setTeacherLoading] = useState(true);
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     dispatch(loadCurrentStudentAction())
       .then(() => setStudentLoading(false))
