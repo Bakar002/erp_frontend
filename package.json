@@ -2,7 +2,7 @@
   "name": "schoolportalfrontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://erp-frontend-ml8s-iwx9onvlr-bakar002s-projects.vercel.app",
+  "proxy": "https://erp-frontend-s74v.vercel.app",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.17.0",
