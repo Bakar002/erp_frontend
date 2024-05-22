@@ -7,7 +7,7 @@ const TeacherCourseTimetable = () => {
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
     dispatch(loadCurrentTeacherAction());
-  }, [dispatch]);
+  }, []);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );

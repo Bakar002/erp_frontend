@@ -20,7 +20,7 @@ const TeacherTakeAttendance = () => {
     const loadAllGradeStudents = async () => {
       try {
         const response = await axios.get(
-          "/api/v1/teacher/load-all-students-same-grade"
+          "https://belikeerp-3.onrender.com/api/v1/teacher/load-all-students-same-grade"
         );
         setAllStudents(response.data.studentsSameGrade);
         setAttendance(
@@ -34,7 +34,7 @@ const TeacherTakeAttendance = () => {
       }
     };
     loadAllGradeStudents();
-  }, [dispatch]);
+  }, []);
   const { currentTeacherData } = useSelector(
     (state) => state.currentTeacherData
   );

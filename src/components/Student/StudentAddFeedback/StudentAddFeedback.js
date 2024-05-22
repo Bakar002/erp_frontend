@@ -17,7 +17,7 @@ const StudentAddFeedback = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, [dispatch]);
+  }, []);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
@@ -25,7 +25,7 @@ const StudentAddFeedback = () => {
     console.log(data);
     try {
       const response = await axios.post(
-        `/api/v1/student/submit-feedback/${data.course}`,
+        `https://belikeerp-3.onrender.com/api/v1/student/submit-feedback/${data.course}`,
         {
           feedbackMessage: data.feedback,
         }

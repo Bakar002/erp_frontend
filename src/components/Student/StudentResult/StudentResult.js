@@ -8,7 +8,7 @@ export default function StudentResult() {
 
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, [dispatch]);
+  }, []);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );

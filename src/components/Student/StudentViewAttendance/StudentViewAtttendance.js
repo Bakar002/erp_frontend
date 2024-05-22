@@ -9,14 +9,14 @@ const StudentViewAtttendance = () => {
   const [attendance, setAttendance] = useState(null);
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, [dispatch]);
+  }, []);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
   useEffect(() => {
     const loadCurrentStudentAttendance = async () => {
       try {
-        const response = await axios.get("/api/v1/student/view-attendance");
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/student/view-attendance");
         setAttendance(response.data.attendanceData);
         setStudentAttendance(response.data.studentAttendance);
       } catch (error) {

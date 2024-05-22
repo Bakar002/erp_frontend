@@ -23,7 +23,7 @@ function AdminDashboard() {
   const { currentAdminData } = useSelector((state) => state.currentAdminData);
   const adminLogoutHandler = async () => {
     try {
-      const response = await axios.get("/api/v1/admin/logout");
+      const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/logout");
       console.log(response.data.message);
       navigate("/admin-login");
     } catch (error) {

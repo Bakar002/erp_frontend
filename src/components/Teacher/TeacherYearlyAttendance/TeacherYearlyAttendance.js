@@ -7,7 +7,7 @@ const TeacherYearlyAtttendance = () => {
   const [gradeAttendance, setGradeAttendance] = useState(null);
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, [dispatch]);
+  }, []);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
@@ -15,7 +15,7 @@ const TeacherYearlyAtttendance = () => {
     const loadCurrentStudentAttendance = async () => {
       try {
         const response = await axios.get(
-          "/api/v1/teacher/view-grade-attendance/"
+          "https://belikeerp-3.onrender.com/api/v1/teacher/view-grade-attendance/"
         );
         console.log(response.data);
         setGradeAttendance(response.data.gradeStudentsAttendance);

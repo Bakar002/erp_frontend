@@ -8,7 +8,7 @@ const StudentAtttendance = () => {
   const [attendance, setAttendance] = useState(null);
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, [dispatch]);
+  }, []);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
@@ -16,7 +16,7 @@ const StudentAtttendance = () => {
     const loadCurrentStudentAttendance = async () => {
       try {
         const response = await axios.get(
-          "/api/v1/student/view-attendance/weekly"
+          "https://belikeerp-3.onrender.com/api/v1/student/view-attendance/weekly"
         );
         setAttendance(response.data.attendanceData);
         setStudentAttendance(response.data.studentAttendance);

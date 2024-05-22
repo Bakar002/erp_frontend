@@ -6,7 +6,7 @@ const StudentCourseTimeTable = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCurrentStudentAction());
-  }, [dispatch]);
+  }, []);
   const { currentStudentData } = useSelector(
     (state) => state.currentStudentData
   );
