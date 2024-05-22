@@ -69,7 +69,7 @@ function App() {
     dispatch(loadCurrentTeacherAction())
       .then(() => setTeacherLoading(false))
       .catch((error) => setTeacherLoading(false));
-  }, ); // Added dependency array
+  }, [dispatch]); // Added dependency array
 
   const { isStudentAuthenticated } = useSelector(
     (state) => state.currentStudentData
