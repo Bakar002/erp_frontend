@@ -109,7 +109,7 @@ function App() {
           <Route path="/school-portal-home" element={<SchoolPortalHome />} />
           <Route
             path="/admin-dashboard"
-            element={!isAdminAuthenticated ? <AdminDashboard /> : <AdminLogin />}
+            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminLogin />}
           />
           <Route
             path="/admin-feedback"
