@@ -71,7 +71,7 @@ export default function Navbar() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Contact US test123
+                  Contact US 
                 </a>
               </li>
             </ul>
