@@ -18,7 +18,7 @@ function AdminDashboard() {
   const [isShowing, setShowing] = useState(false);
   useEffect(() => {
     dispatch(loadCurrentAdminAction());
-  }, );
+  },[dispatch] );
 
   const { currentAdminData } = useSelector((state) => state.currentAdminData);
   const adminLogoutHandler = async () => {

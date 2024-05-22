@@ -61,13 +61,16 @@ function App() {
       .catch((error) => {
         setStudentLoading(false);
       });
+
     dispatch(loadCurrentAdminAction())
       .then(() => setAdminLoading(false))
       .catch((error) => setAdminLoading(false));
+
     dispatch(loadCurrentTeacherAction())
       .then(() => setTeacherLoading(false))
       .catch((error) => setTeacherLoading(false));
-  }, );
+  }, [dispatch]); // Added dependency array
+
   const { isStudentAuthenticated } = useSelector(
     (state) => state.currentStudentData
   );
