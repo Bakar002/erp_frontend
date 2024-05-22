@@ -71,7 +71,7 @@ export default function Navbar() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Contact US 222
+                  Contact US
                 </a>
               </li>
             </ul>
