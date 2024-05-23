@@ -28,7 +28,7 @@ export const AdminAddTeacher = () => {
   useEffect(() => {
     const fetchAllGrades = async () => {
       try {
-        const response = await axios.get("https://belikeerp.onrender.com/api/v1/admin/load-all-grades");
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades");
         setGrades(response.data.grades);
 
       } catch (error) {
