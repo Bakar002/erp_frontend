@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 // import Landingpage from "./components/Landing/Landing";
 
@@ -95,7 +96,7 @@ function App() {
   }
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<Landingpage />} />
           <Route path="/admin-login" element={<AdminLogin />} />
@@ -251,7 +252,7 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }
