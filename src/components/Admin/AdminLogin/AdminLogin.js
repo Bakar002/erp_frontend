@@ -63,24 +63,40 @@ const AdminLogin = () => {
   };
 
   const onSubmit = async (data) => {
+
+    
     try {
       if (!data.email || !data.password) {
         console.log("Email or password is missing");
         return;
       }
+  
+      console.log("Sending login request...");
       const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/login", {
         adminEmail: data?.email,
         adminPassword: data?.password,
       });
-      handleShowSuccessToast(response.data.message);
-      console.log(response.data);
-      navigate("/admin-dashboard");
+  
+      console.log("Response received:", response);
+  
+      if (response.status === 200) {
+        handleShowSuccessToast(response.data.message);
+        console.log(response.data);
+        navigate("/admin-dashboard");
+      } else {
+        console.log("Unexpected response status:", response.status);
+      }
     } catch (error) {
-      console.log(error.response.data.message);
-      handleShowFailureToast(error.response.data.message);
+      console.error("Error during login request:", error);
+      if (error.response && error.response.data && error.response.data.message) {
+        console.log(error.response.data.message);
+        handleShowFailureToast(error.response.data.message);
+      } else {
+        console.log("An unknown error occurred.");
+        handleShowFailureToast("An unknown error occurred.");
+      }
     }
   };
-
   return (
     <div className="relative flex overflow-hidden  justify-center items-center bg-transparent  h-[100vh]">
       <Toaster />
