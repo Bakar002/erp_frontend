@@ -16,7 +16,7 @@ const StudentYearlyAtttendance = () => {
     const loadCurrentStudentAttendance = async () => {
       try {
         const response = await axios.get(
-          "https://belikeerp.onrender.com/view-attendance/yearly"
+          "https://belikeerp-3.onrender.com/view-attendance/yearly"
         );
         console.log(response.data);
         setAttendance(response.data.attendanceData);
