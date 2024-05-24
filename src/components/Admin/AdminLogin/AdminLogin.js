@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,12 +15,12 @@ import {
   handleShowSuccessToast,
 } from "../../ToastMessages/ToastMessage";
 import { Toaster } from "react-hot-toast";
-
 const AdminLogin = () => {
-  const { control, handleSubmit, formState: { errors } } = useForm();
-  const [show, setShow] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // New state for authentication status
-  const navigate = useNavigate();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const appendDots = (dots) => (
     <div
@@ -56,29 +56,33 @@ const AdminLogin = () => {
     autoplaySpeed: 3000,
   };
 
+  const [show, setShow] = useState(true);
+  const navigate = useNavigate();
   const handleShow = () => {
     setShow(!show);
   };
 
   const onSubmit = async (data) => {
+
+    
     try {
       if (!data.email || !data.password) {
         console.log("Email or password is missing");
         return;
       }
-
+  
       console.log("Sending login request...");
       const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/login", {
         adminEmail: data?.email,
         adminPassword: data?.password,
       });
-
+  
       console.log("Response received:", response);
-
+  
       if (response.status === 200) {
         handleShowSuccessToast(response.data.message);
         console.log(response.data);
-        setIsAuthenticated(true); // Set authentication status to true
+        navigate("/admin-dashboard");
       } else {
         console.log("Unexpected response status:", response.status);
       }
@@ -93,23 +97,16 @@ const AdminLogin = () => {
       }
     }
   };
-
-  // Use useEffect to navigate when authenticated
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/admin-dashboard");
-    }
-  }, [isAuthenticated, navigate]);
-
   return (
-    <div className="relative flex overflow-hidden justify-center items-center bg-transparent h-[100vh]">
+    <div className="relative flex overflow-hidden  justify-center items-center bg-transparent  h-[100vh]">
       <Toaster />
-      <div className="w-[100%] md:block md:w-[60%] h-full">
-        <Slider {...settings} appendDots={appendDots} className="h-full">
+      <div className="w-[100%] md:block md:w-[60%]  h-full">
+        <Slider {...settings} appendDots={appendDots} className=" h-full">
           <div
             className="h-screen relative"
             style={{
-              backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5))",
+              backgroundImage:
+                "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5))",
               backgroundImage: `url(${img1})`,
             }}
           >
@@ -126,18 +123,18 @@ const AdminLogin = () => {
           </div>
         </Slider>
       </div>
-      <div className="absolute md:relative md:h-full w-[80%] md:w-[40%] lg:[60%]">
+      <div className="absolute  md:relative md:h-full  w-[80%] md:w-[40%] lg:[60%]">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="py-6 h-full rounded-lg shadow-xl shadow-slate-400/50 bg-[#f7f7f7] flex flex-col justify-center items-center text-black"
+          className="py-6 h-full  rounded-lg shadow-xl shadow-slate-400/50 bg-[#f7f7f7]  flex flex-col justify-center items-center text-black"
           id="signup"
         >
-          <div className="flex flex-col w-[80%]">
-            <div className="flex flex-col justify-center items-center mb-4">
+          <div className=" flex flex-col w-[80%] ">
+            <div className=" flex flex-col justify-center items-center mb-4">
               <img src={Logo} className="h-[4rem] w-[6rem]" alt="" />
             </div>
             <h1 className="text-center font-bold text-2xl">Admin Login Portal</h1>
-            <div className="mt-4">
+            <div className="mt-4 ">
               <input
                 type="email"
                 className="border-b outline-none border-gray-300 transition-all duration-300 focus:border-blue-500 focus:border-b-2 bg-transparent p-2 w-full h-full"
@@ -145,7 +142,7 @@ const AdminLogin = () => {
                 placeholder="Email"
                 id="email"
                 {...control.register("email", {
-                  required: "Enter your email*",
+                  required: "Enter your email* ",
                   pattern: {
                     value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                     message: "Invalid email address*",
@@ -156,11 +153,11 @@ const AdminLogin = () => {
             {errors.email && (
               <p className="text-red-700">{errors.email.message}</p>
             )}
-            <div className="relative mt-4">
+            <div className="relative mt-4 ">
               <input
                 type={show ? "password" : "text"}
                 placeholder="Password"
-                className="border-b outline-none border-gray-300 transition-all duration-300 focus:border-blue-500 focus:border-b-2 bg-transparent p-2 h-full w-full"
+                className="border-b outline-none border-gray-300 transition-all duration-300  focus:border-blue-500 focus:border-b-2 bg-transparent p-2 h-full w-full "
                 name="password"
                 autoComplete="new-password"
                 id="password"
@@ -168,11 +165,11 @@ const AdminLogin = () => {
                   required: "Enter password*",
                   minLength: {
                     value: 6,
-                    message: "Password must be 6 characters long*",
+                    message: "password must be 6 characters long*",
                   },
                   maxLength: {
-                    value: 20,
-                    message: "Password must be less than 20 characters*",
+                    value: "20",
+                    message: "pasword must be less then 20 characters*",
                   },
                 })}
               />
@@ -188,12 +185,16 @@ const AdminLogin = () => {
             )}
             <input
               type="submit"
-              value="Login"
+              value={"Login"}
               className="mt-4 bg-black text-white p-2 hover:bg-slate-600 hover:text-black"
             />
             <h3 className="mt-3">
-              <a href="/" className="text-blue-700 hover:underline cursor-pointer">
-                Forgot Password?
+              {" "}
+              <a
+                href="/"
+                className="text-blue-700 hover:underline cursor-pointer"
+              >
+                Forgot Password ?
               </a>
             </h3>
           </div>
