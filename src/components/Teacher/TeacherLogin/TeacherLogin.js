@@ -75,6 +75,8 @@ const TeacherLogin = () => {
       });
       handleShowSuccessToast(response.data.message);
       navigate("/teacher-take-attendance");
+      window.location.reload(); // Reload the window after navigating
+
     } catch (error) {
       handleShowFailureToast(error.response.data.message);
     }

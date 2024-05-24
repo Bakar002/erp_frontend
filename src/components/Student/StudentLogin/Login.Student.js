@@ -77,6 +77,8 @@ const StudentLogin = () => {
       handleShowSuccessToast(response.data.message);
       reset();
       navigate("/school-portal-home");
+      window.location.reload(); // Reload the window after navigating
+
     } catch (error) {
       console.log(error.response.data.message);
       handleShowFailureToast(error.response.data.message);
