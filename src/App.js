@@ -52,6 +52,7 @@ import StudentAddFeedback from "./components/Student/StudentAddFeedback/StudentA
 import AdminFeedback from "./components/Admin/AdminFeedback/AdminFeedback.js";
 import TeacherAddResult  from "./components/Teacher/TeacherAddResult/TeacherAddResult.js";
 import AddResult from "./components/Student/StudentResult/StudentResult.js";
+import AdmissionForm from './components/Landing/AdmissionForm';
 function App() {
 
 
@@ -99,6 +100,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landingpage />} />
+          <Route path="/admission" element={<AdmissionForm />} />
+
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
           <Route path="/teacher-login" element={<TeacherLogin />} />

@@ -63,18 +63,16 @@ export default function SchoolPortal() {
                   className="text-reset text-decoration-none text-center"
                   href="https://example.com"
                 ></a>
-                <h6 className="text-center pt-2">
-                  <a
-                    className="text-reset text-decoration-none text-center"
-                    href="https://example.com"
-                  />
-                  <a
-                    className="text-decoration-none text-dark"
-                    href="admissions/summer/index.php"
-                  >
-                    Summer
-                  </a>
-                </h6>
+                
+<h6 className="text-center pt-2">
+  <NavLink
+    className="text-reset text-decoration-none text-center"
+    to="/admission"
+  >
+    Summer
+  </NavLink>
+</h6>
+
               </div>
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
