@@ -25,7 +25,7 @@ function AdminDashboard() {
     try {
       const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/logout");
       console.log(response.data.message);
-      navigate("/admin-login");
+      navigate("/");
     } catch (error) {
       handleShowFailureToast(error.response.data.message);
       console.log(error.response.data.message);
