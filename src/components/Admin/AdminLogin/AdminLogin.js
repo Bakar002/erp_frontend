@@ -61,10 +61,7 @@ const AdminLogin = () => {
   const handleShow = () => {
     setShow(!show);
   };
-
   const onSubmit = async (data) => {
-
-    
     try {
       if (!data.email || !data.password) {
         console.log("Email or password is missing");
@@ -83,6 +80,7 @@ const AdminLogin = () => {
         handleShowSuccessToast(response.data.message);
         console.log(response.data);
         navigate("/admin-dashboard");
+        window.location.reload(); // Reload the window after navigating
       } else {
         console.log("Unexpected response status:", response.status);
       }
@@ -97,6 +95,7 @@ const AdminLogin = () => {
       }
     }
   };
+  
   return (
     <div className="relative flex overflow-hidden  justify-center items-center bg-transparent  h-[100vh]">
       <Toaster />
