@@ -23,7 +23,7 @@ export default function TeacherViewAttendance() {
     const loadAllGradeStudents = async () => {
       try {
         const response = await axios.get(
-          "https://belikeerp.onrender.com/load-all-students-same-grade"
+          "https://belikeerp-3.onrender.com/api/v1/teacher/load-all-students-same-grade"
         );
         setAllStudents(response.data.studentsSameGrade);
       } catch (error) {

@@ -46,7 +46,7 @@ import {
       }
       try {
         const response = await axios.post(
-          `https://belikeerp.onrender.com/create-result/${data.course}/${data.student}/${data.grade}`,
+          `https://belikeerp-3.onrender.com/api/v1/teacher/create-result/${data.course}/${data.student}/${data.grade}`,
           {
             resultObtainedNumber: data.obtainedMarks,
             resultTotalMarks: data.totalMarks,
