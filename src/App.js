@@ -180,7 +180,7 @@ function App() {
           />
           <Route
             path="/student-result"
-            element={isStudentAuthenticated ? <AddResult /> : <Login />}
+            element={isStudentAuthenticated ? <AddResult /> : <StudentLogin/>}
           />
           {/* Teacher Routes  */}
           <Route

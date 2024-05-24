@@ -157,7 +157,7 @@ const StudentLogin = () => {
                     message: "password must be 6 characters long*",
                   },
                   maxLength: {
-                    value: "10",
+                    value: "20",
                     message: "pasword must be less then 10 characters*",
                   },
                 })}
