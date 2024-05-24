@@ -8,7 +8,7 @@ import {
   handleShowFailureToast,
   handleShowSuccessToast,
 } from "../../ToastMessages/ToastMessage";
-export const TeacherAddResult = () => {
+ const TeacherAddResult = () => {
   const dispatch = useDispatch();
   const [students, setStudents] = useState([]);
   const [grade, setGrade] = useState(null);
@@ -280,3 +280,4 @@ export const TeacherAddResult = () => {
     </div>
   );
 };
+export default TeacherAddResult;

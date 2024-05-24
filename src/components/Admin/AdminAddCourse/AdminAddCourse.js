@@ -7,7 +7,7 @@ import {
 } from "../../ToastMessages/ToastMessage";
 import ThreeDotLoader from "../../../components/Loaders/ThreeDotLoader";
 import { Toaster } from "react-hot-toast";
-export const AddCourse = () => {
+ const AddCourse = () => {
   const {
     register,
     formState: { errors },
@@ -163,3 +163,4 @@ export const AddCourse = () => {
     </div>
   );
 };
+export default AddCourse;

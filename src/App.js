@@ -18,7 +18,7 @@ import TeacherTakeAttendance from "./components/Teacher/TeacherTakeAttendance/Te
 import TeacherViewAttendance from "./components/Teacher/TeacherViewAttendance/TeacherViewAttendance.js";
 import axios from "axios";
 
-import { AddCourse } from "./components/Admin/AdminAddCourse/AdminAddCourse";
+import  AddCourse  from "./components/Admin/AdminAddCourse/AdminAddCourse";
 import StudentDashboard from "./components/Student/StudentDashboard";
 import StudentViewProfile from "./components/Student/StudentViewSubjects/StudentViewProfile";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,7 +50,7 @@ import TeacherYearlyAttendance from "./components/Teacher/TeacherYearlyAttendanc
 import TeacherMonthlyAttendance from "./components/Teacher/TeacherMonthlyAttendance/TeacherMonthlyAttendance.js";
 import StudentAddFeedback from "./components/Student/StudentAddFeedback/StudentAddFeedback.js";
 import AdminFeedback from "./components/Admin/AdminFeedback/AdminFeedback.js";
-import { TeacherAddResult } from "./components/Teacher/TeacherAddResult/TeacherAddResult.js";
+import TeacherAddResult  from "./components/Teacher/TeacherAddResult/TeacherAddResult.js";
 import AddResult from "./components/Student/StudentResult/StudentResult.js";
 function App() {
 

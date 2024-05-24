@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { AddCourse } from "./AdminAddCourse/AdminAddCourse";
+import  AddCourse  from "./AdminAddCourse/AdminAddCourse";
 import { AdminAddTeacher } from "./AdminAddTeacher/AdminnAddTeachers";
 import { AdminAddStudent } from "./AdminAddStudent/AdminAddStudent";
 import { AdminAddGrade } from "./AdminAddGrade/AdminAddGrade";
