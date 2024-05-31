@@ -153,7 +153,7 @@ const StudentLogin = () => {
                 {...control.register("password", {
                   required: "Enter password*",
                   minLength: {
-                    value: 15,
+                    value: 2,
                     message: "password must be 6 characters long*",
                   },
                   maxLength: {
