@@ -61,7 +61,7 @@ const TeacherTakeAttendance = () => {
       };
       try {
         const response = await axios.post(
-          `https://belikeerp-3.onrender.com/api/v1/teacher/take-attendance/${currentTeacherData?.teacher?.teacherGrades?.[0]?.gradeId}`,
+          `https://belikeerp-3.onrender.com/api/v1/teacher/take-attendance/${currentTeacherData?.teacher?.teacherGrades?.[0]?.gradeId?._id}`,
           data
         );
         console.log(response.data.message);
