@@ -83,43 +83,42 @@ export const AdminAddGrade = () => {
 
   const addGradeDataSendHandler = (e) => {
     e.preventDefault();
-     
-      gradeCategory &&
-      gradeCourses &&
-      gradeRoomNumber &&
-      gradeSchoolTiming &&
-      gradeIncharge
-     
-      const Courses = [];
+    
+    const Courses = [];
+    if (gradeCourses) {
       gradeCourses.forEach((course) => {
         Courses.push({ courseId: course });
       });
-      const data = {
-        gradeCategory,
-        gradeCourses: Courses,
-        gradeRoomNumber,
-        gradeSchoolTiming,
-        gradeIncharge,
-      };
-      const sendGradeData = async () => {
-        try {
-          setLoading(true);
-          const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-grade", data);
-          handleShowSuccessToast(response.data.message);
-          console.log(response.data.message);
-          setGradeCategory("");
-          setGradeRoomNumber("");
-          setGradeSchoolTiming("");
-          setLoading(false);
-        } catch (error) {
-          handleShowFailureToast(error.response.data.message);
-          console.log(error.response.data.message);
-          setLoading(false);
-        }
-      };
-      sendGradeData();
+    }
+  
+    const data = {
+      gradeCategory: gradeCategory || "",
+      gradeCourses: Courses,
+      gradeRoomNumber: gradeRoomNumber || "",
+      gradeSchoolTiming: gradeSchoolTiming || "",
+      gradeIncharge: gradeIncharge || "",
+    };
+  
+    const sendGradeData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-grade", data);
+        handleShowSuccessToast(response.data.message);
+        console.log(response.data.message);
+        setGradeCategory("");
+        setGradeRoomNumber("");
+        setGradeSchoolTiming("");
+        setLoading(false);
+      } catch (error) {
+        handleShowFailureToast(error.response.data.message);
+        console.log(error.response.data.message);
+        setLoading(false);
+      }
+    };
     
+    sendGradeData();
   };
+  
 
   return (
     <div className="md:px-8 mt-4">
