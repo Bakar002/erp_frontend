@@ -122,12 +122,12 @@ function App() {
           />
           <Route
             path="/student-dashboard"
-            element={isStudentAuthenticated ? <StudentDashboard /> : <Login />}
+            element={isStudentAuthenticated ? <StudentDashboard /> : <StudentLogin />}
           />
           <Route
             path="/student-view-profile"
             element={
-              isStudentAuthenticated ? <StudentViewProfile /> : <Login />
+              isStudentAuthenticated ? <StudentViewProfile /> : <StudentLogin />
             }
           />
           <Route
@@ -156,30 +156,30 @@ function App() {
           />
           <Route
             path="/student-attendance"
-            element={isStudentAuthenticated ? <StudentAttendance /> : <Login />}
+            element={isStudentAuthenticated ? <StudentAttendance /> : <StudentLogin />}
           />
           <Route
             path="/student-weekly-attendance"
             element={
-              isStudentAuthenticated ? <StudentWeeklyAtttendance /> : <Login />
+              isStudentAuthenticated ? <StudentWeeklyAtttendance /> : <StudentLogin />
             }
           />
           <Route
             path="/student-monthly-attendance"
             element={
-              isStudentAuthenticated ? <StudentMonthlyAtttendance /> : <Login />
+              isStudentAuthenticated ? <StudentMonthlyAtttendance /> : <StudentLogin />
             }
           />
           <Route
             path="/student-yearly-attendance"
             element={
-              isStudentAuthenticated ? <StudentYearlyAtttendance /> : <Login />
+              isStudentAuthenticated ? <StudentYearlyAtttendance /> : <StudentLogin />
             }
           />
           <Route
             path="/student-add-feedback"
             element={
-              isStudentAuthenticated ? <StudentAddFeedback /> : <Login />
+              isStudentAuthenticated ? <StudentAddFeedback /> : <StudentLogin />
             }
           />
           <Route
