@@ -83,13 +83,13 @@ export const AdminAddGrade = () => {
 
   const addGradeDataSendHandler = (e) => {
     e.preventDefault();
-    if (
+     
       gradeCategory &&
       gradeCourses &&
       gradeRoomNumber &&
       gradeSchoolTiming &&
       gradeIncharge
-    ) {
+     
       const Courses = [];
       gradeCourses.forEach((course) => {
         Courses.push({ courseId: course });
@@ -118,9 +118,7 @@ export const AdminAddGrade = () => {
         }
       };
       sendGradeData();
-    } else {
-      handleShowFailureToast("Input parameter is missing");
-    }
+    
   };
 
   return (
