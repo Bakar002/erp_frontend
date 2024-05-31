@@ -38,7 +38,7 @@ import {
   );
   const onSubmit = async (data) => {
     if (data) {
-      if (data.obtainedMarks < data.totalMarks) {
+      if (data.obtainedMarks >= data.totalMarks) {
         handleShowFailureToast(
           "Obtained marks must be lesser or equal to total marks"
         );
