@@ -53,7 +53,7 @@ import AdminFeedback from "./components/Admin/AdminFeedback/AdminFeedback.js";
 import TeacherAddResult  from "./components/Teacher/TeacherAddResult/TeacherAddResult.js";
 import AddResult from "./components/Student/StudentResult/StudentResult.js";
 import AdmissionForm from './components/Landing/AdmissionForm';
-import StudentLogin from './components/Student/StudentLogin/Login.Student';
+
 function App() {
 
 
