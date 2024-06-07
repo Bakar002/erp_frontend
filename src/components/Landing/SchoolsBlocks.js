@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "./path/to/logo"; // Replace with your actual logo path
-import schoolportallogo from "./path/to/schoolportallogo"; // Replace with your actual school portal logo path
+import Logo from "../../Assets/Img/dg.png"; // Replace with your actual logo path
+import schoolportallogo from "../../Assets/Img/file.png"; // Replace with your actual school portal logo path
 import "./SchoolBlocks.css"
 
 const SchoolBlocks = () => {
