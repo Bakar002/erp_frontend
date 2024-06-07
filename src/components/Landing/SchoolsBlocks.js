@@ -7,7 +7,7 @@ import schoolportallogo3 from "../../Assets/Img/s3.jpg"; // Replace with your ac
 import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your actual school portal logo path
 
 
-import "./SchoolBlocks.css"
+// import "./SchoolBlocks.css"
 
 const SchoolBlocks = () => {
   const schools = [
@@ -39,12 +39,12 @@ const SchoolBlocks = () => {
   ];
 
   return (
-    <div className="container pt-3">
-      <div className="text-center d-flex justify-content-center">
-        <h1 className="text-center school">Belike Edu. Software</h1>
+    <div className="container pt-3 mx-auto">
+      <div className="text-center d-flex justify-content-center items-center">
+        <h1 className="text-center school text-3xl font-bold">Belike Edu. Software</h1>
         <img
-          alt=""
-          className="ms-lg-2 logo"
+          alt="Belike Edu. Logo"
+          className="ms-lg-2 logo ml-3"
           src={Logo}
           style={{
             height: "70px",
@@ -52,13 +52,21 @@ const SchoolBlocks = () => {
           }}
         />
       </div>
-      <h3 className="text-center fw-bold">Our Partners School</h3>
-      <div className="row flex justify-content-center gap-2 flex-wrap mt-5">
+      <h3 className="text-center fw-bold text-xl mt-6">Our Partner Schools</h3>
+      <div className="row flex justify-center gap-4 flex-wrap mt-10">
         {schools.map((school, index) => (
-          <NavLink to={school.link} key={index} className="text-decoration-none">
-            <div className="bg-white xl:w-2/12 w-6/12 h-40 overflow-hidden flex flex-col justify-center items-center gap-2 cursor-pointer rounded">
-              <img src={school.logo} alt={school.name} height={50} />
-              <h1 className="text-black text-center">{school.name}</h1>
+          <NavLink
+            to={school.link}
+            key={index}
+            className="text-decoration-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2"
+          >
+            <div className="bg-white h-40 overflow-hidden flex flex-col justify-center items-center gap-2 cursor-pointer rounded shadow-lg p-4 transform hover:scale-105 transition-transform duration-300">
+              <img
+                src={school.logo}
+                alt={school.name}
+                className="w-20 h-20 object-contain"
+              />
+              <h1 className="text-black text-center text-base font-semibold">{school.name}</h1>
             </div>
           </NavLink>
         ))}
