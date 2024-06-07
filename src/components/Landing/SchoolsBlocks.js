@@ -14,25 +14,25 @@ const SchoolBlocks = () => {
     {
       name: "School 1",
       logo: schoolportallogo1, // Replace with your actual school logo path
-      link: "/login", // Replace with the actual login link
+      link: "/admin-login", // Replace with the actual login link
     },
     {
       name: "School 2",
       logo: schoolportallogo2, // Replace with your actual school logo path
-      link: "/login", // Replace with the actual login link
+      link: "/admin-login", // Replace with the actual login link
     },
     // Add more schools as needed
 
     {
       name: "School 3",
       logo: schoolportallogo3, // Replace with your actual school logo path
-      link: "/login", // Replace with the actual login link
+      link: "/admin-login", // Replace with the actual login link
     },
     
     {
       name: "School 4",
       logo: schoolportallogo4, // Replace with your actual school logo path
-      link: "/login", // Replace with the actual login link
+      link: "/admin-login", // Replace with the actual login link
     },
     
 
