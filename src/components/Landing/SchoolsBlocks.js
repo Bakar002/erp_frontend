@@ -1,22 +1,41 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../Assets/Img/dg.png"; // Replace with your actual logo path
-import schoolportallogo from "../../Assets/Img/file.png"; // Replace with your actual school portal logo path
+import schoolportallogo1 from "../../Assets/Img/s1.jpg"; // Replace with your actual school portal logo path
+import schoolportallogo2 from "../../Assets/Img/s2.jpg"; // Replace with your actual school portal logo path
+import schoolportallogo3 from "../../Assets/Img/s3.jpg"; // Replace with your actual school portal logo path
+import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your actual school portal logo path
+
+
 import "./SchoolBlocks.css"
 
 const SchoolBlocks = () => {
   const schools = [
     {
       name: "School 1",
-      logo: schoolportallogo, // Replace with your actual school logo path
-      link: "/login/school1", // Replace with the actual login link
+      logo: schoolportallogo1, // Replace with your actual school logo path
+      link: "/login", // Replace with the actual login link
     },
     {
       name: "School 2",
-      logo: schoolportallogo, // Replace with your actual school logo path
-      link: "/login/school2", // Replace with the actual login link
+      logo: schoolportallogo2, // Replace with your actual school logo path
+      link: "/login", // Replace with the actual login link
     },
     // Add more schools as needed
+
+    {
+      name: "School 3",
+      logo: schoolportallogo3, // Replace with your actual school logo path
+      link: "/login", // Replace with the actual login link
+    },
+    
+    {
+      name: "School 4",
+      logo: schoolportallogo4, // Replace with your actual school logo path
+      link: "/login", // Replace with the actual login link
+    },
+    
+
   ];
 
   return (
