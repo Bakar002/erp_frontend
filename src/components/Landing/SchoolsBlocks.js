@@ -12,25 +12,25 @@ import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your ac
 const SchoolBlocks = () => {
   const schools = [
     {
-      name: "School 1",
+      name: "CBS Academy",
       logo: schoolportallogo1, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
     {
-      name: "School 2",
+      name: "Al-Kitab School System",
       logo: schoolportallogo2, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
     // Add more schools as needed
 
     {
-      name: "School 3",
+      name: "Pak Knowledge School System",
       logo: schoolportallogo3, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
     
     {
-      name: "School 4",
+      name: "The Learning Way School System",
       logo: schoolportallogo4, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
