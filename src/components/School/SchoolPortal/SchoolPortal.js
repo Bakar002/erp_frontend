@@ -34,19 +34,21 @@ export default function SchoolPortal() {
       </div>
       <h3 className="text-center  fw-bold">Our Partners School</h3>
       <div className="row flex justify-content-center gap-2 flex-wrap mt-5">
+   <div className="bg-white xl:w-2/12 w-6/12 h-40 overflow-hidden flex flex-col justify-center items-center gap-2 cursor-pointer rounded">
+    
       <NavLink
     className="text-reset text-decoration-none text-center"
-    to="/admission"
+    to="/schoolblocks"
   >
-   <div className="bg-white xl:w-2/12 w-6/12 h-40 overflow-hidden flex flex-col justify-center items-center gap-2 cursor-pointer rounded">
           <img src={schoolportallogo} alt="" height={50} />
           <h1 className="text-black text-center">
 
           All Schools and Academies Collaboration
 
           </h1>
-        </div>
      </NavLink>
+     </div>
+
         <div className="container">
           <h3 className="text-center  fw-bold my-4">Admissions</h3>
           <div className="row d-flex justify-content-center">

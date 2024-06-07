@@ -1,0 +1,84 @@
+.container {
+    padding-top: 1rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .school {
+    font-weight: bold;
+  }
+  
+  .logo {
+    margin-left: 0.5rem;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .xl\:w-2\/12 {
+    width: 16.666667%;
+  }
+  
+  .w-6\/12 {
+    width: 50%;
+  }
+  
+  .h-40 {
+    height: 10rem;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .gap-2 {
+    gap: 0.5rem;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .rounded {
+    border-radius: 0.25rem;
+  }
+  
+  .fw-bold {
+    font-weight: bold;
+  }
+  
+  .mt-5 {
+    margin-top: 3rem;
+  }
+  
+  .text-black {
+    color: black;
+  }
+  

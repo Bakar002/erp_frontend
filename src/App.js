@@ -53,10 +53,9 @@ import AdminFeedback from "./components/Admin/AdminFeedback/AdminFeedback.js";
 import TeacherAddResult  from "./components/Teacher/TeacherAddResult/TeacherAddResult.js";
 import AddResult from "./components/Student/StudentResult/StudentResult.js";
 import AdmissionForm from './components/Landing/AdmissionForm';
+import SchoolBlocks from './components/Landing/SchoolsBlocks';
 
 function App() {
-
-
   const dispatch = useDispatch();
   const [studentLoading, setStudentLoading] = useState(true);
   const [adminLoading, setAdminLoading] = useState(true);
@@ -108,10 +107,13 @@ function App() {
           <Route path="/teacher-login" element={<TeacherLogin />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/schoolblocks" element={<SchoolBlocks />} />
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/student-login" element={<StudentLogin />} />
           <Route path="/admin-add-course" element={<AddCourse />} />
           <Route path="/school-portal-home" element={<SchoolPortalHome />} />
+
           <Route
             path="/admin-dashboard"
             element={isAdminAuthenticated ? <AdminDashboard /> : <AdminLogin />}
