@@ -5,6 +5,8 @@ import schoolportallogo1 from "../../Assets/Img/s1.jpg"; // Replace with your ac
 import schoolportallogo2 from "../../Assets/Img/s2.jpg"; // Replace with your actual school portal logo path
 import schoolportallogo3 from "../../Assets/Img/s3.jpg"; // Replace with your actual school portal logo path
 import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your actual school portal logo path
+import schoolportallogo5 from "../../Assets/Img/s5.jpg"; // Replace with your actual school portal logo path
+
 
 
 // import "./SchoolBlocks.css"
@@ -36,6 +38,12 @@ const SchoolBlocks = () => {
     },
     
 
+    {
+      name: "Amal Academy",
+      logo: schoolportallogo5, // Replace with your actual school logo path
+      link: "/admin-login", // Replace with the actual login link
+    },
+    
   ];
 
   return (
