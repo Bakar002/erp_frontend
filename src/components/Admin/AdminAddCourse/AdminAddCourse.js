@@ -7,7 +7,8 @@ import {
 } from "../../ToastMessages/ToastMessage";
 import ThreeDotLoader from "../../../components/Loaders/ThreeDotLoader";
 import { Toaster } from "react-hot-toast";
- const AddCourse = () => {
+
+const AddCourse = () => {
   const {
     register,
     formState: { errors },
@@ -17,6 +18,7 @@ import { Toaster } from "react-hot-toast";
   const [courseTimeTable, setCousreTimeTable] = useState("");
   const [courseTeacher, setCourseTeacher] = useState("");
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchAllTeachers = async () => {
       try {
@@ -28,24 +30,35 @@ import { Toaster } from "react-hot-toast";
     };
     fetchAllTeachers();
   }, []);
+
   const sendCourseDataHandler = (e) => {
     e.preventDefault();
-    if (courseTitle && courseTeacher && courseTimeTable) {
+    if (courseTitle && courseTimeTable) {
       const data = {
         courseTitle,
         courseTimeTable,
       };
+
       const sendCourseData = async () => {
         try {
           setLoading(true);
-          const response = await axios.post(
-            `https://belikeerp-3.onrender.com/api/v1/admin/add-course/${courseTeacher}`,
-            data
-          );
+          let response;
+          if (courseTeacher) {
+            response = await axios.post(
+              `https://belikeerp-3.onrender.com/api/v1/admin/add-course/${courseTeacher}`,
+              data
+            );
+          } else {
+            response = await axios.post(
+              `https://belikeerp-3.onrender.com/api/v1/admin/add-course`,
+              data
+            );
+          }
           handleShowSuccessToast(response.data.message);
           console.log(response.data.message);
           setCourseTitle("");
           setCousreTimeTable("");
+          setCourseTeacher("");
           setLoading(false);
         } catch (error) {
           handleShowFailureToast(error.response.data.message);
@@ -66,12 +79,12 @@ import { Toaster } from "react-hot-toast";
       >
         <div className="">
           <div className="flex flex-col text-center w-full mb-2">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font  text-gray-900">
+            <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
               Add Course
             </h1>
           </div>
-          <div className=" ">
-            <div className=" ">
+          <div className="">
+            <div className="">
               <div className="md:flex justify-between">
                 <div className="md:w-[45%]">
                   <label
@@ -95,7 +108,7 @@ import { Toaster } from "react-hot-toast";
                   )}
                 </div>
               </div>
-              <div className="md:flex justify-between items-center  ">
+              <div className="md:flex justify-between items-center">
                 <div className="md:w-[45%]">
                   <label
                     htmlFor="courseTeacher"
@@ -106,24 +119,19 @@ import { Toaster } from "react-hot-toast";
                   <select
                     name="courseTeacher"
                     id="courseTeacher"
-                    {...register("courseTeacher", { required: true })}
+                    {...register("courseTeacher")}
                     onChange={(e) => setCourseTeacher(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-purple-500 dark:focus:border-purple-500"
                   >
-                    <option value="">Teacher</option>
+                    <option value="">Select a teacher</option>
                     {teachers && Array.isArray(teachers)
                       ? teachers.map((teacher) => (
-                          <option value={teacher?._id}>
+                          <option key={teacher?._id} value={teacher?._id}>
                             {teacher?.teacherName}
                           </option>
                         ))
                       : ""}
                   </select>
-                  {errors.courseTeacher && (
-                    <p className="text-red-500 text-xs mt-1">
-                      Course Teacher is required
-                    </p>
-                  )}
                 </div>
                 <div className="md:w-[45%]">
                   <label
@@ -133,7 +141,7 @@ import { Toaster } from "react-hot-toast";
                     Course Timetable
                   </label>
                   <input
-                    type="courseTimetable"
+                    type="text"
                     placeholder="Monday and Friday 9:00AM to 10:00AM"
                     id="courseTimetable"
                     value={courseTimeTable}
@@ -163,4 +171,5 @@ import { Toaster } from "react-hot-toast";
     </div>
   );
 };
+
 export default AddCourse;
