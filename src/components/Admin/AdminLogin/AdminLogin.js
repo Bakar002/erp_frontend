@@ -4,10 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useForm } from "react-hook-form";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import Logo from "../../../Assets/logo.png";
-import img1 from "../../../Assets/bgstudent-1.jpg";
-import img2 from "../../../Assets/bgstudent-2.jpg";
-import img3 from "../../../Assets/bgstudent-3.jpeg";
+import Logo from "../../../Assets/logo.webp";
+import img1 from "../../../Assets/bgstudent-1.webp";
+import img2 from "../../../Assets/bgstudent-2.webp";
+import img3 from "../../../Assets/bgstudent-3.webp";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {

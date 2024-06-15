@@ -1,16 +1,16 @@
 import React from "react";
-import schoolportallogo from "../../../Assets/schoolportallogo.png";
-import AllschoolAssociation from "../../../Assets/association.jpeg";
+import schoolportallogo from "../../../Assets/schoolportallogo.webp";
+import AllschoolAssociation from "../../../Assets/association.webp";
 import "./SchoolPortal.css";
-import AssociationImg from "../../../Assets/Img/association.jpeg";
-import LahoreImg from "../../../Assets/Img/lhr.png";
-import GujranwalaImg from "../../../Assets/Img/grw.png";
-import SargodhaImg from "../../../Assets/Img/sgd.png";
-import DGKhan from "../../../Assets/Img/dg.png";
-import FaisalabadImg from "../../../Assets/Img/fsd.png";
-import MultanImg from "../../../Assets/Img/mul.png";
-import RawalpindiImg from "../../../Assets/Img/rwp.png";
-import Logo from "../../../Assets/Img/logo.png";
+import AssociationImg from "../../../Assets/Img/association.webp";
+import LahoreImg from "../../../Assets/Img/lhr.webp";
+import GujranwalaImg from "../../../Assets/Img/grw.webp";
+import SargodhaImg from "../../../Assets/Img/sgd.webp";
+import DGKhan from "../../../Assets/Img/dg.webp";
+import FaisalabadImg from "../../../Assets/Img/fsd.webp";
+import MultanImg from "../../../Assets/Img/mul.webp";
+import RawalpindiImg from "../../../Assets/Img/rwp.webp";
+import Logo from "../../../Assets/Img/logo.webp";
 import Learning from "../../../Assets/Images/learning.png";
 import { NavLink, useNavigate } from "react-router-dom";
 export default function SchoolPortal() {
@@ -159,7 +159,7 @@ export default function SchoolPortal() {
               </a>
               <div className="card-body">
                 <h6 className="text-center pt-2">
-                  <a className="text-decoration-none" href="img/paper1.jpeg">
+                  <a className="text-decoration-none" href="img/paper1.webp">
                     Lahore
                   </a>
                 </h6>
@@ -174,7 +174,7 @@ export default function SchoolPortal() {
               />
               <div className="card-body">
                 <h6 className="text-center pt-2">
-                  <a className="text-decoration-none" href="img/paper1.jpeg">
+                  <a className="text-decoration-none" href="img/paper1.webp">
                     Gujranwala
                   </a>
                 </h6>
