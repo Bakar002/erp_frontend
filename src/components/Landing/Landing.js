@@ -15,6 +15,8 @@ import marketimg from "../../Assets/market.webp";
 import foodimg from "../../Assets/food1.webp";
 import donationimg from "../../Assets/donate.webp";
 import belikecustomimg from "../../Assets/bgp.webp";
+import belikecustomimg2 from "../../Assets/Images/customer.jpeg";
+
 import ecomimg from "../../Assets/e-com.webp";
 import jobimg from "../../Assets/jobs.webp";
 import healthimg from "../../Assets/health.webp";
@@ -163,6 +165,15 @@ const Landingpage = () => {
               </div>
               <div>
                 <h2>Be Like Custom Service</h2>
+              </div>
+            </div>
+
+            <div className="servcard flex flex-col items-center">
+              <div className=" w-[10rem] h-[10rem]">
+                <img src={belikecustomimg2} alt="" />
+              </div>
+              <div>
+                <h2>Be Like Legal Service</h2>
               </div>
             </div>
           </div>
