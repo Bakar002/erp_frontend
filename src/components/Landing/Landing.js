@@ -173,7 +173,7 @@ const Landingpage = () => {
                 <img src={belikecustomimg2} alt="" />
               </div>
               <div>
-                <h2>Be Like Legal Service</h2>
+                <h2> Legal Service</h2>
               </div>
             </div>
           </div>
