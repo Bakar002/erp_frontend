@@ -135,22 +135,27 @@ export const AdmissionForm = () => {
                   onChange={(e) => setStudentPhone(e.target.value)}
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="studentDOB"
-                  className="leading-7 text-sm text-gray-600"
-                >
-                  Student Date of Birth
-                </label>
-                <input
-                  type="date"
-                  id="studentDOB"
-                  name="studentDOB"
-                  value={studentDOB}
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
-                  onChange={(e) => setStudentDOB(e.target.value)}
-                />
-              </div>
+              
+              <div className="md:w-[45%] ">
+                  <label
+                    htmlFor="studentDOB"
+                    className="leading-7 text-sm text-gray-600"
+                  >
+                    Student Dob
+                  </label>
+                  <input
+                    id="studentDOB"
+                    name="studentDOB"
+                    value={studentDOB}
+                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
+                    onChange={(e) => setStudentDOB(e.target.value)}
+                  />
+                </div>
+
+
+
+
+
             </div>
             <div>
               <label
@@ -226,7 +231,7 @@ export const AdmissionForm = () => {
                 htmlFor="studentPhoto"
                 className="leading-7 text-sm text-gray-600"
               >
-                Student Photo
+                Student Id card Photo
               </label>
               <input
                 type="file"
