@@ -79,7 +79,7 @@ const AdminLogin = () => {
       if (response.status === 200) {
         handleShowSuccessToast(response.data.message);
         console.log(response.data);
-        navigate("/");
+        navigate("/school-portal-home");
         window.location.reload(); // Reload the window after navigating
       } else {
         console.log("Unexpected response status:", response.status);
