@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import 'stream-browserify';
+
 import { FaWhatsapp } from "react-icons/fa";
 import { Provider } from "react-redux";
 import store from "./components/Redux/store";

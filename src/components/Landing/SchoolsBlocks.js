@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Footnote, Tailwind } from "@fileforge/react-print";
+// import { Footnote, Tailwind } from "@fileforge/react-print";
 import { Toaster } from "react-hot-toast";
 import {
   handleShowFailureToast,
@@ -53,7 +53,7 @@ const ReceiptApp = () => {
   };
 
   return (
-    <Tailwind>
+
       <div>
         <Toaster />
         <div className="bg-gradient-to-r from-blue-600 to-blue-400 -z-10 absolute -left-[2cm] right-[25vw] -skew-y-12 h-[100vh] bottom-[95vh]" />
@@ -176,7 +176,7 @@ const ReceiptApp = () => {
               </div>
             </div>
 
-            {/* Receipt Details */}
+
             <div id="print-section">
               <div className="flex justify-between gap-4">
                 <div>
@@ -231,19 +231,14 @@ const ReceiptApp = () => {
               </div>
               <hr className="my-6" />
               <p>
-                This is some additional content to inform you that Acme Inc. is a
-                fake company and this is a fake receipt. This is just a demo to
-                show you how you can create a beautiful receipt with Onedoc.
+
               </p>
-              <Footnote>
-                Some additional conditions may apply. This template comes from the
-                react-print library, available at https://react.onedoclabs.com/
-              </Footnote>
+
             </div>
           </div>
         </main>
       </div>
-    </Tailwind>
+
   );
 };
 
