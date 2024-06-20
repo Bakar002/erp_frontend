@@ -666,10 +666,15 @@ export default function SchoolPortal() {
                   </div>
                 </div>
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+                <NavLink
+                    to={"/receipt"}
+                    className={"flex justify-center flex-col items-center"}
+                  >
                   <i className="fa-solid fa-file-invoice-dollar text-center fa-2x mt-3" />
                   <div className="card-body">
                     <h6 className="text-center pt-2">Fee Schedule</h6>
                   </div>
+                  </NavLink>
                 </div>
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
                   <i className="fa-solid fa-calendar-check text-center fa-2x mt-3" />

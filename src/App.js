@@ -54,6 +54,7 @@ import TeacherAddResult  from "./components/Teacher/TeacherAddResult/TeacherAddR
 import AddResult from "./components/Student/StudentResult/StudentResult.js";
 import AdmissionForm from './components/Landing/AdmissionForm';
 import SchoolBlocks from './components/Landing/SchoolsBlocks';
+import ReceiptApp from './components/Landing/Receipt';
 
 function App() {
   const dispatch = useDispatch();
@@ -118,6 +119,14 @@ function App() {
             path="/admin-dashboard"
             element={isAdminAuthenticated ? <AdminDashboard /> : <AdminLogin />}
           />
+
+<Route
+            path="/receipt"
+            element={isAdminAuthenticated ? <ReceiptApp /> : <AdminLogin />}
+          />
+
+
+
           <Route
             path="/admin-feedback"
             element={isAdminAuthenticated ? <AdminFeedback /> : <AdminLogin />}
