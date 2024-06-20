@@ -4,12 +4,17 @@
   "private": true,
   "proxy": "https://erp-frontend-s74v.vercel.app",
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.3",
+    "@fileforge/react-print": "^0.1.141",
+    "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "https-browserify": "^1.0.0",
     "react": "^18.3.1",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.3",
     "react-hot-toast": "^2.4.1",
@@ -22,6 +27,8 @@
     "react-toastify": "^10.0.5",
     "slick-carousel": "^1.8.1",
     "slick-slider": "^1.8.2",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -50,6 +57,10 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "tailwindcss": "^3.4.3"
-  }
+    "tailwindcss": "^3.4.4"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "tailwind.config.js",
+  "author": "",
+  "license": "ISC"
 }

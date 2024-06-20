@@ -71,6 +71,8 @@ const Landingpage = () => {
                 </div>
               </div>
             </Link>
+            <Link to={"/schoolblocks"}>
+
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={collegeimg} alt="" />
@@ -79,6 +81,9 @@ const Landingpage = () => {
                 <h2>Colleges</h2>
               </div>
             </div>
+
+            </Link>
+
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={universityimg} alt="" />
