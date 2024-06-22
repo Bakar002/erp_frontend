@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import  AddCourse  from "./AdminAddCourse/AdminAddCourse";
 import { AdminAddTeacher } from "./AdminAddTeacher/AdminnAddTeachers";
+import { AdminAddList } from "./AdminAddList/AdminAddList";
 import { AdminAddStudent } from "./AdminAddStudent/AdminAddStudent";
+
 import { AdminAddGrade } from "./AdminAddGrade/AdminAddGrade";
 import { useDispatch, useSelector } from "react-redux";
 import loadCurrentAdminAction from "../../components/Redux/Admin/Actions/loadCurrentAdminAction.Admin";
@@ -113,6 +115,26 @@ function AdminDashboard() {
                   Add Grade
                 </h5>
               </li>
+
+
+              <li className="mt-4">
+                <h5
+                  href={``}
+                  onClick={() => setActiveComponent("AdminAddList")}
+                  className={`cursor-pointer ${
+                    activeComponent === "AdminAddList"
+                      ? " border-b-2 border-white"
+                      : ""
+                  }`}
+                >
+                  Add Teacher List
+                </h5>
+              </li>
+
+
+
+
+
             </ul>
           </div>
 
@@ -146,6 +168,8 @@ function AdminDashboard() {
             {activeComponent === "AddCourse" && <AddCourse />}
             {activeComponent === "AdminAddStudent" && <AdminAddStudent />}
             {activeComponent === "AdminAddGrade" && <AdminAddGrade />}
+            {activeComponent === "AdminAddList" && <AdminAddList />}
+
           </div>
         </div>
       ) : (

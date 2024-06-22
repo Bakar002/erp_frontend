@@ -55,6 +55,8 @@ import AddResult from "./components/Student/StudentResult/StudentResult.js";
 import AdmissionForm from './components/Landing/AdmissionForm';
 import SchoolBlocks from './components/Landing/SchoolsBlocks';
 import ReceiptApp from './components/Landing/Receipt';
+import Accounts from './components/Landing/Accounts';
+import TeacherSlip from './components/Landing/TeacherSlip';
 
 function App() {
   const dispatch = useDispatch();
@@ -117,12 +119,23 @@ function App() {
 
           <Route
             path="/admin-dashboard"
-            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminLogin />}
+            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminDashboard />}
           />
 
 <Route
             path="/receipt"
             element={isAdminAuthenticated ? <ReceiptApp /> : <AdminLogin />}
+          />
+
+
+<Route
+            path="/accounts"
+            element={isAdminAuthenticated ? <Accounts /> : <AdminLogin />}
+          />
+
+<Route
+            path="/teacherslip"
+            element={isAdminAuthenticated ? <TeacherSlip /> : <AdminLogin />}
           />
 
 

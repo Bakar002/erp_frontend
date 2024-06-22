@@ -621,7 +621,7 @@ export default function SchoolPortal() {
                   <NavLink
                     to={"/teacher-add-result"}
                     className={"flex justify-center flex-col items-center"}
-                  >
+                    >
                     <i className="fa-solid fa-chart-bar text-center fa-2x mt-3" />
                     <div className="card-body">
                       <h6 className="text-center pt-2">Add Result</h6>
@@ -634,30 +634,34 @@ export default function SchoolPortal() {
               <h3 className="text-center fw-bold mt-3">Administration</h3>
               <div className="row d-flex justify-content-center">
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+                <NavLink
+                    to={"/accounts"}
+                    className={"flex justify-center flex-col items-center"}
+                    >
                   <i className="fa-solid fa-file-invoice text-center fa-2x mt-3" />
                   <div className="card-body">
                     <h6 className="text-center pt-2">
-                      <a
-                        className="text-decoration-none text-dark"
-                        href="https://example.com"
-                      >
+
                         Accounts
-                      </a>
+
                     </h6>
                   </div>
+                  </NavLink>
                 </div>
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+                <NavLink
+                    to={"/teacherslip"}
+                    className={"flex justify-center flex-col items-center"}
+                    >
                   <i className="fa-solid fa-user-tie text-center fa-2x mt-3" />
                   <div className="card-body">
                     <h6 className="text-center pt-2">
-                      <a
-                        className="text-decoration-none text-dark"
-                        href="https://example.com"
-                      >
+
                         Employment{" "}
-                      </a>
+
                     </h6>
                   </div>
+                  </NavLink>
                 </div>
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
                   <i className="fa-solid fa-money-bill-1-wave text-center fa-2x mt-3" />
