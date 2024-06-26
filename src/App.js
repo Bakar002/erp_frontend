@@ -54,6 +54,8 @@ import TeacherAddResult  from "./components/Teacher/TeacherAddResult/TeacherAddR
 import AddResult from "./components/Student/StudentResult/StudentResult.js";
 import AdmissionForm from './components/Landing/AdmissionForm';
 import SchoolBlocks from './components/Landing/SchoolsBlocks';
+import SchoolBlock2 from './components/Landing/SchoolBlocks2';
+
 import ReceiptApp from './components/Landing/Receipt';
 import Accounts from './components/Landing/Accounts';
 import TeacherSlip from './components/Landing/TeacherSlip';
@@ -113,6 +115,8 @@ function App() {
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
+          <Route path="/schoolblock2" element={<SchoolBlock2/>} />
+
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/student-login" element={<StudentLogin />} />

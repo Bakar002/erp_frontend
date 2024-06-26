@@ -30,7 +30,7 @@ export default function UniPortal() {
           <h3 className="text-center fw-bold my-4">Books of Different Departments</h3>
           <div className="row d-flex justify-content-center">
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-1 text-center fa-2x mt-3" />
+              <i className="fa-solid fa-c text-center fa-2x mt-3" />
               <a className="text-decoration-none" href="/university/commerce">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Commerce Department</h6>
@@ -38,34 +38,35 @@ export default function UniPortal() {
               </a>
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-2 text-center fa-2x mt-3" />
+            <i className="fa-solid fa-c text-center fa-2x mt-3" />
+
               <a className="text-decoration-none" href="/school/grade-two">
                 <div className="card-body">
-                  <h6 className="text-center pt-2">Get books</h6>
+                  <h6 className="text-center pt-2">Computer Science Department</h6>
                 </div>
               </a>
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-3 text-center fa-2x mt-3" />
+              <i className="fa-solid fa-a text-center fa-2x mt-3" />
               <a className="text-decoration-none" href="/school/grade-three">
                 <div className="card-body">
-                  <h6 className="text-center pt-2">Get books</h6>
+                  <h6 className="text-center pt-2">Arts Literature</h6>
                 </div>
               </a>
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-4 text-center fa-2x mt-3" />
+              <i className="fa-solid fa-i text-center fa-2x mt-3" />
               <a className="text-decoration-none" href="/school/grade-four">
                 <div className="card-body">
-                  <h6 className="text-center pt-2">Get books</h6>
+                  <h6 className="text-center pt-2">Islamic studies</h6>
                 </div>
               </a>
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-5 text-center fa-2x mt-3" />
+              <i className="fa-solid fa-b text-center fa-2x mt-3" />
               <a className="text-decoration-none" href="/school/grade-five">
                 <div className="card-body">
-                  <h6 className="text-center pt-2">Get books</h6>
+                  <h6 className="text-center pt-2">B.ed</h6>
                 </div>
               </a>
             </div>

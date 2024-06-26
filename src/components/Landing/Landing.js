@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import "./Landing.css";
 import Footer from "../Footer/Footer.js";
 import Navbar from "../Navbar/Navbar.js";
@@ -168,15 +167,16 @@ const Landingpage = () => {
                 <h2>Donation</h2>
               </div>
             </div>
+            <Link to={"/schoolblock2"}>
+
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={belikecustomimg} alt="" />
               </div>
               <div>
-                <h2>Be Like Custom Service</h2>
+                <h2>Our IT Services</h2>
               </div>
-            </div>
-
+            </div></Link>
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={belikecustomimg2} alt="" />
