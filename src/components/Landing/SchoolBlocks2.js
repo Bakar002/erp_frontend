@@ -15,32 +15,9 @@ const clients = [
     service: "SEO Optimization",
     category: "SEO",
     review: "Excellent service with noticeable improvement in our SEO ranking.",
-    rating: 5,
-  },
-  {
-    name: "Client 2",
-    logo: schoolportallogo2,
-    service: "Website Development",
-    category: "Web Development",
-    review: "Great website design and functionality!",
     rating: 4,
   },
-  {
-    name: "Client 3",
-    logo: schoolportallogo3,
-    service: "Social Media Management",
-    category: "SEO",
-    review: "Our social media engagement has increased significantly.",
-    rating: 5,
-  },
-  {
-    name: "Client 4",
-    logo: schoolportallogo4,
-    service: "Custom Software Development",
-    category: "Custom Services",
-    review: "The software solution tailored to our needs works flawlessly.",
-    rating: 5,
-  },
+
   // Add more clients as needed
 ];
 
