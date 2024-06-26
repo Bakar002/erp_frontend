@@ -83,6 +83,7 @@ const Landingpage = () => {
             </div>
 
             </Link>
+            <Link to={"/uni-portal-home"}>
 
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
@@ -92,6 +93,9 @@ const Landingpage = () => {
                 <h2>Universities</h2>
               </div>
             </div>
+            </Link>
+
+
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={intduimg} alt="" />

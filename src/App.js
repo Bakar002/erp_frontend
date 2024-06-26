@@ -57,6 +57,8 @@ import SchoolBlocks from './components/Landing/SchoolsBlocks';
 import ReceiptApp from './components/Landing/Receipt';
 import Accounts from './components/Landing/Accounts';
 import TeacherSlip from './components/Landing/TeacherSlip';
+import First from './components/University/Department/Commerce/First';
+import UniPortal from './components/University/Portal/UniPortal';
 
 function App() {
   const dispatch = useDispatch();
@@ -91,13 +93,13 @@ function App() {
     (state) => state.currentTeacherData
   );
 
-  if (studentLoading || adminLoading || teacherLoading) {
-    return (
-      <div className="w-screen h-screen flex justify-center items-center">
-        <RingLoader />
-      </div>
-    );
-  }
+  // if (studentLoading || adminLoading || teacherLoading) {
+  //   return (
+  //     <div className="w-screen h-screen flex justify-center items-center">
+  //       <RingLoader />
+  //     </div>
+  //   );
+  // }
   return (
     <>
       <Router>
@@ -116,6 +118,8 @@ function App() {
           <Route path="/student-login" element={<StudentLogin />} />
           <Route path="/admin-add-course" element={<AddCourse />} />
           <Route path="/school-portal-home" element={<SchoolPortalHome />} />
+          <Route path="/uni-portal-home" element={<UniPortal />} />
+
 
           <Route
             path="/admin-dashboard"
@@ -170,6 +174,13 @@ function App() {
           <Route path="/school/grade-eight" element={<Eight />} />
           <Route path="/school/grade-nine" element={<Nine />} />
           <Route path="/school/grade-ten" element={<Ten />} />
+          {/* University Routes  */}
+          <Route path="/university/commerce" element={<First/>} />
+
+
+
+
+
 
           {/* Student Routes  */}
           <Route
