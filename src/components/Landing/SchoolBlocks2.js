@@ -15,9 +15,10 @@ const clients = [
     service: "SEO Optimization",
     category: "SEO",
     review: "Excellent service with noticeable improvement in our SEO ranking.",
-    rating: 4,
+    rating: 5,
+    country: "USA",
   },
-
+  
   // Add more clients as needed
 ];
 
@@ -62,12 +63,13 @@ const SchoolBlock2 = () => {
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className="w-30 h-30 object-contain"
+                  className="w-35 h-35 object-contain"
                 />
                 <h1 className="text-black text-center text-base font-semibold">{client.name}</h1>
                 <p className="text-center text-sm text-black">{client.service}</p>
                 <p className="text-center text-xs italic text-black">"{client.review}"</p>
                 <div className="text-yellow-500">{renderStars(client.rating)}</div>
+                <p className="text-center text-xs font-light text-black">{client.country}</p>
               </div>
             ))}
           </div>

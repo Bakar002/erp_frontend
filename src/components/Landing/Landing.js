@@ -174,7 +174,7 @@ const Landingpage = () => {
                 <img src={belikecustomimg} alt="" />
               </div>
               <div>
-                <h2>Our IT Services</h2>
+                <h2>Our IT Clients</h2>
               </div>
             </div></Link>
             <div className="servcard flex flex-col items-center">
