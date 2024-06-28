@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../Assets/Img/dg.png"; // Replace with your actual logo path
 import clientseo1 from "../../Assets/clients/seo/clientseo1.jpeg"; // Replace with your actual client logo path
+import digitalmarketing from "../../Assets/clients/marketing/Buzzy.png"; // Replace with your actual client logo path
+
 import schoolportallogo2 from "../../Assets/Img/s2.jpg"; // Replace with your actual client logo path
 import schoolportallogo3 from "../../Assets/Img/s3.jpg"; // Replace with your actual client logo path
 import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your actual client logo path
@@ -17,6 +19,15 @@ const clients = [
     review: "Excellent service with noticeable improvement in our SEO ranking.",
     rating: 5,
     country: "USA",
+  },
+  {
+    name: "Buzzy Basket",
+    logo: digitalmarketing,  // Replace with the actual logo variable
+    service: "Digital Marketing",
+    category: "Digital Marketing",
+    review: "Outstanding digital marketing services with great results.",
+    rating: 5,
+    country: "Pakistan",
   },
   
   // Add more clients as needed

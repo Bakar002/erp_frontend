@@ -40,7 +40,7 @@ export default function UniPortal() {
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
             <i className="fa-solid fa-c text-center fa-2x mt-3" />
 
-              <a className="text-decoration-none" href="/school/grade-two">
+              <a className="text-decoration-none" href="/university/cs">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Computer Science Department</h6>
                 </div>
@@ -48,7 +48,7 @@ export default function UniPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-a text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-three">
+              <a className="text-decoration-none" href="/university/arts">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Arts Literature</h6>
                 </div>
@@ -56,7 +56,7 @@ export default function UniPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-i text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-four">
+              <a className="text-decoration-none" href="/university/islamic">
                 <div className="card-body">
                   <h6 className="text-center pt-2">Islamic studies</h6>
                 </div>
@@ -64,7 +64,7 @@ export default function UniPortal() {
             </div>
             <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
               <i className="fa-solid fa-b text-center fa-2x mt-3" />
-              <a className="text-decoration-none" href="/school/grade-five">
+              <a className="text-decoration-none" href="/university/bed">
                 <div className="card-body">
                   <h6 className="text-center pt-2">B.ed</h6>
                 </div>

@@ -61,6 +61,10 @@ import Accounts from './components/Landing/Accounts';
 import TeacherSlip from './components/Landing/TeacherSlip';
 import First from './components/University/Department/Commerce/First';
 import UniPortal from './components/University/Portal/UniPortal';
+import Second from './components/University/Department/Cs/Second';
+import Third from './components/University/Department/Arts/Third';
+import Fourth from './components/University/Department/Islamic/Fourth';
+import Fifth from './components/University/Department/Education/Fifth';
 
 function App() {
   const dispatch = useDispatch();
@@ -116,6 +120,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
+
+
 
 
           <Route path="/signup" element={<Signup />} />
@@ -180,6 +186,14 @@ function App() {
           <Route path="/school/grade-ten" element={<Ten />} />
           {/* University Routes  */}
           <Route path="/university/commerce" element={<First/>} />
+          <Route path="/university/cs" element={<Second/>} />
+          <Route path="/university/arts" element={<Third/>} />
+          <Route path="/university/islamic" element={<Fourth/>} />
+          <Route path="/university/bed" element={<Fifth/>} />
+
+
+
+
 
 
 
