@@ -60,6 +60,19 @@ const Landingpage = () => {
         >
           <h1 className="text-[#40b08c] text-5xl font-bold">Services</h1>
           <div className="  flex flex-wrap justify-center gap-5 w-[85%] mt-4">
+
+
+          <Link to={"/schoolblock2"}>
+
+<div className="servcard flex flex-col items-center">
+  <div className=" w-[10rem] h-[10rem]">
+    <img src={belikecustomimg} alt="" />
+  </div>
+  <div>
+    <h2>Our IT Clients</h2>
+  </div>
+</div></Link>
+
             <Link to={"/school-portal-home"}>
               <div className="servcard flex flex-col items-center">
                 <div className=" w-[10rem] h-[10rem]">
@@ -167,16 +180,7 @@ const Landingpage = () => {
                 <h2>Donation</h2>
               </div>
             </div>
-            <Link to={"/schoolblock2"}>
 
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={belikecustomimg} alt="" />
-              </div>
-              <div>
-                <h2>Our IT Clients</h2>
-              </div>
-            </div></Link>
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={belikecustomimg2} alt="" />
