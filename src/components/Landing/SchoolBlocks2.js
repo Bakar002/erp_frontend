@@ -4,6 +4,12 @@ import Logo from "../../Assets/Img/dg.png"; // Replace with your actual logo pat
 import clientseo1 from "../../Assets/clients/seo/clientseo1.jpeg"; // Replace with your actual client logo path
 import digitalmarketing from "../../Assets/clients/marketing/Buzzy.png"; // Replace with your actual client logo path
 
+import digitalmarketing1 from "../../Assets/clients/marketing/health.jpg";
+import digitalmarketing2 from "../../Assets/clients/marketing/steak.jpg";
+import digitalmarketing3 from "../../Assets/clients/marketing/mystic.jpg";
+import socialmediamarketing from "../../Assets/clients/smma/taxi.jpg";
+
+
 import schoolportallogo2 from "../../Assets/Img/s2.jpg"; // Replace with your actual client logo path
 import schoolportallogo3 from "../../Assets/Img/s3.jpg"; // Replace with your actual client logo path
 import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your actual client logo path
@@ -22,14 +28,50 @@ const clients = [
   },
   {
     name: "Buzzy Basket",
-    logo: digitalmarketing,  // Replace with the actual logo variable
+    logo: digitalmarketing,
     service: "Digital Marketing",
     category: "Digital Marketing",
     review: "Outstanding digital marketing services with great results.",
     rating: 5,
     country: "Pakistan",
   },
-  
+  {
+    name: "Ah Health",
+    logo: digitalmarketing1,
+    service: "Digital Marketing",
+    category: "Digital Marketing",
+    review: "Top-notch digital marketing strategies that boosted our online presence.",
+    rating: 4.5,
+    country: "Pakistan",
+  },
+  {
+    name: "Steak & Knife",
+    logo: digitalmarketing2,
+    service: "Digital Marketing",
+    category: "Digital Marketing",
+    review: "Impressive ROI from their digital marketing campaigns.",
+    rating: 4.7,
+    country: "Pakistan",
+  },
+  {
+    name: "Mystic Pizza",
+    logo: digitalmarketing3,
+    service: "Digital Marketing",
+    category: "Digital Marketing",
+    review: "Remarkable digital marketing service that increased our customer base.",
+    rating: 4.9,
+    country: "Pakistan",
+  },
+
+  {
+    name: "Gull Brothers Taxi",
+    logo: socialmediamarketing,
+    service: "Social Media Marketing",
+    category: "Social Media Marketing",
+    review: "Effective social media campaigns that increased our engagement significantly.",
+    rating: 4.8,
+    country: "Saudia Arabia",
+  },
   // Add more clients as needed
 ];
 
