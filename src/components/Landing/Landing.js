@@ -15,6 +15,8 @@ import foodimg from "../../Assets/food1.webp";
 import donationimg from "../../Assets/donate.webp";
 import belikecustomimg from "../../Assets/bgp.webp";
 import belikecustomimg2 from "../../Assets/Images/customer.jpeg";
+import belikeproperty from "../../Assets/property.png";
+
 
 import ecomimg from "../../Assets/e-com.webp";
 import jobimg from "../../Assets/jobs.webp";
@@ -110,10 +112,20 @@ const Landingpage = () => {
 
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
-                <img src={intduimg} alt="" />
+                <img src={healthimg} alt="" />
               </div>
               <div>
-                <h2>Int.Edu</h2>
+                <h2>Health</h2>
+              </div>
+            </div>
+
+
+            <div className="servcard flex flex-col items-center">
+              <div className=" w-[10rem] h-[10rem]">
+                <img src={belikeproperty} alt="" />
+              </div>
+              <div>
+                <h2> Property Services</h2>
               </div>
             </div>
             <div className="servcard flex flex-col items-center">
@@ -148,14 +160,7 @@ const Landingpage = () => {
                 <h2>Jobs</h2>
               </div>
             </div>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={healthimg} alt="" />
-              </div>
-              <div>
-                <h2>Health</h2>
-              </div>
-            </div>
+            
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={marketimg} alt="" />
@@ -189,6 +194,17 @@ const Landingpage = () => {
                 <h2> Legal Service</h2>
               </div>
             </div>
+            <div className="servcard flex flex-col items-center">
+              <div className=" w-[10rem] h-[10rem]">
+                <img src={intduimg} alt="" />
+              </div>
+              <div>
+                <h2>Int.Edu</h2>
+              </div>
+            </div>
+
+
+           
           </div>
           <div className="w-full flex flex-col items-center mt-8">
             <div className="w-[40%] border-2 border-b-black"></div>
