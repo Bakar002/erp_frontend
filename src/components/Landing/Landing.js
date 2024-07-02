@@ -109,6 +109,7 @@ const Landingpage = () => {
             </div>
             </Link>
 
+            <Link to={"/health-portal-home"}>
 
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
@@ -118,7 +119,7 @@ const Landingpage = () => {
                 <h2>Health</h2>
               </div>
             </div>
-
+            </Link>
 
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">

@@ -65,6 +65,7 @@ import Second from './components/University/Department/Cs/Second';
 import Third from './components/University/Department/Arts/Third';
 import Fourth from './components/University/Department/Islamic/Fourth';
 import Fifth from './components/University/Department/Education/Fifth';
+import MedicalPortal from './MedicalPortal/Medical';
 
 function App() {
   const dispatch = useDispatch();
@@ -122,6 +123,7 @@ function App() {
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
 
 
+          <Route path="/health-portal-home" element={<MedicalPortal />} />
 
 
           <Route path="/signup" element={<Signup />} />

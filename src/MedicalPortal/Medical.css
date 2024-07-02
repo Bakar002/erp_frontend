@@ -1,0 +1,38 @@
+/* CustomMedicalStyles.css */
+
+.medical-heading {
+    font-size: 2.5rem;
+    color: #40b08c;
+    margin-bottom: 10px;
+  }
+  
+  .medical-logo {
+    height: 70px;
+    width: 70px;
+    filter: invert(100%);
+  }
+  
+  .medical-subheading {
+    font-size: 1.5rem;
+    color: #40b08c;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .medical-card {
+    flex-basis: calc(50% - 1rem); /* Adjust based on number of columns needed */
+    max-width: 100%;
+  }
+  
+  .medical-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
+  
+  .medical-img {
+    max-width: 100%;
+    height: auto;
+  }
+  
