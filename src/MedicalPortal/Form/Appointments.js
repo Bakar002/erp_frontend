@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
-import ThreeDotLoader from "../Loaders/ThreeDotLoader";
+import ThreeDotLoader from "../../components/Loaders/ThreeDotLoader";
 
-export const AppointmentForm = () => {
+export const Appointments = () => {
   const [patientName, setPatientName] = useState("");
   const [patientEmail, setPatientEmail] = useState("");
   const [patientPhone, setPatientPhone] = useState("");
@@ -254,4 +254,4 @@ export const AppointmentForm = () => {
   );
 };
 
-export default AppointmentForm;
+export default Appointments;
