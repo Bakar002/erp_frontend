@@ -68,6 +68,7 @@ import Fifth from './components/University/Department/Education/Fifth';
 import MedicalPortal from './MedicalPortal/Medical';
 import { Appointments } from './MedicalPortal/Form/Appointments';
 import PatientSlips from './MedicalPortal/Form/PatientSlips';
+import Pharmacy from './MedicalPortal/Partners/Pharmacies/Pharmacy';
 
 function App() {
   const dispatch = useDispatch();
@@ -128,6 +129,9 @@ function App() {
           <Route path="/health-portal-home" element={<MedicalPortal />} />
           <Route path="/appointment-forms" element={<Appointments />} />
           <Route path="/patient-slips" element={<PatientSlips/>} />
+          <Route path="/pharmacy" element={<Pharmacy/>} />
+
+
 
 
           <Route path="/signup" element={<Signup />} />

@@ -24,13 +24,12 @@ import Logo13 from "../Assets/Medical/medical/medicalcamp.png"; // Replace with 
 
 const services = {
     "Our Partners": [
-
+        { name: "Hospital", img: Logo16 },
+        { name: " Medical Complex", img: Logo19 },
+        { name: "Specialized Clinic", img: Logo18 },
         { name: "Ambulance", img: Logo14 },
         { name: "Pharmacy", img: Logo15 },
-        { name: "Hospital", img: Logo16 },
         { name: " Laboratory", img: Logo17 },
-        { name: "Specialized Clinic", img: Logo18 },
-        { name: " Medical Complex", img: Logo19 },
     ],
     "Specialist": [
         { name: "Appointments", img: Logo1 },
