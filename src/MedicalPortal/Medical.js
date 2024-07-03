@@ -2,16 +2,29 @@ import React from "react";
 import "./Medical.css"; // Import your custom styles
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../Assets/Medical/client.png"; // Replace with actual logo path
+import Logo1 from "../Assets/Medical/medical/appointment.png"; // Replace with actual logo path
+import Logo2 from "../Assets/Medical/medical/patientrecord.png"; // Replace with actual logo path
+import Logo3 from "../Assets/Medical/medical/doctorlist.png"; // Replace with actual logo path
+import Logo4 from "../Assets/Medical/medical/remindermsg.png"; // Replace with actual logo path
+// import Logo5 from "../Assets/Medical/medical/"; // Replace with actual logo path
+// import Logo6 from "../Assets/Medical/medical/"; // Replace with actual logo path
+// import Logo7 from "../Assets/Medical/medical/"; // Replace with actual logo path
+// import Logo8 from "../Assets/Medical/medical/"; // Replace with actual logo path
+// import Logo9 from "../Assets/Medical/medical/"; // Replace with actual logo path
+import Logo10 from "../Assets/Medical/medical/contactus.jpg"; // Replace with actual logo path
+import Logo11 from "../Assets/Medical/medical/SMM.png"; // Replace with actual logo path
+import Logo12 from "../Assets/Medical/medical/previousclient.png"; // Replace with actual logo path
+// import Logo13 from "../Assets/Medical/medical/"; // Replace with actual logo path
 
 const services = {
   "Our Partners": [
     { name: "Partners", img: Logo },
   ],
   "Specialist": [
-    { name: "Appointments", img: Logo },
-    { name: "Patient Slips", img: Logo },
-    { name: "Doctor's Panel", img: Logo },
-    { name: "Reminder Messages", img: Logo },
+    { name: "Appointments", img: Logo1 },
+    { name: "Patient Slips", img: Logo2 },
+    { name: "Doctor's Panel", img: Logo3 },
+    { name: "Reminder Messages", img: Logo4 },
   ],
   "Patients": [
     { name: "Patient Panel", img: Logo },
@@ -21,9 +34,9 @@ const services = {
   ],
   "Managements": [
     { name: "Office Management", img: Logo },
-    { name: "Contact Info", img: Logo },
-    { name: "SMM", img: Logo },
-    { name: "Client Services", img: Logo },
+    { name: "Contact Info", img: Logo10 },
+    { name: "SMM", img: Logo11 },
+    { name: "Client Services", img: Logo12 },
     { name: "Medical Camp", img: Logo },
   ],
 };
