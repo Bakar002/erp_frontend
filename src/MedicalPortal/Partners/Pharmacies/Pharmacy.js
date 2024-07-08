@@ -12,6 +12,141 @@ const Pharmacy = () => {
             contact: "+923044823161",
             location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
         },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        {
+            name: "Aslam & Sons", 
+            logo: pharmacy1,
+            email: "Alihaider03005@gmail.com",
+            contact: "+923044823161",
+            location: "https://maps.google.com/?q=31.473951,74.241249", // Replace with actual location link
+        },
+        
+       
         
 
     ];

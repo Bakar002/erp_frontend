@@ -70,6 +70,10 @@ import { Appointments } from './MedicalPortal/Form/Appointments';
 import PatientSlips from './MedicalPortal/Form/PatientSlips';
 import Pharmacy from './MedicalPortal/Partners/Pharmacies/Pharmacy';
 import Hospital from './MedicalPortal/Partners/Hospitals/Hospital';
+import Ambulance from './MedicalPortal/Partners/Ambulances/Ambulance';
+import Complex from './MedicalPortal/Partners/Complexes/Complex';
+import Laboratory from './MedicalPortal/Partners/Laboratories/Laboratory.js';
+import SpecializedClinic from './MedicalPortal/Partners/SpecializedClinics/SpecializedClinic';
 
 
 function App() {
@@ -133,6 +137,10 @@ function App() {
           <Route path="/patient-slips" element={<PatientSlips/>} />
           <Route path="/pharmacy" element={<Pharmacy/>} />
           <Route path="/hospital" element={<Hospital/>} />
+          <Route path="/ambulance" element={<Ambulance/>} />
+          <Route path="/-medical-complex" element={<Complex/>} />
+          <Route path="/-laboratory" element={<Laboratory/>} />
+          <Route path="/specialized-Clinic" element={< SpecializedClinic/>} />
 
 
 

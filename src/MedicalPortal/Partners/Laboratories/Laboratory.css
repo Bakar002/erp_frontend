@@ -1,0 +1,107 @@
+.laboratory-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.laboratory-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.laboratory-title img {
+    height: 70px;
+    width: 70px;
+}
+
+.laboratory-title h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.laboratory-partner-laboratories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.laboratory-card-container {
+    perspective: 1000px;
+}
+
+.laboratory-card {
+    width: 100%;
+    height: 250px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    cursor: pointer;
+}
+
+.laboratory-card:hover {
+    transform: rotateY(180deg);
+}
+
+.laboratory-card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.laboratory-card-front {
+    background-color: white;
+}
+
+.laboratory-card-back {
+    background-color: #f8f9fa;
+    transform: rotateY(180deg);
+}
+
+.laboratory-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.laboratory-card h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
+    color: black;
+}
+
+.laboratory-card p {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 5px 0;
+    color: black;
+}
+
+.laboratory-text-center {
+    text-align: center;
+}
+
+.laboratory-fw-bold {
+    font-weight: bold;
+}
+
+.laboratory-text-xl {
+    font-size: 1.25rem;
+}
+
+.laboratory-mt-6 {
+    margin-top: 1.5rem;
+}
