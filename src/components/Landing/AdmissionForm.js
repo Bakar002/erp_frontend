@@ -64,7 +64,7 @@ const AdmissionForm = () => {
       try {
         setLoading(true);
         const response = await axios.post(
-          "https://belikeerp-3.onrender.com/api/v1/student/admissionsubmit/",
+          "https://belikeerp-3.onrender.com/api/v1/student/admissionsubmit",
           formData,
           {
             headers: {
