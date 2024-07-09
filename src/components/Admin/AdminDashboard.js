@@ -127,7 +127,7 @@ function AdminDashboard() {
                       : ""
                   }`}
                 >
-                  Add Teacher List
+                  Admissions
                 </h5>
               </li>
 

@@ -46,7 +46,7 @@ export const AdminAddList = ({ adminId, token }) => {
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-gray-100 border border-gray-300 rounded-lg overflow-hidden">
-            <thead className="bg-navy text-white">
+            <thead className="bg-navy text-blue-800">
               <tr>
                 <th className="py-2 px-4">Student Name</th>
                 <th className="py-2 px-4">Student Email</th>
