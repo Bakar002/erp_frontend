@@ -21,7 +21,7 @@ export const AdmissionForm = () => {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const response = await axios.get("https://your-api-endpoint.com/api/v1/admin/load-all-admins");
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-admins");
         setAdmins(response.data.data);
       } catch (error) {
         console.error("Error fetching admins:", error);
