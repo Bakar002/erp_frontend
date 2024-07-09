@@ -6,6 +6,7 @@ import ThreeDotLoader from '../../Loaders/ThreeDotLoader';
 export const AdminAddList = ({ adminId, token }) => {
   const [admissions, setAdmissions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchAdmissions = async () => {
@@ -26,6 +27,14 @@ export const AdminAddList = ({ adminId, token }) => {
     fetchAdmissions();
   }, [token]);
 
+  const openImageModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="px-4 py-6 md:px-8 bg-white">
       <Toaster />
@@ -38,7 +47,7 @@ export const AdminAddList = ({ adminId, token }) => {
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-navy text-white">
                 <th className="py-2 px-4 border">Student Name</th>
                 <th className="py-2 px-4 border">Student Email</th>
                 <th className="py-2 px-4 border">Student Phone</th>
@@ -63,15 +72,49 @@ export const AdminAddList = ({ adminId, token }) => {
                   <td className="py-2 px-4 border">{admission.guardianPhone}</td>
                   <td className="py-2 px-4 border">{admission.studentClass}</td>
                   <td className="py-2 px-4 border">
-                    <img src={admission.studentPhoto} alt="Student Photo" className="h-16 w-16 object-cover rounded-full" />
+                    <img
+                      src={admission.studentIdPhoto}
+                      alt="Student"
+                      className="h-16 w-16 object-cover rounded-full cursor-pointer"
+                      onClick={() => openImageModal(admission.studentIdPhoto)}
+                    />
                   </td>
                   <td className="py-2 px-4 border">
-                    <img src={admission.lastDegree} alt="Last Degree" className="h-16 w-16 object-cover rounded" />
+                    <img
+                      src={admission.lastDegree}
+                      alt=""
+                      className="h-16 w-16 object-cover rounded cursor-pointer"
+                      onClick={() => openImageModal(admission.lastDegree)}
+                    />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+      {selectedImage && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="max-w-xl max-h-full p-4 bg-white rounded-lg shadow-lg overflow-hidden">
+            <img
+              src={selectedImage}
+              alt="Selected "
+              className="w-full h-auto"
+            />
+            <button
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 focus:outline-none"
+              onClick={closeImageModal}
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>
