@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
 import ThreeDotLoader from '../../Loaders/ThreeDotLoader';
 
-export const AdminAddList = ({ adminId, token }) => {
+const AdminAddList = ({ adminId, token }) => {
   const [admissions, setAdmissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -39,30 +39,30 @@ export const AdminAddList = ({ adminId, token }) => {
     <div className="px-4 py-6 md:px-8 bg-white">
       <Toaster />
       <div className="text-center w-full mb-6">
-        <h1 className="sm:text-3xl text-2xl font-medium text-gray-900">Admin Dashboard</h1>
+        <h1 className="sm:text-3xl text-2xl font-medium text-navy">Admin Dashboard</h1>
       </div>
       {loading ? (
         <ThreeDotLoader />
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border">
-            <thead>
-              <tr className="bg-navy text-white">
-                <th className="py-2 px-4 border">Student Name</th>
-                <th className="py-2 px-4 border">Student Email</th>
-                <th className="py-2 px-4 border">Student Phone</th>
-                <th className="py-2 px-4 border">Student DOB</th>
-                <th className="py-2 px-4 border">Student Address</th>
-                <th className="py-2 px-4 border">Guardian Name</th>
-                <th className="py-2 px-4 border">Guardian Phone</th>
-                <th className="py-2 px-4 border">Student Class</th>
-                <th className="py-2 px-4 border">Student Photo</th>
-                <th className="py-2 px-4 border">Last Degree</th>
+          <table className="min-w-full bg-gray-100 border border-gray-300 rounded-lg overflow-hidden">
+            <thead className="bg-navy text-white">
+              <tr>
+                <th className="py-2 px-4">Student Name</th>
+                <th className="py-2 px-4">Student Email</th>
+                <th className="py-2 px-4">Student Phone</th>
+                <th className="py-2 px-4">Student DOB</th>
+                <th className="py-2 px-4">Student Address</th>
+                <th className="py-2 px-4">Guardian Name</th>
+                <th className="py-2 px-4">Guardian Phone</th>
+                <th className="py-2 px-4">Student Class</th>
+                <th className="py-2 px-4">Student Photo</th>
+                <th className="py-2 px-4">Last Degree</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-gray-700">
               {admissions.map((admission) => (
-                <tr key={admission._id} className="text-gray-700">
+                <tr key={admission._id}>
                   <td className="py-2 px-4 border">{admission.studentName}</td>
                   <td className="py-2 px-4 border">{admission.studentEmail}</td>
                   <td className="py-2 px-4 border">{admission.studentPhone}</td>
@@ -74,7 +74,7 @@ export const AdminAddList = ({ adminId, token }) => {
                   <td className="py-2 px-4 border">
                     <img
                       src={admission.studentIdPhoto}
-                      alt="Student"
+                      alt="Student Photo"
                       className="h-16 w-16 object-cover rounded-full cursor-pointer"
                       onClick={() => openImageModal(admission.studentIdPhoto)}
                     />
@@ -82,7 +82,7 @@ export const AdminAddList = ({ adminId, token }) => {
                   <td className="py-2 px-4 border">
                     <img
                       src={admission.lastDegree}
-                      alt=""
+                      alt="Last Degree"
                       className="h-16 w-16 object-cover rounded cursor-pointer"
                       onClick={() => openImageModal(admission.lastDegree)}
                     />
@@ -98,7 +98,7 @@ export const AdminAddList = ({ adminId, token }) => {
           <div className="max-w-xl max-h-full p-4 bg-white rounded-lg shadow-lg overflow-hidden">
             <img
               src={selectedImage}
-              alt="Selected "
+              alt="Selected Image"
               className="w-full h-auto"
             />
             <button
@@ -121,4 +121,4 @@ export const AdminAddList = ({ adminId, token }) => {
   );
 };
 
-
+export default AdminAddList;

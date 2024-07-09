@@ -120,9 +120,9 @@ function AdminDashboard() {
               <li className="mt-4">
                 <h5
                   href={``}
-                  onClick={() => setActiveComponent("AdminAddList")}
+                  onClick={() => setActiveComponent("Admissions")}
                   className={`cursor-pointer ${
-                    activeComponent === "AdminAddList"
+                    activeComponent === "Admissions"
                       ? " border-b-2 border-white"
                       : ""
                   }`}
@@ -168,7 +168,7 @@ function AdminDashboard() {
             {activeComponent === "AddCourse" && <AddCourse />}
             {activeComponent === "AdminAddStudent" && <AdminAddStudent />}
             {activeComponent === "AdminAddGrade" && <AdminAddGrade />}
-            {activeComponent === "AdminAddList" && <AdminAddList />}
+            {activeComponent === "Admissions" && <AdminAddList />}
 
           </div>
         </div>
