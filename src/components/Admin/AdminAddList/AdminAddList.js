@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
 import ThreeDotLoader from '../../Loaders/ThreeDotLoader';
 
-const AdminAddList = ({ adminId, token }) => {
+export const AdminAddList = ({ adminId, token }) => {
   const [admissions, setAdmissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -121,4 +121,4 @@ const AdminAddList = ({ adminId, token }) => {
   );
 };
 
-export default AdminAddList;
+
