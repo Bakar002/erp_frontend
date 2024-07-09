@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import ThreeDotLoader from "../Loaders/ThreeDotLoader";
@@ -13,7 +13,22 @@ export const AdmissionForm = () => {
   const [guardianPhone, setGuardianPhone] = useState("");
   const [studentClass, setStudentClass] = useState("");
   const [studentPhoto, setStudentPhoto] = useState(null);
+  const [lastDegree, setLastDegree] = useState(null);
+  const [admins, setAdmins] = useState([]);
+  const [selectedAdmin, setSelectedAdmin] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      try {
+        const response = await axios.get("https://your-api-endpoint.com/api/v1/admin/load-all-admins");
+        setAdmins(response.data.data);
+      } catch (error) {
+        console.error("Error fetching admins:", error);
+      }
+    };
+    fetchAdmins();
+  }, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +41,9 @@ export const AdmissionForm = () => {
       guardianName &&
       guardianPhone &&
       studentClass &&
-      studentPhoto
+      studentPhoto &&
+      lastDegree &&
+      selectedAdmin
     ) {
       const formData = new FormData();
       formData.append("studentName", studentName);
@@ -38,6 +55,8 @@ export const AdmissionForm = () => {
       formData.append("guardianPhone", guardianPhone);
       formData.append("studentClass", studentClass);
       formData.append("studentPhoto", studentPhoto);
+      formData.append("lastDegree", lastDegree);
+      formData.append("adminId", selectedAdmin);
 
       try {
         setLoading(true);
@@ -61,6 +80,8 @@ export const AdmissionForm = () => {
         setGuardianPhone("");
         setStudentClass("");
         setStudentPhoto(null);
+        setLastDegree(null);
+        setSelectedAdmin("");
       } catch (error) {
         toast.error(error.response.data.message);
         setLoading(false);
@@ -137,25 +158,21 @@ export const AdmissionForm = () => {
               </div>
               
               <div className="md:w-[45%] ">
-                  <label
-                    htmlFor="studentDOB"
-                    className="leading-7 text-sm text-gray-600"
-                  >
-                    Student Dob
-                  </label>
-                  <input
-                    id="studentDOB"
-                    name="studentDOB"
-                    value={studentDOB}
-                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
-                    onChange={(e) => setStudentDOB(e.target.value)}
-                  />
-                </div>
-
-
-
-
-
+                <label
+                  htmlFor="studentDOB"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Student Dob
+                </label>
+                <input
+                  type="date"
+                  id="studentDOB"
+                  name="studentDOB"
+                  value={studentDOB}
+                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
+                  onChange={(e) => setStudentDOB(e.target.value)}
+                />
+              </div>
             </div>
             <div>
               <label
@@ -240,6 +257,43 @@ export const AdmissionForm = () => {
                 className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
                 onChange={(e) => setStudentPhoto(e.target.files[0])}
               />
+            </div>
+            <div>
+              <label
+                htmlFor="lastDegree"
+                className="leading-7 text-sm text-gray-600"
+              >
+                Last Degree or Education Slip
+              </label>
+              <input
+                type="file"
+                id="lastDegree"
+                name="lastDegree"
+                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
+                onChange={(e) => setLastDegree(e.target.files[0])}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="admin"
+                className="leading-7 text-sm text-gray-600"
+              >
+                Select Admin
+              </label>
+              <select
+                id="admin"
+                name="admin"
+                value={selectedAdmin}
+                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
+                onChange={(e) => setSelectedAdmin(e.target.value)}
+              >
+                <option value="" disabled>Select an admin</option>
+                {admins.map((admin) => (
+                  <option key={admin._id} value={admin._id}>
+                    {admin.adminName}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="w-full text-center mt-6">
