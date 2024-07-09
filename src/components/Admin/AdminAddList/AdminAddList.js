@@ -39,7 +39,7 @@ export const AdminAddList = ({ adminId, token }) => {
     <div className="px-4 py-6 md:px-8 bg-white">
       <Toaster />
       <div className="text-center w-full mb-6">
-        <h1 className="sm:text-3xl text-2xl font-medium text-navy">Admin Dashboard</h1>
+        <h1 className="sm:text-3xl text-2xl font-medium text-blue-900">Admissions</h1>
       </div>
       {loading ? (
         <ThreeDotLoader />
