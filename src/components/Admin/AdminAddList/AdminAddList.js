@@ -1,95 +1,79 @@
-
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { handleShowSuccessToast, handleShowFailureToast } from '../../ToastMessages/ToastMessage';
+import { Toaster, toast } from 'react-hot-toast';
+import ThreeDotLoader from '../../Loaders/ThreeDotLoader';
 
-export const AdminAddList = () => {
-  const [formData, setFormData] = useState({
-    date: '',
-    name: '',
-    designation: '',
-    salary: '',
-    class: '',
-  });
+export const AdminAddList = ({ adminId, token }) => {
+  const [admissions, setAdmissions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  useEffect(() => {
+    const fetchAdmissions = async () => {
+      try {
+        const response = await axios.get('https://belikeerp-3.onrender.com/api/v1/admin/load-all-admissions', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setAdmissions(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        toast.error(error.response?.data?.message || 'Something went wrong');
+        setLoading(false);
+      }
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/api/v1/admin/teachers', formData);
-      console.log('Teacher added:', response.data);
-      handleShowSuccessToast(response.data.message);
-    } catch (error) {
-      console.error('Error adding teacher:', error);
-      handleShowFailureToast(error.response.data.message);
-    }
-  };
+    fetchAdmissions();
+  }, [token]);
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-white rounded shadow-md">
-      <h2 className="text-xl font-bold mb-4">Add Teacher</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Date</label>
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleInputChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
+    <div className="px-4 py-6 md:px-8 bg-white">
+      <Toaster />
+      <div className="text-center w-full mb-6">
+        <h1 className="sm:text-3xl text-2xl font-medium text-gray-900">Admin Dashboard</h1>
+      </div>
+      {loading ? (
+        <ThreeDotLoader />
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="py-2 px-4 border">Student Name</th>
+                <th className="py-2 px-4 border">Student Email</th>
+                <th className="py-2 px-4 border">Student Phone</th>
+                <th className="py-2 px-4 border">Student DOB</th>
+                <th className="py-2 px-4 border">Student Address</th>
+                <th className="py-2 px-4 border">Guardian Name</th>
+                <th className="py-2 px-4 border">Guardian Phone</th>
+                <th className="py-2 px-4 border">Student Class</th>
+                <th className="py-2 px-4 border">Student Photo</th>
+                <th className="py-2 px-4 border">Last Degree</th>
+              </tr>
+            </thead>
+            <tbody>
+              {admissions.map((admission) => (
+                <tr key={admission._id} className="text-gray-700">
+                  <td className="py-2 px-4 border">{admission.studentName}</td>
+                  <td className="py-2 px-4 border">{admission.studentEmail}</td>
+                  <td className="py-2 px-4 border">{admission.studentPhone}</td>
+                  <td className="py-2 px-4 border">{new Date(admission.studentDOB).toLocaleDateString()}</td>
+                  <td className="py-2 px-4 border">{admission.studentAddress}</td>
+                  <td className="py-2 px-4 border">{admission.guardianName}</td>
+                  <td className="py-2 px-4 border">{admission.guardianPhone}</td>
+                  <td className="py-2 px-4 border">{admission.studentClass}</td>
+                  <td className="py-2 px-4 border">
+                    <img src={admission.studentPhoto} alt="Student Photo" className="h-16 w-16 object-cover rounded-full" />
+                  </td>
+                  <td className="py-2 px-4 border">
+                    <img src={admission.lastDegree} alt="Last Degree" className="h-16 w-16 object-cover rounded" />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Designation</label>
-          <input
-            type="text"
-            name="designation"
-            value={formData.designation}
-            onChange={handleInputChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Salary</label>
-          <input
-            type="number"
-            name="salary"
-            value={formData.salary}
-            onChange={handleInputChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Class</label>
-          <input
-            type="text"
-            name="class"
-            value={formData.class}
-            onChange={handleInputChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          Add Teacher
-        </button>
-      </form>
+      )}
     </div>
   );
 };
