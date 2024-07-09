@@ -14,7 +14,7 @@ const AdmissionForm = () => {
   const [guardianName, setGuardianName] = useState("");
   const [guardianPhone, setGuardianPhone] = useState("");
   const [studentClass, setStudentClass] = useState("");
-  const [studentPhoto, setStudentPhoto] = useState(null);
+  const [studentIdPhoto, setstudentIdPhoto] = useState(null);
   const [lastDegree, setLastDegree] = useState(null);
   const [adminId, setAdminId] = useState("");
   const [admins, setAdmins] = useState([]);
@@ -44,7 +44,7 @@ const AdmissionForm = () => {
       guardianName &&
       guardianPhone &&
       studentClass &&
-      studentPhoto &&
+      studentIdPhoto &&
       lastDegree &&
       adminId
     ) {
@@ -57,7 +57,7 @@ const AdmissionForm = () => {
       formData.append("guardianName", guardianName);
       formData.append("guardianPhone", guardianPhone);
       formData.append("studentClass", studentClass);
-      formData.append("studentPhoto", studentPhoto);
+      formData.append("studentIdPhoto", studentIdPhoto);
       formData.append("lastDegree", lastDegree);
       formData.append("adminId", adminId);
 
@@ -82,7 +82,7 @@ const AdmissionForm = () => {
         setGuardianName("");
         setGuardianPhone("");
         setStudentClass("");
-        setStudentPhoto(null);
+        setstudentIdPhoto(null);
         setLastDegree(null);
         setAdminId("");
       } catch (error) {
@@ -248,17 +248,17 @@ const AdmissionForm = () => {
             </div>
             <div>
               <label
-                htmlFor="studentPhoto"
+                htmlFor="studentIdPhoto"
                 className="leading-7 text-sm text-gray-600"
               >
                 Student Photo
               </label>
               <input
                 type="file"
-                id="studentPhoto"
-                name="studentPhoto"
+                id="studentIdPhoto"
+                name="studentIdPhoto"
                 className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 transition-colors duration-200 ease-in-out"
-                onChange={(e) => setStudentPhoto(e.target.files[0])}
+                onChange={(e) => setstudentIdPhoto(e.target.files[0])}
               />
             </div>
             <div>
