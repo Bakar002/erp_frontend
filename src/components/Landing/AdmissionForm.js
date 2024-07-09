@@ -3,7 +3,9 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import ThreeDotLoader from "../Loaders/ThreeDotLoader";
 
-export const AdmissionForm = () => {
+
+const AdmissionForm = () => {
+
   const [studentName, setStudentName] = useState("");
   const [studentEmail, setStudentEmail] = useState("");
   const [studentPhone, setStudentPhone] = useState("");
@@ -308,5 +310,6 @@ export const AdmissionForm = () => {
         </div>
       </form>
     </div>
-  );
+  ); 
 };
+export default AdmissionForm;

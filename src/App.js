@@ -121,7 +121,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landingpage />} />
-          <Route path="/admission" element={<AdmissionForm />} />
+          <Route path="/admission" element={<AdmissionForm/>} />
 
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
