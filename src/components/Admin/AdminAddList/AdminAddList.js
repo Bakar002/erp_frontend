@@ -56,7 +56,7 @@ export const AdminAddList = ({ adminId, token }) => {
                 <th className="py-2 px-4">Guardian Name</th>
                 <th className="py-2 px-4">Guardian Phone</th>
                 <th className="py-2 px-4">Student Class</th>
-                <th className="py-2 px-4">Student Photo</th>
+                <th className="py-2 px-4">Student Id</th>
                 <th className="py-2 px-4">Last Degree</th>
               </tr>
             </thead>
