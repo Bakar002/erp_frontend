@@ -14,8 +14,8 @@ export const AdmissionForm = () => {
   const [studentClass, setStudentClass] = useState("");
   const [studentPhoto, setStudentPhoto] = useState(null);
   const [lastDegree, setLastDegree] = useState(null);
+  const [adminId, setAdminId] = useState("");
   const [admins, setAdmins] = useState([]);
-  const [selectedAdmin, setSelectedAdmin] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -24,9 +24,10 @@ export const AdmissionForm = () => {
         const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-admins");
         setAdmins(response.data.data);
       } catch (error) {
-        console.error("Error fetching admins:", error);
+        toast.error("Failed to load admins");
       }
     };
+
     fetchAdmins();
   }, []);
 
@@ -43,7 +44,7 @@ export const AdmissionForm = () => {
       studentClass &&
       studentPhoto &&
       lastDegree &&
-      selectedAdmin
+      adminId
     ) {
       const formData = new FormData();
       formData.append("studentName", studentName);
@@ -56,12 +57,12 @@ export const AdmissionForm = () => {
       formData.append("studentClass", studentClass);
       formData.append("studentPhoto", studentPhoto);
       formData.append("lastDegree", lastDegree);
-      formData.append("adminId", selectedAdmin);
+      formData.append("adminId", adminId);
 
       try {
         setLoading(true);
         const response = await axios.post(
-          "https://your-api-endpoint.com/api/v1/admissions",
+          "https://belikeerp-3.onrender.com/api/v1/student/admissionsubmit",
           formData,
           {
             headers: {
@@ -81,7 +82,7 @@ export const AdmissionForm = () => {
         setStudentClass("");
         setStudentPhoto(null);
         setLastDegree(null);
-        setSelectedAdmin("");
+        setAdminId("");
       } catch (error) {
         toast.error(error.response.data.message);
         setLoading(false);
@@ -162,7 +163,7 @@ export const AdmissionForm = () => {
                   htmlFor="studentDOB"
                   className="leading-7 text-sm text-gray-600"
                 >
-                  Student Dob
+                  Student DOB
                 </label>
                 <input
                   type="date"
@@ -248,13 +249,13 @@ export const AdmissionForm = () => {
                 htmlFor="studentPhoto"
                 className="leading-7 text-sm text-gray-600"
               >
-                Student Id card Photo
+                Student Photo
               </label>
               <input
                 type="file"
                 id="studentPhoto"
                 name="studentPhoto"
-                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
+                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 transition-colors duration-200 ease-in-out"
                 onChange={(e) => setStudentPhoto(e.target.files[0])}
               />
             </div>
@@ -263,31 +264,31 @@ export const AdmissionForm = () => {
                 htmlFor="lastDegree"
                 className="leading-7 text-sm text-gray-600"
               >
-                Last Degree or Education Slip
+                Last Degree
               </label>
               <input
                 type="file"
                 id="lastDegree"
                 name="lastDegree"
-                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
+                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 transition-colors duration-200 ease-in-out"
                 onChange={(e) => setLastDegree(e.target.files[0])}
               />
             </div>
             <div>
               <label
-                htmlFor="admin"
+                htmlFor="adminId"
                 className="leading-7 text-sm text-gray-600"
               >
-                Select Admin
+                Admin
               </label>
               <select
-                id="admin"
-                name="admin"
-                value={selectedAdmin}
+                id="adminId"
+                name="adminId"
+                value={adminId}
                 className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-2 px-3 transition-colors duration-200 ease-in-out"
-                onChange={(e) => setSelectedAdmin(e.target.value)}
+                onChange={(e) => setAdminId(e.target.value)}
               >
-                <option value="" disabled>Select an admin</option>
+                <option value="">Select Admin</option>
                 {admins.map((admin) => (
                   <option key={admin._id} value={admin._id}>
                     {admin.adminName}
@@ -295,20 +296,17 @@ export const AdmissionForm = () => {
                 ))}
               </select>
             </div>
-          </div>
-          <div className="w-full text-center mt-6">
-            <button
-              className="w-1/2 md:w-1/3 lg:w-1/4 mx-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-purple-700 rounded text-lg"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? <ThreeDotLoader /> : "Submit"}
-            </button>
+            <div className="flex justify-center mt-6">
+              <button
+                type="submit"
+                className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg"
+              >
+                {loading ? <ThreeDotLoader /> : "Submit"}
+              </button>
+            </div>
           </div>
         </div>
       </form>
     </div>
   );
 };
-
-export default AdmissionForm;
