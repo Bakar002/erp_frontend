@@ -7,7 +7,7 @@ import schoolportallogo3 from "../../Assets/Img/s3.jpg"; // Replace with your ac
 import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your actual school portal logo path
 import schoolportallogo5 from "../../Assets/Img/s5.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
 import schoolportallogo6 from "../../Assets/Img/afaq.jpeg"; // Replace with your actual school portal logo pathafaq.jpeg
-import schoolportallogo7 from "../../Assets/Img/s7.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
+import schoolportallogo7 from "../../Assets/Img/s5.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
 
 
 
