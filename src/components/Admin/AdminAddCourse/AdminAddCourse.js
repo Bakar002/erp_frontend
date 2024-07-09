@@ -42,23 +42,17 @@ const AddCourse = () => {
       const sendCourseData = async () => {
         try {
           setLoading(true);
-          let response;
-          if (courseTeacher) {
-            response = await axios.post(
-              `https://belikeerp-3.onrender.com/api/v1/admin/add-course/${courseTeacher}`,
-              data
-            );
-          } else {
-            response = await axios.post(
-              `https://belikeerp-3.onrender.com/api/v1/admin/add-course`,
-              data
-            );
-          }
+      
+          const response = await axios.post(
+            `https://belikeerp-3.onrender.com/api/v1/admin/add-course`,
+            data
+          );
+      
           handleShowSuccessToast(response.data.message);
           console.log(response.data.message);
+      
           setCourseTitle("");
           setCousreTimeTable("");
-          setCourseTeacher("");
           setLoading(false);
         } catch (error) {
           handleShowFailureToast(error.response.data.message);
@@ -66,10 +60,9 @@ const AddCourse = () => {
           setLoading(false);
         }
       };
+      
       sendCourseData();
-    }
-  };
-
+    }};      
   return (
     <div className="md:px-8 mt-4">
       <Toaster />
