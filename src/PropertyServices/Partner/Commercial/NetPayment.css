@@ -1,0 +1,80 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.medical-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff; /* Changed to white */
+}
+
+.medical-logo {
+    margin-left: 1rem;
+}
+
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    margin: 10px;
+    flex: 1 0 calc(25% - 20px); /* Adjust width for four items per row */
+    max-width: calc(25% - 20px);
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+.medical-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.service-img {
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+}
+
+.service-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000;
+}
+
+@media (max-width: 1200px) {
+    .service-card {
+        flex: 1 0 calc(33.333% - 20px); /* Three items per row on smaller screens */
+        max-width: calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        flex: 1 0 calc(50% - 20px); /* Two items per row on mobile */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        flex: 1 0 calc(100% - 20px); /* Single item per row on smaller mobile devices */
+        max-width: calc(100% - 20px);
+    }
+}

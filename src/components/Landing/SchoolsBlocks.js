@@ -7,8 +7,6 @@ import schoolportallogo3 from "../../Assets/Img/s3.jpg"; // Replace with your ac
 import schoolportallogo4 from "../../Assets/Img/s4.jpg"; // Replace with your actual school portal logo path
 import schoolportallogo5 from "../../Assets/Img/s5.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
 import schoolportallogo6 from "../../Assets/Img/afaq.jpeg"; // Replace with your actual school portal logo pathafaq.jpeg
-import schoolportallogo7 from "../../Assets/Img/school7.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
-
 
 
 
@@ -51,11 +49,6 @@ const SchoolBlocks = () => {
     {
       name: "Afaq School",
       logo: schoolportallogo6, // Replace with your actual school logo path
-      link: "/admin-login", // Replace with the actual login link
-    },
-    {
-      name: "Al Syed School/Academy",
-      logo: schoolportallogo7, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
   ];

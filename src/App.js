@@ -75,6 +75,16 @@ import Complex from './MedicalPortal/Partners/Complexes/Complex';
 import Laboratory from './MedicalPortal/Partners/Laboratories/Laboratory.js';
 import SpecializedClinic from './MedicalPortal/Partners/SpecializedClinics/SpecializedClinic';
 
+import PropertyServices from './PropertyServices/ProService';
+import NetPayment from './PropertyServices/Partner/Commercial/NetPayment';
+import Files from './PropertyServices/Partner/Residential/Files';
+
+import PaymentPlain from './PropertyServices/Partner/Commercial/PaymentPlain';
+import Home from './PropertyServices/Partner/Residential/Home.js';
+
+
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -121,7 +131,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landingpage />} />
-          <Route path="/admission" element={<AdmissionForm/>} />
+          <Route path="/admission" element={<AdmissionForm />} />
 
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
@@ -142,6 +152,26 @@ function App() {
           <Route path="/-laboratory" element={<Laboratory/>} />
           <Route path="/specialized-Clinic" element={< SpecializedClinic/>} />
 
+          <Route path="/ser-portal-home" element={<PropertyServices />} />
+          <Route path="/commercial" element={<NetPayment/>} />
+          <Route path="/residential" element={<Files/>} />
+          <Route path="/rental" element={<PaymentPlain/>}/>
+          <Route path="/sale-and-purchase-" element={<PaymentPlain/>}/>
+          <Route path="/home" element={<Home/>}/>
+
+        
+
+
+          
+
+
+
+
+
+
+
+
+
 
 
 
@@ -154,7 +184,7 @@ function App() {
 
           <Route
             path="/admin-dashboard"
-            element={isAdminAuthenticated ? <AdminDashboard /> : <Login />}
+            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminDashboard />}
           />
 
 <Route

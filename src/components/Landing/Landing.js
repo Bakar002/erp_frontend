@@ -120,6 +120,9 @@ const Landingpage = () => {
               </div>
             </div>
             </Link>
+            
+           
+            <Link to={"/ser-portal-home"}>
 
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
@@ -127,8 +130,9 @@ const Landingpage = () => {
               </div>
               <div>
                 <h2> Property Services</h2>
-              </div>
+              </div> 
             </div>
+            </Link>
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={Itskillimg} alt="" />
