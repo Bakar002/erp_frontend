@@ -47,100 +47,97 @@ export default function SchoolPortal() {
 </div>
 
 
-        <div className="container">
-          <h3 className="text-center  fw-bold my-4">Admissions</h3>
-          <div className="row d-flex justify-content-center">
-            <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <a
-                className="text-reset text-decoration-none text-center"
-                href="https://example.com"
-              >
-                <i className="fa-solid fa-temperature-high text-center fa-2x mt-3" />
-              </a>
-              <div className="card-body">
-                <a
-                  className="text-reset text-decoration-none text-center"
-                  href="https://example.com"
-                ></a>
-                
-<h6 className="text-center pt-2">
-  <NavLink
-    className="text-reset text-decoration-none text-center"
-    to="/admission"
-  >
-    Summer
-  </NavLink>
-</h6>
+<div className="container">
+  <h3 className="text-center fw-bold my-4">Admissions</h3>
+  <div className="row d-flex justify-content-center">
+    <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+      <NavLink
+        className="text-reset text-decoration-none text-center"
+        to="/admission"
+      >
+        <i className="fa-solid fa-temperature-high text-center fa-2x mt-3" />
+      </NavLink>
+      <div className="card-body">
+        <h6 className="text-center pt-2">
+          <NavLink
+            className="text-reset text-decoration-none text-center"
+            to="/admission"
+          >
+            Summer
+          </NavLink>
+        </h6>
+      </div>
+    </div>
+    <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+      <NavLink
+        className="text-reset text-decoration-none text-center"
+        to="/admission"
+      >
+        <i className="fa-solid fa-atom text-center fa-2x mt-3" />
+      </NavLink>
+      <div className="card-body">
+        <h6 className="text-center pt-2">
+          <NavLink
+            className="text-reset text-decoration-none text-center"
+            to="/admission"
+          >
+            Annual
+          </NavLink>
+        </h6>
+      </div>
+    </div>
+    <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+      <NavLink
+        className="text-reset text-decoration-none text-center"
+        to="/admission"
+      >
+        <i className="fa-solid fa-school-flag text-center fa-2x mt-3" />
+      </NavLink>
+      <div className="card-body">
+        <h6 className="text-center pt-2">
+          <NavLink
+            className="text-reset text-decoration-none text-center"
+            to="/admission"
+          >
+            Academy
+          </NavLink>
+        </h6>
+      </div>
+    </div>
+    {/* <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+      <i className="fa-solid fa-microchip text-center fa-2x mt-3" />
+      <div className="card-body">
+        <h6 className="text-center pt-2">
+          <NavLink
+            className="text-decoration-none text-dark"
+            to="/admission"
+          >
+            IT Courses
+          </NavLink>
+        </h6>
+      </div>
+    </div> */}
+    <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+      <NavLink
+        className="text-reset text-decoration-none text-center"
+        to="/admission"
+      >
+        <i className="fa-solid fa-school text-center fa-2x mt-3" />
+      </NavLink>
+      <div className="card-body">
+        <h6 className="text-center pt-2">
+          <NavLink
+            className="text-reset text-decoration-none text-center"
+            to="/admission"
+          >
+            Home Tuition
+          </NavLink>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>
 
-              </div>
-            </div>
-            <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <a
-                className="text-reset text-decoration-none text-center"
-                href="https://example.com"
-              >
-                <i className="fa-solid fa-atom text-center fa-2x mt-3" />
-              </a>
-              <div className="card-body">
-                <a
-                  className="text-reset text-decoration-none text-center"
-                  href="https://example.com"
-                ></a>
-                <h6 className="text-center pt-2">
-                  <a
-                    className="text-reset text-decoration-none text-center"
-                    href="https://example.com"
-                  />
-                  <a
-                    className="text-decoration-none text-dark"
-                    href="admissions/index.php"
-                  >
-                    Annual
-                  </a>
-                </h6>
-              </div>
-            </div>
-            <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-school-flag text-center fa-2x mt-3" />
-              <div className="card-body">
-                <h6 className="text-center pt-2">
-                  <a
-                    className="text-decoration-none text-dark"
-                    href="admissions/Academy/index.php"
-                  >
-                    Academy
-                  </a>
-                </h6>
-              </div>
-            </div>
-            <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-microchip text-center fa-2x mt-3" />
-              <div className="card-body">
-                <h6 className="text-center pt-2">
-                  <a
-                    className="text-decoration-none text-dark"
-                    href="admissions/IT Courses/index.php"
-                  >
-                    IT Courses
-                  </a>
-                </h6>
-              </div>
-            </div>
-            <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
-              <i className="fa-solid fa-school text-center fa-2x mt-3" />
-              <div className="card-body">
-                <h6 className="text-center pt-2">
-                  <a
-                    className="text-decoration-none text-dark"
-                    href="https://example.com"
-                  >
-                    Home Tuition
-                  </a>
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
         <h1 className="text-center punjab mt-3">Punjab Boards</h1>
         <div className="container">
           <h3 className="text-center  fw-bold">Board Papers</h3>
