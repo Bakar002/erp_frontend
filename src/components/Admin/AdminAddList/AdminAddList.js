@@ -58,6 +58,7 @@ export const AdminAddList = ({ adminId, token }) => {
                 <th className="py-2 px-4">Student Class</th>
                 <th className="py-2 px-4">Student Id</th>
                 <th className="py-2 px-4">Last Degree</th>
+                <th className="py-2 px-4">Submission Date</th>
               </tr>
             </thead>
             <tbody className="text-gray-700">
@@ -87,6 +88,7 @@ export const AdminAddList = ({ adminId, token }) => {
                       onClick={() => openImageModal(admission.lastDegree)}
                     />
                   </td>
+                  <td className="py-2 px-4 border">{new Date(admission.submissionDate).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>
@@ -120,5 +122,3 @@ export const AdminAddList = ({ adminId, token }) => {
     </div>
   );
 };
-
-
