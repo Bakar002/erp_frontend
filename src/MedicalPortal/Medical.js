@@ -70,7 +70,7 @@ const MedicalPortal = () => {
         </div>
         <button
           className="btn btn-primary"
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/health-login')}
         >
           Login
         </button>
