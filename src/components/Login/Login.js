@@ -1,73 +1,13 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-
-// const Login = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [name, setName] = useState('');
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post('/api/users/login', { name ,email, password });
-//       console.log( name ,email , password);
-//       localStorage.setItem('token', res.data.token);
-//       navigate('/dashboard');
-//     } catch (error) {
-//       console.error(error);
-//       alert('Login failed');
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
-//       <div className="mb-4">
-//         <label htmlFor="name" className="block text-gray-700">Name:</label>
-//         <input
-//           type="name"
-//           id="name"
-//           value={name}
-//           onChange={(e) => setName(e.target.value)}
-//           className="form-input mt-1 block w-full rounded-md border-gray-300"
-//         />
-//       </div>
-//       <div className="mb-4">
-//         <label htmlFor="email" className="block text-gray-700">Email:</label>
-//         <input
-//           type="email"
-//           id="email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           className="form-input mt-1 block w-full rounded-md border-gray-300"
-//         />
-//       </div>
-//       <div className="mb-4">
-//         <label htmlFor="password" className="block text-gray-700">Password:</label>
-//         <input
-//           type="password"
-//           id="password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           className="form-input mt-1 block w-full rounded-md border-gray-300"
-//         />
-//       </div>
-//       <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Login</button>
-//     </form>
-//   );
-// };
-
-// export default Login;
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import Logo from "../../Assets/logo.webp";
-import img1 from "../../Assets/bgstudent-1.webp";
-import img2 from "../../Assets/bgstudent-2.webp";
-import img3 from "../../Assets/bgstudent-3.webp";
+import img1 from "../../Assets/Medical/login/login3.png";
+import img2 from "../../Assets/Medical/login/login1.png";
+import img3 from "../../Assets/Medical/login/login2.png";
+
 import {
   handleShowFailureToast,
   handleShowSuccessToast,
@@ -75,8 +15,8 @@ import {
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -128,11 +68,7 @@ const Login = () => {
         handleShowFailureToast("Email or Password is missing");
         return;
       }
-      const res = await axios.post("/api/users/login", {
-        name,
-        email,
-        password,
-      });
+      const res = await axios.post("/api/users/login", { email, password });
       localStorage.setItem("token", res.data.token);
       handleShowSuccessToast(res.data.message);
       navigate("/");
@@ -143,12 +79,12 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex overflow-hidden  justify-center items-center bg-transparent  h-[100vh]">
-      <div className="w-[100%] md:block md:w-[60%]  h-full">
+    <div className="relative flex overflow-hidden justify-center items-center bg-white h-[100vh]">
+      <div className="w-[100%] md:block md:w-[60%] h-full">
         <Toaster />
-        <Slider {...settings} appendDots={appendDots} className=" h-full">
+        <Slider {...settings} appendDots={appendDots} className="h-full">
           <div
-            className=" h-[100vh] relative"
+            className="h-[100vh] relative"
             style={{
               backgroundImage:
                 "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5))",
@@ -168,30 +104,18 @@ const Login = () => {
           </div>
         </Slider>
       </div>
-      <div className="absolute  md:relative md:h-full  w-[80%] md:w-[40%] lg:[60%]">
+      <div className="absolute md:relative md:h-full w-[80%] md:w-[40%] lg:[60%]">
         <form
           onSubmit={handleSubmit}
-          className="py-6 h-full  rounded-lg shadow-xl shadow-slate-400/50 bg-[#f7f7f7]  flex flex-col justify-center items-center text-black"
+          className="py-6 h-full rounded-lg shadow-xl shadow-slate-400/50 bg-[#f7f7f7] flex flex-col justify-center items-center text-black"
           id="signup"
         >
-          <div className=" flex flex-col w-[80%] ">
-            <div className=" flex flex-col justify-center items-center mb-4">
+          <div className="flex flex-col w-[80%]">
+            <div className="flex flex-col justify-center items-center mb-4">
               <img src={Logo} className="h-[4rem] w-[6rem]" alt="" />
             </div>
-            <h1 className="text-center font-bold text-2xl">User Login Portal</h1>
-            <div className="mt-4 ">
-              <input
-                type="name"
-                required
-                className="border-b outline-none border-gray-300 transition-all duration-300 focus:border-blue-500 focus:border-b-2 bg-transparent p-2 w-full h-full"
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-                id="name"
-              />
-            </div>
-
-            <div className="mt-4 ">
+            <h1 className="text-center font-bold text-2xl">Medical Portal Login</h1>
+            <div className="mt-4">
               <input
                 type="email"
                 required
@@ -202,13 +126,12 @@ const Login = () => {
                 id="email"
               />
             </div>
-
-            <div className="relative mt-4 ">
+            <div className="relative mt-4">
               <input
                 type={show ? "password" : "text"}
                 placeholder="Password"
                 required
-                className="border-b outline-none border-gray-300 transition-all duration-300  focus:border-blue-500 focus:border-b-2 bg-transparent p-2 h-full w-full "
+                className="border-b outline-none border-gray-300 transition-all duration-300 focus:border-blue-500 focus:border-b-2 bg-transparent p-2 h-full w-full"
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="new-password"
@@ -221,7 +144,6 @@ const Login = () => {
                 {show ? <FaEyeSlash /> : <FaEye />}
               </div>
             </div>
-
             <input
               type="submit"
               value={"Login"}
@@ -229,12 +151,7 @@ const Login = () => {
             />
             <h3 className="mt-3">
               {" "}
-              <a
-                href="/"
-                className="text-blue-700 hover:underline cursor-pointer"
-              >
-                Forgot Password ?
-              </a>
+
             </h3>
           </div>
         </form>

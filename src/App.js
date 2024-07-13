@@ -82,6 +82,11 @@ import Files from './PropertyServices/Partner/Residential/Files';
 import PaymentPlain from './PropertyServices/Partner/Commercial/PaymentPlain';
 import Home from './PropertyServices/Partner/Residential/Home.js';
 
+import ItService from './ItServices/ItService.js';
+import Course from './ItServices/Courses/Course.js';
+import MAdmin from './MedicalPortal/Dashboard/MAdmin';
+
+
 
 
 
@@ -137,10 +142,18 @@ function App() {
           <Route path="/admin-signup" element={<AdminSignup />} />
           <Route path="/teacher-login" element={<TeacherLogin />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
-          <Route path="/login" element={<Login />} />
+
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
 
+
+
+
+
+
+          <Route path="/health-login" element={<Login/>} />
+
+          <Route path="/health-admin" element={<MAdmin />} />
 
           <Route path="/health-portal-home" element={<MedicalPortal />} />
           <Route path="/appointment-forms" element={<Appointments />} />
@@ -159,8 +172,14 @@ function App() {
           <Route path="/sale-and-purchase-" element={<PaymentPlain/>}/>
           <Route path="/home" element={<Home/>}/>
 
-        
 
+
+
+        
+          <Route path="/it-portal-home" element={<ItService />} />
+          <Route path="/course" element={<Course/>}/>
+         
+   
 
           
 

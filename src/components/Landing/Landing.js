@@ -133,6 +133,7 @@ const Landingpage = () => {
               </div> 
             </div>
             </Link>
+            <Link to={"/it-portal-home"}>
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={Itskillimg} alt="" />
@@ -141,6 +142,7 @@ const Landingpage = () => {
                 <h2>It Skills</h2>
               </div>
             </div>
+            </Link>
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={travelimg} alt="" />
