@@ -74,6 +74,7 @@ import Ambulance from './MedicalPortal/Partners/Ambulances/Ambulance';
 import Complex from './MedicalPortal/Partners/Complexes/Complex';
 import Laboratory from './MedicalPortal/Partners/Laboratories/Laboratory.js';
 import SpecializedClinic from './MedicalPortal/Partners/SpecializedClinics/SpecializedClinic';
+import  DoctorList  from './MedicalPortal/Specialist/Doctor/DoctorList.jsx';
 
 import PropertyServices from './PropertyServices/ProService';
 import NetPayment from './PropertyServices/Partner/Commercial/NetPayment';
@@ -85,8 +86,10 @@ import Home from './PropertyServices/Partner/Residential/Home.js';
 import ItService from './ItServices/ItService.js';
 import Course from './ItServices/Courses/Course.js';
 import MAdmin from './MedicalPortal/Dashboard/MAdmin';
-import SubCampus from './components/School/AfaqSubCampus/SubCampus';
+
+import WelfareActivity from './Welfare/WelfareActivity.jsx';
 import Itadmissionform from './ItServices/Itadmission/Itadmissionform';
+
 
 
 
@@ -139,8 +142,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landingpage />} />
           <Route path="/admission" element={<AdmissionForm />} />
-          <Route path="/itadmission" element={<Itadmissionform />} />
-
+          <Route path="/admissionit" element={<Itadmissionform />} />
 
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
@@ -149,8 +151,6 @@ function App() {
 
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
-          <Route path="/afaq-sub-campus" element={<SubCampus/>} />
-
 
 
 
@@ -167,8 +167,8 @@ function App() {
           <Route path="/pharmacy" element={<Pharmacy/>} />
           <Route path="/hospital" element={<Hospital/>} />
           <Route path="/ambulance" element={<Ambulance/>} />
-          <Route path="/-medical-complex" element={<Complex/>} />
-          <Route path="/-laboratory" element={<Laboratory/>} />
+          <Route path="/medical-complex" element={<Complex/>} />
+          <Route path="/laboratory" element={<Laboratory/>} />
           <Route path="/specialized-Clinic" element={< SpecializedClinic/>} />
 
           <Route path="/ser-portal-home" element={<PropertyServices />} />
@@ -185,14 +185,15 @@ function App() {
           <Route path="/it-portal-home" element={<ItService />} />
           <Route path="/course" element={<Course/>}/>
          
-   
+         
+          <Route path="doctor's-panel" element={<DoctorList/>}/>
 
           
 
 
 
 
-
+          <Route path="/donation-portal-home" element={<WelfareActivity />} />
 
 
 

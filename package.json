@@ -5,6 +5,9 @@
   "proxy": "https://erp-frontend-s74v.vercel.app",
   "dependencies": {
     "@fileforge/react-print": "^0.1.141",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -12,6 +15,7 @@
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
+    "fontawesome": "^5.6.3",
     "https-browserify": "^1.0.0",
     "print-js": "^1.6.0",
     "react": "^18.3.1",
