@@ -85,6 +85,7 @@ import Home from './PropertyServices/Partner/Residential/Home.js';
 import ItService from './ItServices/ItService.js';
 import Course from './ItServices/Courses/Course.js';
 import MAdmin from './MedicalPortal/Dashboard/MAdmin';
+import SubCampus from './components/School/AfaqSubCampus/SubCampus';
 
 
 
@@ -145,6 +146,8 @@ function App() {
 
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
+          <Route path="/afaq-sub-campus" element={<SubCampus/>} />
+
 
 
 

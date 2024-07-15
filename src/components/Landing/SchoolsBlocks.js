@@ -53,7 +53,7 @@ const SchoolBlocks = () => {
     {
       name: "Afaq School",
       logo: schoolportallogo6, // Replace with your actual school logo path
-      link: "/admin-login", // Replace with the actual login link
+      link: "/afaq-sub-campus", // Replace with the actual login link
     },
     {
       name: "Al Syed School/Academy",
