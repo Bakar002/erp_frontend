@@ -9,6 +9,7 @@ import schoolportallogo5 from "../../Assets/Img/s5.jpg"; // Replace with your ac
 import schoolportallogo6 from "../../Assets/Img/afaq.jpeg"; // Replace with your actual school portal logo pathafaq.jpeg
 import schoolportallogo7 from "../../Assets/Img/UIES.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
 import schoolportallogo8 from "../../Assets/Img/syed.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
+import schoolportallogo9 from "../../Assets/Img/cgs.jpeg"; // Replace with your actual school portal logo pathafaq.jpeg
 
 
 
@@ -63,6 +64,11 @@ const SchoolBlocks = () => {
     {
       name: "UIES Tajbagh Chapter Academy",
       logo: schoolportallogo7, // Replace with your actual school logo path
+      link: "/admin-login", // Replace with the actual login link
+    },
+    {
+      name: "The Concept Grammer High School",
+      logo: schoolportallogo9, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
   ];
