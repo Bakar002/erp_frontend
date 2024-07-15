@@ -49,7 +49,7 @@ const ItService = () => {
               <div key={service.name} className="service-card">
                 <NavLink
                   className="text-reset text-decoration-none text-center"
-                  to={`/${service.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  to="/itadmission"
                 >
                   <div className="medical-img-container mb-3">
                     <img

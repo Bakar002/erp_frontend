@@ -86,6 +86,7 @@ import ItService from './ItServices/ItService.js';
 import Course from './ItServices/Courses/Course.js';
 import MAdmin from './MedicalPortal/Dashboard/MAdmin';
 import SubCampus from './components/School/AfaqSubCampus/SubCampus';
+import Itadmissionform from './ItServices/Itadmission/Itadmissionform';
 
 
 
@@ -138,6 +139,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Landingpage />} />
           <Route path="/admission" element={<AdmissionForm />} />
+          <Route path="/itadmission" element={<Itadmissionform />} />
+
 
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
