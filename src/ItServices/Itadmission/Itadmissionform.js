@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Itadmissionform.css';
+import styles from './Itadmissionform.module.css';
 
 const courses = [
     "Digital Marketing", "SMM (Social Media Marketing)", "SEO (Search Engine Optimization)", 
@@ -55,42 +55,42 @@ const Itadmissionform = () => {
     };
 
     return (
-        <div className="container">
-            <form className="admission-form" onSubmit={handleSubmit}>
+        <div className={styles.container}>
+            <form className={styles.admissionForm} onSubmit={handleSubmit}>
                 <h2>Student Admission Form</h2>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Student Name</label>
                     <input type="text" name="studentName" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Student Email</label>
                     <input type="email" name="studentEmail" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Student Phone</label>
                     <input type="text" name="studentPhone" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Date of Birth</label>
                     <input type="date" name="studentDOB" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Address</label>
                     <input type="text" name="studentAddress" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Guardian Name</label>
                     <input type="text" name="guardianName" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Guardian Phone</label>
                     <input type="text" name="guardianPhone" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Class</label>
                     <input type="text" name="studentClass" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Course</label>
                     <select name="course" onChange={handleChange} required>
                         <option value="">Select a Course</option>
@@ -99,7 +99,7 @@ const Itadmissionform = () => {
                         ))}
                     </select>
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Duration</label>
                     <select name="duration" onChange={handleChange} required>
                         <option value="">Select Duration</option>
@@ -108,11 +108,11 @@ const Itadmissionform = () => {
                         ))}
                     </select>
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Student ID Photo</label>
                     <input type="file" name="studentIdPhoto" onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Payment Method</label>
                     <select name="paymentMethod" onChange={handleChange} required>
                         <option value="">Select a Payment Method</option>
@@ -121,7 +121,7 @@ const Itadmissionform = () => {
                     </select>
                 </div>
                 {formData.paymentMethod === 'online' && (
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label>Payment Slip</label>
                         <input type="file" name="paymentSlip" onChange={handleChange} required />
                     </div>
