@@ -47,10 +47,18 @@ const Itadmissionform = () => {
         form.append('adminId', '664a5ee70b568ab80ac19de7');  // default admin ID
 
         try {
-            const response = await axios.post('https://belikeerp-3.onrender.com/api/v1/admin/createItStudent', form);
+            const response = await axios.post(
+                "https://belikeerp-3.onrender.com/api/v1/student/createItStudent",
+                form,
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              );
             alert(response.data.message);
         } catch (error) {
-            alert(error.response.data.message);
+
         }
     };
 
