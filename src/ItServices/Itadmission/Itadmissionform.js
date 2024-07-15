@@ -48,7 +48,7 @@ const Itadmissionform = () => {
 
         try {
             const response = await axios.post(
-                "https://belikeerp-3.onrender.com/api/v1/student/createItStudent",
+                "https://belikeerp-3.onrender.com/api/v1/admin/createItStudent",
                 form,
                 {
                   headers: {
