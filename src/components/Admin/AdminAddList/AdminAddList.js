@@ -11,7 +11,7 @@ export const AdminAddList = ({ adminId, token }) => {
   useEffect(() => {
     const fetchAdmissions = async () => {
       try {
-        const response = await axios.get('https://belikeerp-3.onrender.com/api/v1/admin/load-all-admissions', {
+        const response = await axios.get('https://belikeerp-3.onrender.com/api/v1/admin/getItStudent', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -56,8 +56,11 @@ export const AdminAddList = ({ adminId, token }) => {
                 <th className="py-2 px-4">Guardian Name</th>
                 <th className="py-2 px-4">Guardian Phone</th>
                 <th className="py-2 px-4">Student Class</th>
-                <th className="py-2 px-4">Student Id</th>
-                <th className="py-2 px-4">Last Degree</th>
+                <th className="py-2 px-4">Course</th>
+                <th className="py-2 px-4">Duration</th>
+                <th className="py-2 px-4">Payment Method</th>
+                <th className="py-2 px-4">Student ID Photo</th>
+                <th className="py-2 px-4">Payment Slip</th>
                 <th className="py-2 px-4">Submission Date</th>
               </tr>
             </thead>
@@ -72,6 +75,9 @@ export const AdminAddList = ({ adminId, token }) => {
                   <td className="py-2 px-4 border">{admission.guardianName}</td>
                   <td className="py-2 px-4 border">{admission.guardianPhone}</td>
                   <td className="py-2 px-4 border">{admission.studentClass}</td>
+                  <td className="py-2 px-4 border">{admission.course}</td>
+                  <td className="py-2 px-4 border">{admission.duration}</td>
+                  <td className="py-2 px-4 border">{admission.paymentMethod}</td>
                   <td className="py-2 px-4 border">
                     <img
                       src={admission.studentIdPhoto}
@@ -81,12 +87,16 @@ export const AdminAddList = ({ adminId, token }) => {
                     />
                   </td>
                   <td className="py-2 px-4 border">
-                    <img
-                      src={admission.lastDegree}
-                      alt="Last Degree"
-                      className="h-16 w-16 object-cover rounded cursor-pointer"
-                      onClick={() => openImageModal(admission.lastDegree)}
-                    />
+                    {admission.paymentSlip ? (
+                      <img
+                        src={admission.paymentSlip}
+                        alt="Payment Slip"
+                        className="h-16 w-16 object-cover rounded cursor-pointer"
+                        onClick={() => openImageModal(admission.paymentSlip)}
+                      />
+                    ) : (
+                      'N/A'
+                    )}
                   </td>
                   <td className="py-2 px-4 border">{new Date(admission.submissionDate).toLocaleDateString()}</td>
                 </tr>
