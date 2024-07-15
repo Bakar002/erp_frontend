@@ -18,12 +18,12 @@ const SubCampus = () => {
     {
       name: "Afaq School Campus 1 Landu Masjid Campus",
       logo: schoolportallogo6, // Replace with your actual school logo path
-      link: "/afaq-sub-campus", // Replace with the actual login link
+      link: "/admin-login", // Replace with the actual login link
     },
     {
         name: "Afaq School Campus 2 401 Campus",
         logo: schoolportallogo6, // Replace with your actual school logo path
-        link: "/afaq-sub-campus", // Replace with the actual login link
+        link: "/admin-login", // Replace with the actual login link
       },
     
   ];

@@ -11,11 +11,6 @@ import schoolportallogo7 from "../../Assets/Img/UIES.jpg"; // Replace with your 
 import schoolportallogo8 from "../../Assets/Img/syed.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
 import schoolportallogo9 from "../../Assets/Img/cgs.jpeg"; // Replace with your actual school portal logo pathafaq.jpeg
 
-
-
-
-
-
 // import "./SchoolBlocks.css"
 
 const SchoolBlocks = () => {

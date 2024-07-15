@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 import Footer from "../Footer/Footer.js";
@@ -16,18 +16,22 @@ import donationimg from "../../Assets/donate.webp";
 import belikecustomimg from "../../Assets/bgp.webp";
 import belikecustomimg2 from "../../Assets/Images/customer.jpeg";
 import belikeproperty from "../../Assets/property.png";
-
-
 import ecomimg from "../../Assets/e-com.webp";
 import jobimg from "../../Assets/jobs.webp";
 import healthimg from "../../Assets/health.webp";
-import { NavLink } from "react-router-dom";
+import bannerAdImg from "../../Assets/Img/ads.pdf";  // Import your banner image
+
 const Landingpage = () => {
   return (
     <>
       <div className="bg-white">
         {/* Navbar Menu */}
         <Navbar />
+
+        {/* Advertisement Banner */}
+        <div className="w-full flex justify-center mt-4">
+          <img src={bannerAdImg} alt="Advertisement" className="w-[90%] md:w-[70%] h-auto"/>
+        </div>
 
         {/* ######################## hero Section ##################################### */}
         <div className="h-[100vh] mt-8 flex flex-col items-center justify-center bg-white">
@@ -62,19 +66,16 @@ const Landingpage = () => {
         >
           <h1 className="text-[#40b08c] text-5xl font-bold">Services</h1>
           <div className="  flex flex-wrap justify-center gap-5 w-[85%] mt-4">
-
-
-          <Link to={"/schoolblock2"}>
-
-<div className="servcard flex flex-col items-center">
-  <div className=" w-[10rem] h-[10rem]">
-    <img src={belikecustomimg} alt="" />
-  </div>
-  <div>
-    <h2>Our IT Clients</h2>
-  </div>
-</div></Link>
-
+            <Link to={"/schoolblock2"}>
+              <div className="servcard flex flex-col items-center">
+                <div className=" w-[10rem] h-[10rem]">
+                  <img src={belikecustomimg} alt="" />
+                </div>
+                <div>
+                  <h2>Our IT Clients</h2>
+                </div>
+              </div>
+            </Link>
             <Link to={"/school-portal-home"}>
               <div className="servcard flex flex-col items-center">
                 <div className=" w-[10rem] h-[10rem]">
@@ -86,62 +87,54 @@ const Landingpage = () => {
               </div>
             </Link>
             <Link to={"/schoolblocks"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={collegeimg} alt="" />
+              <div className="servcard flex flex-col items-center">
+                <div className=" w-[10rem] h-[10rem]">
+                  <img src={collegeimg} alt="" />
+                </div>
+                <div>
+                  <h2>Colleges</h2>
+                </div>
               </div>
-              <div>
-                <h2>Colleges</h2>
-              </div>
-            </div>
-
             </Link>
             <Link to={"/uni-portal-home"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={universityimg} alt="" />
+              <div className="servcard flex flex-col items-center">
+                <div className=" w-[10rem] h-[10rem]">
+                  <img src={universityimg} alt="" />
+                </div>
+                <div>
+                  <h2>Universities</h2>
+                </div>
               </div>
-              <div>
-                <h2>Universities</h2>
-              </div>
-            </div>
             </Link>
-
             <Link to={"/health-portal-home"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={healthimg} alt="" />
+              <div className="servcard flex flex-col items-center">
+                <div className=" w-[10rem] h-[10rem]">
+                  <img src={healthimg} alt="" />
+                </div>
+                <div>
+                  <h2>Health</h2>
+                </div>
               </div>
-              <div>
-                <h2>Health</h2>
-              </div>
-            </div>
             </Link>
-            
-           
             <Link to={"/ser-portal-home"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={belikeproperty} alt="" />
+              <div className="servcard flex flex-col items-center">
+                <div className=" w-[10rem] h-[10rem]">
+                  <img src={belikeproperty} alt="" />
+                </div>
+                <div>
+                  <h2> Property Services</h2>
+                </div>
               </div>
-              <div>
-                <h2> Property Services</h2>
-              </div> 
-            </div>
             </Link>
             <Link to={"/it-portal-home"}>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={Itskillimg} alt="" />
+              <div className="servcard flex flex-col items-center">
+                <div className=" w-[10rem] h-[10rem]">
+                  <img src={Itskillimg} alt="" />
+                </div>
+                <div>
+                  <h2>It Skills</h2>
+                </div>
               </div>
-              <div>
-                <h2>It Skills</h2>
-              </div>
-            </div>
             </Link>
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
@@ -167,7 +160,6 @@ const Landingpage = () => {
                 <h2>Jobs</h2>
               </div>
             </div>
-            
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={marketimg} alt="" />
@@ -192,7 +184,6 @@ const Landingpage = () => {
                 <h2>Donation</h2>
               </div>
             </div>
-
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={belikecustomimg2} alt="" />
@@ -209,9 +200,6 @@ const Landingpage = () => {
                 <h2>Int.Edu</h2>
               </div>
             </div>
-
-
-           
           </div>
           <div className="w-full flex flex-col items-center mt-8">
             <div className="w-[40%] border-2 border-b-black"></div>
