@@ -183,7 +183,7 @@ function App() {
 
         
           <Route path="/it-portal-home" element={<ItService />} />
-          <Route path="/course" element={<Course/>}/>
+          <Route path="/courseit" element={<Course/>}/>
          
          
           <Route path="doctor's-panel" element={<DoctorList/>}/>

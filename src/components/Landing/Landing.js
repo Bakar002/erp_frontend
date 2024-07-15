@@ -142,7 +142,22 @@ const Landingpage = () => {
                 <h2>It Skills</h2>
               </div>
             </div>
+
             </Link>
+
+
+
+            <Link to={"donation-portal-home"}>
+           <div className="servcard flex flex-col items-center">
+              <div className=" w-[10rem] h-[10rem]">
+                <img src={donationimg} alt="" />
+              </div>
+              <div>
+                <h2>Welfare Activities</h2>
+              </div>
+            </div>
+           </Link>
+
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={travelimg} alt="" />
@@ -185,17 +200,7 @@ const Landingpage = () => {
               </div>
             </div>
           
-            <Link to={"donation-portal-home"}>
-           <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={donationimg} alt="" />
-              </div>
-              <div>
-                <h2>Welfare Activities</h2>
-              </div>
-            </div>
-           </Link>
-
+            
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={belikecustomimg2} alt="" />
