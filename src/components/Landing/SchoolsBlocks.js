@@ -30,13 +30,13 @@ const SchoolBlocks = () => {
     {
       name: "Pak Knowledge School System",
       logo: schoolportallogo3, // Replace with your actual school logo path
-      link: "/admin-login", // Replace with the actual login link
+      link: "/pak-sub-campus", // Replace with the actual login link
     },
     
     {
       name: "The Learning Way School System",
       logo: schoolportallogo4, // Replace with your actual school logo path
-      link: "/admin-login", // Replace with the actual login link
+      link: "/lwss-sub-campus", // Replace with the actual login link
     },
     
 

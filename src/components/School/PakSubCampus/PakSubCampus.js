@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../../Assets/Img/dg.png"; // Replace with your actual logo path
 
-import schoolportallogo6 from "../../../Assets/Img/afaq.jpeg"; // Replace with your actual school portal logo pathafaq.jpeg
+import schoolportallogo6 from "../../../Assets/Img/s3.webp"; // Replace with your actual school portal logo pathafaq.jpeg
 
 
 
@@ -12,20 +12,30 @@ import schoolportallogo6 from "../../../Assets/Img/afaq.jpeg"; // Replace with y
 
 // import "./SubCampus.css"
 
-const SubCampus = () => {
+const PakSubCampus = () => {
   const schools = [
     
     {
-      name: "Afaq School Campus 1 Landu Masjid Campus",
+      name: "Aitchison Society Campus (PKSS)",
       logo: schoolportallogo6, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
     {
-        name: "Afaq School Campus 2 401 Campus",
+        name: "Sheraz town Campus (PKSS)",
         logo: schoolportallogo6, // Replace with your actual school logo path
         link: "/admin-login", // Replace with the actual login link
       },
-    
+      {
+        name: "Awan Town Campus (PKSS)",
+        logo: schoolportallogo6, // Replace with your actual school logo path
+        link: "/admin-login", // Replace with the actual login link
+      },
+      {
+        name: "Chung Campus (PKSS)",
+        logo: schoolportallogo6, // Replace with your actual school logo path
+        link: "/admin-login", // Replace with the actual login link
+      },
+
   ];
 
   return (
@@ -69,4 +79,4 @@ const SubCampus = () => {
   );
 };
 
-export default SubCampus;
+export default PakSubCampus;

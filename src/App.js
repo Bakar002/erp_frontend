@@ -89,6 +89,10 @@ import MAdmin from './MedicalPortal/Dashboard/MAdmin';
 
 import WelfareActivity from './Welfare/WelfareActivity.jsx';
 import Itadmissionform from './ItServices/Itadmission/Itadmissionform';
+import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
+import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
+import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
+
 
 
 
@@ -267,6 +271,18 @@ function App() {
           <Route path="/university/arts" element={<Third/>} />
           <Route path="/university/islamic" element={<Fourth/>} />
           <Route path="/university/bed" element={<Fifth/>} />
+
+          {/* SubCampus   */}
+
+          <Route path="/lwss-sub-campus" element={<LwssSubCampus/>} />
+          <Route path="/afaq-sub-campus" element={<AfaqSubCampus/>} />
+          <Route path="/pak-sub-campus" element={<PakSubCampus/>} />
+
+
+
+
+          
+
 
 
 
