@@ -14,7 +14,7 @@ import schoolportallogo6 from "../../../Assets/Img/s3.webp"; // Replace with you
 
 const PakSubCampus = () => {
   const schools = [
-    
+
     {
       name: "Aitchison Society Campus (PKSS)",
       logo: schoolportallogo6, // Replace with your actual school logo path
