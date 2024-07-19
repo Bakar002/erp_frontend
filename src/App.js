@@ -89,10 +89,17 @@ import MAdmin from './MedicalPortal/Dashboard/MAdmin';
 
 import WelfareActivity from './Welfare/WelfareActivity.jsx';
 import Itadmissionform from './ItServices/Itadmission/Itadmissionform';
-import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
-import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
-import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
 
+import Travel from './Travels/Travel.jsx';
+
+import IntConsultant from './Consultant/IntConsultant.js';
+import Country from './Consultant/Countries/Country.js';
+import Uni from './Consultant/University/Uni.js';
+import Department from './Consultant/Departments/Deparment.js';
+import Appoint from './MedicalPortal/Form/Appoint.js';
+import Reminder from './MedicalPortal/Specialist/Reminders/Reminder.js';
+
+import Emergency from './MedicalPortal/Form/Emergency.js'
 
 
 
@@ -189,16 +196,25 @@ function App() {
           <Route path="/it-portal-home" element={<ItService />} />
           <Route path="/courseit" element={<Course/>}/>
          
-         
+          appointments
           <Route path="doctor's-panel" element={<DoctorList/>}/>
+          <Route path="appointments" element={<Appoint/>}/>
+          <Route path="reminder-messages" element={<Reminder/>}/>
+        
 
-          
-
-
+          <Route path="/emergency" element={<Emergency/>}/>
 
 
           <Route path="/donation-portal-home" element={<WelfareActivity />} />
 
+
+          <Route path="/tra-portal-home" element={<Travel/>} />
+
+
+          <Route path="/Consultant-portal-home" element={<IntConsultant/>} />
+          <Route path="/countries-" element={<Country/>} />
+          <Route path="/cities-" element={<Uni/>} />
+          <Route path="/university-" element={<Department/>} />
 
 
 
@@ -271,18 +287,6 @@ function App() {
           <Route path="/university/arts" element={<Third/>} />
           <Route path="/university/islamic" element={<Fourth/>} />
           <Route path="/university/bed" element={<Fifth/>} />
-
-          {/* SubCampus   */}
-
-          <Route path="/lwss-sub-campus" element={<LwssSubCampus/>} />
-          <Route path="/afaq-sub-campus" element={<AfaqSubCampus/>} />
-          <Route path="/pak-sub-campus" element={<PakSubCampus/>} />
-
-
-
-
-          
-
 
 
 

@@ -1,57 +1,72 @@
-/* Itadmissionform.module.css */
 .container {
-    max-width: 600px;
+    max-width: 1100px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 18px;
+    box-shadow: 0 0 10px rgb(140, 140, 237);
+    background-color: #6cb2eb;
+    margin-top: 35px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .admissionForm {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
 
 .admissionForm h2 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: x-large;
     color: #333;
 }
 
 .formGroup {
     display: flex;
     flex-direction: column;
-    gap: 5px;
 }
 
 .formGroup label {
     color: #333;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .formGroup input,
 .formGroup select {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
     color: #333;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 .formGroup input[type="file"] {
-    padding: 3px;
+    padding: 8px;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 button {
-    padding: 10px;
-    background-color: #007BFF;
+    padding: 12px 24px;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    padding: 10px;
+    padding-left: 8%;
+    padding-right: 8%;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
@@ -76,5 +91,30 @@ button:hover {
 
     button {
         font-size: 0.9rem;
+    }
+}
+
+.inlineGroup {
+    display: flex;
+    gap: 20px;
+}
+
+.inlineGroup > div {
+    flex: 1;
+}
+
+@media (max-width: 480px) {
+    .inlineGroup {
+        flex-direction: column;
+    }
+}
+
+.inputWide {
+    width: calc(50% - 10px); /* Adjust width as per requirement */
+}
+
+@media (max-width: 768px) {
+    .inputWide {
+        width: 100%;
     }
 }

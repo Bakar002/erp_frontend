@@ -12,7 +12,7 @@ import Logo1 from "../Assets/Medical/medical/appointment.png"; // Replace with a
 import Logo2 from "../Assets/Medical/medical/patientrecord.png"; // Replace with actual logo path
 import Logo3 from "../Assets/Medical/medical/doctorlist.png"; // Replace with actual logo path
 import Logo4 from "../Assets/Medical/medical/remindermsg.png"; // Replace with actual logo path
-import Logo5 from "../Assets/Medical/medical/patientpannel.jpg"; // Replace with actual logo path
+//import Logo5 from "../Assets/Medical/medical/patientpannel.jpg"; // Replace with actual logo path
 import Logo6 from "../Assets/Medical/medical/pr.png"; // Replace with actual logo path
 import Logo7 from "../Assets/Medical/medical/emergency.jpg"; // Replace with actual logo path
 import Logo8 from "../Assets/Medical/medical/appointmentform.png"; // Replace with actual logo path
@@ -38,7 +38,6 @@ const services = {
     { name: "Reminder Messages", img: Logo4 },
   ],
   "Patients": [
-    { name: "Patient Panel", img: Logo5 },
     { name: "Patient Record", img: Logo6 },
     { name: "Emergency", img: Logo7 },
     { name: "Appointment Forms", img: Logo8 },

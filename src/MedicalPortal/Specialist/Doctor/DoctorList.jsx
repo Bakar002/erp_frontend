@@ -95,11 +95,11 @@ const DoctorList = () => {
     return (
         <div className="flex flex-wrap justify-center">
             {doctors["Our Doctors"].map((doctor, index) => (
-                <div key={index} className="relative bg-white shadow-md rounded-lg overflow-hidden w-full max-w-screen-lg mx-auto m-3">
+                <div key={index} className="relative bg-white shadow-md rounded-lg overflow-hidden w-full max-w-screen-lg mx-auto m-4">
                     <div className="absolute top-0 right-0 bg-blue-600 text-white px-2 py-1 rounded-tl-lg">
                         <p className="text-xs font-semibold">Online Status: {doctor.onlineStatus}</p>
                     </div>
-                    <div className="p-5 mr-4 ">
+                    <div className="p-4 mr-4 ">
                         <div className="flex items-center pr-5">
                             <div className="rounded-full overflow-hidden h-32 w-32 flex-shrink-0 pr-4 m-4">
                                 <img className="" src={doctor.image} alt="Doctor's Profile" />
@@ -109,15 +109,15 @@ const DoctorList = () => {
                                 <p className="text-black font-semibold">{doctor.specialty}</p>
                                 <p className="text-lg text-gray-500">{doctor.qualifications}</p>
                             </div>
-                            <div className="m-4 p-8 border border-gray-600  rounded-lg">
+                            <div className="m-4 p-8 border border-gray-600  rounded-lg bg-gray-500">
                                 {doctor.onlineConsultation && (
-                                    <div className="text-black font-semibold m-2">
+                                    <div className="text-black font-semibold m-2 bg-blue-300 border rounded-lg p-3">
                                         <FontAwesomeIcon icon={faVideo} />
                                         <span className="ml-2">Online Video Consultation</span>
                                     </div>
                                 )}
                                 {doctor.discountAvailable && (
-                                    <div className="text-black font-semibold border bg-blue-500 p-2 rounded-md">
+                                    <div className="text-black font-semibold border bg-blue-500 p-3 rounded-md">
                                         <span>Pay Online, Get {doctor.discountPercentage}% Off</span>
                                     </div>
                                 )}
@@ -137,7 +137,7 @@ const DoctorList = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-blue-600 p-4 flex justify-center  gap-5">
+                    <div className="bg-blue-600 p-3 flex justify-center  gap-5">
                         <button className="text-white font-semibold flex items-center">
                             <FontAwesomeIcon icon={faCalendarAlt} />
 

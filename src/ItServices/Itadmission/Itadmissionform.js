@@ -10,20 +10,31 @@ const courses = [
     "IELTS", "Daraz", "Ebay", "Shopify"
 ];
 
-const durations = ["2 months", "4 months", "6 months"];
+const durations = [
+    { label: "2 months", fee: "1000" },
+    { label: "4 months", fee: "2000" },
+    { label: "6 months", fee: "4000" }
+];
+
+const feeMap = {
+    "2 months": "1000",
+    "4 months": "20000",
+    "6 months": "40000"
+};
 
 const Itadmissionform = () => {
     const [formData, setFormData] = useState({
         studentName: '',
-        studentEmail: '',
         studentPhone: '',
-        studentDOB: '',
-        studentAddress: '',
         guardianName: '',
         guardianPhone: '',
+        studentEmail: '',
+        studentDOB: '',
         studentClass: '',
         course: '',
         duration: '',
+        fee: '',
+        studentAddress: '',
         studentIdPhoto: null,
         paymentMethod: '',
         paymentSlip: null
@@ -31,7 +42,12 @@ const Itadmissionform = () => {
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
-        if (files) {
+
+        if (name === "duration") {
+            const selectedDuration = value;
+            const fee = feeMap[selectedDuration];
+            setFormData({ ...formData, duration: selectedDuration, fee });
+        } else if (files) {
             setFormData({ ...formData, [name]: files[0] });
         } else {
             setFormData({ ...formData, [name]: value });
@@ -51,14 +67,15 @@ const Itadmissionform = () => {
                 "https://belikeerp-3.onrender.com/api/v1/admin/createItStudent",
                 form,
                 {
-                  headers: {
-                    "Content-Type": "multipart/form-data",
-                  },
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
                 }
-              );
+            );
             alert(response.data.message);
         } catch (error) {
-
+            console.error('Error submitting form:', error);
+            alert('Failed to submit form. Please try again later.');
         }
     };
 
@@ -66,75 +83,99 @@ const Itadmissionform = () => {
         <div className={styles.container}>
             <form className={styles.admissionForm} onSubmit={handleSubmit}>
                 <h2>Student Admission Form</h2>
-                <div className={styles.formGroup}>
-                    <label>Student Name</label>
-                    <input type="text" name="studentName" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Student Email</label>
-                    <input type="email" name="studentEmail" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Student Phone</label>
-                    <input type="text" name="studentPhone" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Date of Birth</label>
-                    <input type="date" name="studentDOB" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Address</label>
-                    <input type="text" name="studentAddress" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Guardian Name</label>
-                    <input type="text" name="guardianName" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Guardian Phone</label>
-                    <input type="text" name="guardianPhone" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Class</label>
-                    <input type="text" name="studentClass" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Course</label>
-                    <select name="course" onChange={handleChange} required>
-                        <option value="">Select a Course</option>
-                        {courses.map(course => (
-                            <option key={course} value={course}>{course}</option>
-                        ))}
-                    </select>
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Duration</label>
-                    <select name="duration" onChange={handleChange} required>
-                        <option value="">Select Duration</option>
-                        {durations.map(duration => (
-                            <option key={duration} value={duration}>{duration}</option>
-                        ))}
-                    </select>
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Student ID Photo</label>
-                    <input type="file" name="studentIdPhoto" onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Payment Method</label>
-                    <select name="paymentMethod" onChange={handleChange} required>
-                        <option value="">Select a Payment Method</option>
-                        <option value="online">Online</option>
-                        <option value="offline">Offline</option>
-                    </select>
-                </div>
-                {formData.paymentMethod === 'online' && (
+                <div className={styles.inlineGroup}>
                     <div className={styles.formGroup}>
-                        <label>Payment Slip</label>
-                        <input type="file" name="paymentSlip" onChange={handleChange} required />
+                        <label>Student Name</label>
+                        <input type="text" name="studentName" value={formData.studentName} onChange={handleChange} className={styles.inputWide} required />
                     </div>
-                )}
-                <button type="submit">Submit</button>
+                    <div className={styles.formGroup}>
+                        <label>Student Phone</label>
+                        <input type="text" name="studentPhone" value={formData.studentPhone} onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                </div>
+                <div className={styles.inlineGroup}>
+                    <div className={styles.formGroup}>
+                        <label>Guardian Name</label>
+                        <input type="text" name="guardianName" value={formData.guardianName} onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Guardian Phone</label>
+                        <input type="text" name="guardianPhone" value={formData.guardianPhone} onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                </div>
+                <div className={styles.inlineGroup}>
+                    <div className={styles.formGroup}>
+                        <label>Email</label>
+                        <input type="email" name="studentEmail" value={formData.studentEmail} onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                </div>
+                <div className={styles.inlineGroup}>
+                    <div className={styles.formGroup}>
+                        <label>Date of Birth</label>
+                        <input type="date" name="studentDOB" value={formData.studentDOB} onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Class</label>
+                        <input type="text" name="studentClass" value={formData.studentClass} onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                </div>
+                <div className={styles.inlineGroup}>
+                    <div className={styles.formGroup}>
+                        <label>Course</label>
+                        <select name="course" value={formData.course} onChange={handleChange} className={styles.inputWide} required>
+                            <option value="">Select a Course</option>
+                            {courses.map(course => (
+                                <option key={course} value={course}>{course}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Duration</label>
+                        <select name="duration" value={formData.duration} onChange={handleChange} className={styles.inputWide} required>
+                            <option value="">Select Duration</option>
+                            {durations.map(({ label }) => (
+                                <option key={label} value={label}>{label}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+                <div className={styles.inlineGroup}>
+                    <div className={styles.formGroup}>
+                        <label>Fee</label>
+                        <input type="text" name="fee" value={formData.fee} onChange={handleChange} className={styles.inputWide} readOnly />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Student ID Card / ByForm</label>
+                        <input type="file" name="studentIdCard" onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                   
+                </div>
+                <div className={styles.inlineGroup}>
+                <div className={styles.formGroup}>
+                        <label>Address</label>
+                        <input type="text" name="studentAddress" value={formData.studentAddress} onChange={handleChange} className={styles.inputWide} required />
+                    </div>
+                   
+                </div>
+                <div className={styles.inlineGroup}>
+                    <div className={styles.formGroup}>
+                        <label>Payment Method</label>
+                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} className={styles.inputWide} required>
+                            <option value="">Select a Payment Method</option>
+                            <option value="online">Online</option>
+                            <option value="offline">Offline</option>
+                        </select>
+                    </div>
+                    {formData.paymentMethod === 'online' && (
+                        <div className={styles.formGroup}>
+                            <label>Payment Slip</label>
+                            <input type="file" name="paymentSlip" onChange={handleChange} className={styles.inputWide} required />
+                        </div>
+                    )}
+                </div>
+                <div className={styles.buttonGroup}>
+                    <button type="submit">Submit</button>
+                </div>
             </form>
         </div>
     );
