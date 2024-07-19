@@ -157,6 +157,7 @@ function App() {
           <Route path="/" element={<Landingpage />} />
           <Route path="/admission" element={<AdmissionForm />} />
           <Route path="/admissionit" element={<Itadmissionform />} />
+          <Route path="/receipt" element={<ReceiptApp />} />
 
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
