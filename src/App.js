@@ -100,6 +100,9 @@ import Appoint from './MedicalPortal/Form/Appoint.js';
 import Reminder from './MedicalPortal/Specialist/Reminders/Reminder.js';
 
 import Emergency from './MedicalPortal/Form/Emergency.js'
+import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
+import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
+import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
 
 
 
@@ -162,6 +165,10 @@ function App() {
 
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
+          <Route path="/afaq-sub-campus" element={<AfaqSubCampus/>} />
+          <Route path="/lwss-sub-campus" element={<LwssSubCampus/>} />
+          <Route path="/pak-sub-campus" element={<PakSubCampus/>} />
+
 
 
 
