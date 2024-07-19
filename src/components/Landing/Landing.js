@@ -10,6 +10,7 @@ import universityimg from "../../Assets/uni.webp";
 import intduimg from "../../Assets/int-edu.webp";
 import Itskillimg from "../../Assets/it.webp";
 import travelimg from "../../Assets/travel.webp";
+import internationalimg from "../../Assets/international.webp";
 import marketimg from "../../Assets/market.webp";
 import foodimg from "../../Assets/food1.webp";
 import donationimg from "../../Assets/donate.webp";
@@ -158,7 +159,8 @@ const Landingpage = () => {
             </div>
            </Link>
 
-            <div className="servcard flex flex-col items-center">
+ <Link to={"tra-portal-home"}>
+ <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={travelimg} alt="" />
               </div>
@@ -166,6 +168,20 @@ const Landingpage = () => {
                 <h2>Travel</h2>
               </div>
             </div>
+            </Link>
+
+            <Link to={"Consultant-portal-home"}>
+ <div className="servcard flex flex-col items-center">
+              <div className=" w-[10rem] h-[10rem]">
+                <img src={internationalimg} alt="" />
+              </div>
+              <div>
+                <h2>International-Consultant</h2>
+              </div>
+            </div>
+            </Link>
+           
+            
             <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
                 <img src={ecomimg} alt="" />
