@@ -30,8 +30,10 @@ const Landingpage = () => {
         {/* Navbar Menu */}
         <Navbar />
 
+
+
         {/* ######################## hero Section ##################################### */}
-        <div className="h-[100vh] mt-8 flex flex-col items-center justify-center bg-white">
+        {/* <div className="h-[100vh] mt-8 flex flex-col items-center justify-center bg-white">
           <div className="mt-4 w-[95%] md:flex md:items-center">
             <div className="md:w-[50%] ">
               <h1 className="text-center md:text-left text-4xl font-bold">
@@ -54,7 +56,7 @@ const Landingpage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* ################################ Services ################################### */}
         <div
@@ -173,7 +175,7 @@ const Landingpage = () => {
             <Link to={"Consultant-portal-home"}>
  <div className="servcard flex flex-col items-center">
               <div className=" w-[10rem] h-[10rem]">
-                <img src={internationalimg} alt="" />
+                <img src={intduimg} alt="" />
               </div>
               <div>
                 <h2>International-Consultant</h2>
@@ -225,17 +227,7 @@ const Landingpage = () => {
                 <h2> Legal Service</h2>
               </div>
             </div>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={intduimg} alt="" />
-              </div>
-              <div>
-                <h2>Int.Edu</h2>
-              </div>
-            </div>
-
-
-           
+            
           </div>
           <div className="w-full flex flex-col items-center mt-8">
             <div className="w-[40%] border-2 border-b-black"></div>

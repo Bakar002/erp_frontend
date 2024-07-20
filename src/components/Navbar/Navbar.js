@@ -1,26 +1,20 @@
 import React, { useState } from "react";
-
 import { IoMenuSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import logo from "../../Assets/logo.png";
-import { Link,} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [showMenu, setshowMenu] = useState(false);
-  // const navigate = useNavigate();
-
-  // const handleLoginClick = () => {
-  //   navigate('/login'); // Navigate to the login page
-  // };
 
   return (
     <div>
-      <nav className="bg-black md:flex justify-between p-3 overflow-hidden ">
-        <div className="w-25  flex  items-center justify-between">
+      <nav className="bg-black md:flex justify-between p-3 overflow-hidden">
+        <div className="flex items-center justify-between w-full md:w-1/4">
           <img src={logo} className="w-[11rem] h-[4rem]" alt="" />
-          <div className="md:hidden ">
+          <div className="md:hidden">
             <button
-              className=" text-3xl "
+              className="text-3xl"
               onClick={() => setshowMenu(!showMenu)}
             >
               {showMenu ? (
@@ -33,63 +27,38 @@ export default function Navbar() {
         </div>
 
         <div
-          className={`md:flex items-center  md:w-[70%]  justify-between  ${
-            showMenu ? "block" : "hidden md:block"
-          }`}
+          className={`md:flex items-center md:w-full justify-between ${showMenu ? "block" : "hidden md:flex"}`}
         >
-          <div
-            className=" md:flex md:w-[70%] items-center    "
-            id="navbarSupportedContent"
-          >
-            <ul className="md:flex   w-full justify-between">
+          <div className="flex flex-col md:flex-row md:items-center md:w-3/4">
+            <ul className="flex flex-col md:flex-row md:justify-center gap-5 items-center w-full">
               <li className="nav-item mt-1 md:mt-0">
-                <Link to="/" className=" text-white" href="https://example.com">
-                  Home
-                </Link>
+                <Link to="/" className="text-white">Home</Link>
               </li>
-              <li className="nav-ite mt-1 md:mt-0">
-                <a href="https://example.com">Services</a>
+              <li className="nav-item mt-1 md:mt-0">
+                <a href="https://example.com" className="text-white">Services</a>
               </li>
-              <li className="nav-item dropdown mt-1 md:mt-0">
-                <a
-                  className="dropdown-toggle"
-                  href="https://example.com"
-                  id="navbarDropdown1"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  About Us
-                </a>
+              <li className="nav-item mt-1 md:mt-0">
+                <a href="https://example.com" className="text-white">About Us</a>
               </li>
-              <li className="nav-item dropdown mt-1 md:mt-0">
-                <a
-                  className=" dropdown-toggle"
-                  href="https://example.com"
-                  id="navbarDropdown2"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Contact US 
-                </a>
+              <li className="nav-item mt-1 md:mt-0">
+                <a href="https://example.com" className="text-white">Contact Us</a>
               </li>
             </ul>
           </div>
-          <div className=" md:w-[25%]">
-            <ul className="list-unstyled  md:flex justify-between mt-2 md:mt-0">
-              <li className="">
-              <Link
+          <div className="flex flex-col md:flex-row items-center gap-2 md:w-1/4">
+            <ul className="flex flex-col md:flex-row md:justify-end md:items-center w-full mt-2 md:mt-0 gap-3">
+              <li className="mt-2 md:mt-0 md:ml-4">
+                <Link
                   to="/admin-login"
-                  className="block px-6 md:px-4 py-1 rounded-md font-bold border-2 border-blue-700 text-blue-700   hover:bg-blue-700 hover:text-white"
+                  className="block px-6 md:px-4 py-1 rounded-md font-bold border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white text-center"
                 >
                   Login
                 </Link>
               </li>
-              <li className="mt-2 md:mt-0">
-              <Link
+              <li className="mt-2 md:mt-0 ">
+                <Link
                   to="/admin-signup"
-                  className="block px-6 md:px-4 py-1  rounded-md font-bold border-2  border-green-700 text-green-700  hover:bg-green-700 hover:text-white "
+                  className="block px-6 md:px-4 py-1 rounded-md font-bold border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-white text-center"
                 >
                   Signup
                 </Link>
