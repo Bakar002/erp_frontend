@@ -152,7 +152,7 @@ export const TeacherAddTask = () => {
                   name="course"
                   value={formData.course}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded focus:outline-none focus:border-blue-500"
+                  className="w-full p-3 text-black border rounded focus:outline-none focus:border-blue-500"
                 >
                   <option value="">Select a course</option>
                   {courses.map((course) => (
@@ -170,7 +170,7 @@ export const TeacherAddTask = () => {
                   name="grade"
                   value={formData.grade}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded focus:outline-none focus:border-blue-500"
+                  className="w-full p-3 border text-black rounded focus:outline-none focus:border-blue-500"
                 >
                   <option value="">Select a grade</option>
                   {grades.map((grade) => (
