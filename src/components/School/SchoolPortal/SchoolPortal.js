@@ -573,7 +573,7 @@ export default function SchoolPortal() {
                     </NavLink>
                   </div>
                 </div>
-                <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3 flex flex-col justify-center items-center">
+                {/* <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3 flex flex-col justify-center items-center">
                   <a
                     className="text-center text-decoration-none text-reset"
                     href="https://example.com"
@@ -595,7 +595,21 @@ export default function SchoolPortal() {
                       </h6>
                     </a>
                   </div>
+                </div> */}
+
+<div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+                  <NavLink
+                    to={"/teacher-add-task"}
+                    className={"flex justify-center flex-col items-center"}
+                    >
+                    <i className="fa-solid fa-chart-bar text-center fa-2x mt-3" />
+                    <div className="card-body">
+                      <h6 className="text-center pt-2">Add Todays Task</h6>
+                    </div>
+                  </NavLink>
                 </div>
+
+                
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
                   <i className="fa-solid fa-handshake-simple text-center fa-2x mt-3" />
                   <div className="card-body">
@@ -626,6 +640,11 @@ export default function SchoolPortal() {
                     </div>
                   </NavLink>
                 </div>
+
+
+
+
+                
               </div>
             </div>
             <div className="container">

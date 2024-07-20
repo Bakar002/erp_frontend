@@ -103,6 +103,7 @@ import Emergency from './MedicalPortal/Form/Emergency.js'
 import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
 import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
 import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
+import { TeacherAddTask } from './components/Teacher/TeacherAddTask/TeacherAddTask';
 
 
 
@@ -406,6 +407,20 @@ function App() {
               )
             }
           />
+
+<Route
+            path="/teacher-add-task"
+            element={
+              isTeacherAuthenticated ? (
+                <TeacherAddTask />
+              ) : (
+                <TeacherAddTask />
+              )
+            }
+          />
+
+
+
 
           <Route
             path="/teacher-add-result"
