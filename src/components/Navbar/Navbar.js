@@ -35,7 +35,7 @@ export default function Navbar() {
                 <Link to="/" className="text-white">Home</Link>
               </li>
               <li className="nav-item mt-1 md:mt-0">
-                <a href="https://example.com" className="text-white">Services</a>
+              <Link to="servicesSection" className="text-white">Services</Link>
               </li>
               <li className="nav-item mt-1 md:mt-0">
                 <a href="https://example.com" className="text-white">About Us</a>

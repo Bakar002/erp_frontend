@@ -35,7 +35,7 @@ const Landingpage = () => {
         {/* ################################ Services ################################### */}
         <div className="flex flex-col justify-center items-center mt-8 bg-white" id="servicesSection">
           <h1 className="text-[#40b08c] text-5xl font-bold">Services</h1>
-          <div className="flex flex-wrap justify-center gap-5 w-[85%] mt-4">
+          <div className="flex flex-wrap justify-center gap-5 w-[100%] mt-4">
             <Link to="/schoolblock2">
               <div className="servcard flex flex-col items-center p-4 rounded-lg shadow hover:shadow-lg">
                 <div className="w-[10rem] h-[10rem]">
