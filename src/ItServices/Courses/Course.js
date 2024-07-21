@@ -58,149 +58,150 @@ const Course = () => {
             img: c4,
             videoUrl: "https://www.example.com/video1",
             free: "Free: 1 Month Course (500 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "3 Month Course (Fee: 15000) (One Month Internship)",
-                "6 Month Course (Fee Rs: 30000) (2 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Freelancing",
             img: c5,
             videoUrl: "https://www.example.com/video2",
-            free: "Free: 1 Month Course (600 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 25000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 45000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Web Development",
-            img: c7,
+            img: c6,
             videoUrl: "https://www.example.com/video3",
-            free: "Free: 2 Month Course (800 Registration only 2-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "5 Month Course (Fee: 30000) (Three Months Internship)",
-                "8 Month Course (Fee Rs: 50000) (4 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Front End",
-            img: c9,
+            img: c7,
             videoUrl: "https://www.example.com/video4",
             free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 22000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 42000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Backend",
-            img: c12,
+            img: c8,
             videoUrl: "https://www.example.com/video5",
-            free: "Free: 3 Month Course (1200 Registration only 2-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "5 Month Course (Fee: 27000) (Three Months Internship)",
-                "7 Month Course (Fee Rs: 47000) (4 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Graphics Designing",
-            img: c13,
+            img: c9,
             videoUrl: "https://www.example.com/video8",
-            free: "Free: 2 Month Course (800 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 23000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 43000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Video Editing",
-            img: c14,
+            img: c12,
             videoUrl: "https://www.example.com/video9",
-            free: "Free: 1 Month Course (600 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "3 Month Course (Fee: 19000) (One Month Internship)",
-                "5 Month Course (Fee Rs: 36000) (2 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Fashion Designing",
-            img: c15,
+            img: c13,
             videoUrl: "https://www.example.com/video10",
-            free: "Free: 2 Month Course (700 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 21000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 42000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Artificial Intelligence",
-            img: c16,
+            img: c14,
             videoUrl: "https://www.example.com/video11",
-            free: "Free: 3 Month Course (1000 Registration only 2-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "5 Month Course (Fee: 26000) (Three Months Internship)",
-                "7 Month Course (Fee Rs: 48000) (4 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "E-commerce",
-            img: c17,
+            img: c15,
             videoUrl: "https://www.example.com/video12",
-            free: "Free: 2 Month Course (900 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 24000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 43000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Amazon, eBay, Daraz, Shopify",
-            img: c18,
+            img: c16,
             videoUrl: "https://www.example.com/video13",
-            free: "Free: 1 Month Course (500 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "3 Month Course (Fee: 17000) (One Month Internship)",
-                "5 Month Course (Fee Rs: 34000) (2 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Guest Posting",
-            img: c19,
+            img: c17,
             videoUrl: "https://www.example.com/video14",
-            free: "Free: 2 Month Course (1100 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 23000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 44000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "Spoken English",
-            img: c20,
+            img: c18,
             videoUrl: "https://www.example.com/video15",
-            free: "Free: 1 Month Course (400 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "3 Month Course (Fee: 20000) (One Month Internship)",
-                "5 Month Course (Fee Rs: 37000) (2 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "PTE",
-            img: c21,
+            img: c19,
             videoUrl: "https://www.example.com/video16",
-            free: "Free: 2 Month Course (900 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 22000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 43000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         },
         {
             name: "IELTS",
-            img: c22,
+            img: c20,
             videoUrl: "https://www.example.com/video17",
-            free: "Free: 1 Month Course (500 Registration only 1-Month Internship)",
+            free: "Free: 2 Month Course (1000 Registration only 1-Month Internship)",
             cost: [
-                "4 Month Course (Fee: 21000) (Two Months Internship)",
-                "6 Month Course (Fee Rs: 42000) (3 Month Internship)"
+                "4 Month Course (Fee: 20000) (Two Months Internship)",
+                "6 Month Course (Fee Rs: 40000) (3 Month Internship)"
             ]
         }
 

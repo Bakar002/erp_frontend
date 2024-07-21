@@ -99,14 +99,20 @@ import Department from './Consultant/Departments/Deparment.js';
 import Appoint from './MedicalPortal/Form/Appoint.js';
 import Reminder from './MedicalPortal/Specialist/Reminders/Reminder.js';
 
-import Emergency from './MedicalPortal/Form/Emergency.js'
-import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
-import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
-import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
-import { TeacherAddTask } from './components/Teacher/TeacherAddTask/TeacherAddTask';
+import Emergency from './MedicalPortal/Form/Emergency.js';
 
 
 
+import Influencer from './Influencers/Influencer';
+import Ecommerce from './Ecommerces/Ecommerce.js';
+import Contact from './MedicalPortal/Mangement/ContactInfo.js';
+import OfficeMangment from './MedicalPortal/Mangement/OfficeMangment.js';
+import SMM from './MedicalPortal/Mangement/SMM.js';
+import Client from './MedicalPortal/Mangement/Client.js';
+import MedicalCamp from './MedicalPortal/Mangement/MedicalCamps.js';
+import Job from './Jobs/Job.js';
+import Food from './Foods/Food.js';
+import Legal from './LegalServices/Legal.js';
 
 
 
@@ -158,7 +164,6 @@ function App() {
           <Route path="/" element={<Landingpage />} />
           <Route path="/admission" element={<AdmissionForm />} />
           <Route path="/admissionit" element={<Itadmissionform />} />
-          <Route path="/receipt" element={<ReceiptApp />} />
 
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
@@ -167,10 +172,6 @@ function App() {
 
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
-          <Route path="/afaq-sub-campus" element={<AfaqSubCampus/>} />
-          <Route path="/lwss-sub-campus" element={<LwssSubCampus/>} />
-          <Route path="/pak-sub-campus" element={<PakSubCampus/>} />
-
 
 
 
@@ -209,7 +210,13 @@ function App() {
           <Route path="doctor's-panel" element={<DoctorList/>}/>
           <Route path="appointments" element={<Appoint/>}/>
           <Route path="reminder-messages" element={<Reminder/>}/>
-        
+
+          <Route path="/contact-info" element={<Contact/>}/>
+          <Route path="/office-management" element={<OfficeMangment/>}/>\
+          <Route path="/smm" element={<SMM/>}/>
+          <Route path="/client-services" element={<Client/>}/>
+          <Route path="/medical-camp" element={<MedicalCamp/>}/>
+
 
           <Route path="/emergency" element={<Emergency/>}/>
 
@@ -227,7 +234,17 @@ function App() {
 
 
 
+          <Route path="/Influencer-portal-home" element={<Influencer/>} />
 
+          
+
+          <Route path="/Ecommerce-portal-home" element={<Ecommerce/>} />
+
+          <Route path="/Job-portal-home" element={<Job/>} />
+
+          <Route path="/food-portal-home" element={<Food/>} />
+
+          <Route path="/legal-home-portal" element={<Legal/>} />
 
 
           <Route path="/signup" element={<Signup />} />
@@ -407,20 +424,6 @@ function App() {
               )
             }
           />
-
-<Route
-            path="/teacher-add-task"
-            element={
-              isTeacherAuthenticated ? (
-                <TeacherAddTask />
-              ) : (
-                <TeacherAddTask />
-              )
-            }
-          />
-
-
-
 
           <Route
             path="/teacher-add-result"

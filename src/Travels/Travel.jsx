@@ -2,20 +2,36 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../Assets/Medical/medical/patner.jpg";
 
-
-import e3 from "../Assets/Welfares/welfare/e3.png"
-
+import e1 from "../Assets/Welfares/welfare/localarea.jpg"
+import e2 from "../Assets/Welfares/welfare/partner.webp"
+import e3 from "../Assets/Welfares/welfare/foundation.png"
+import e4 from "../Assets/Welfares/welfare/hotel.webp"
+import e5 from "../Assets/Welfares/welfare/restruant.webp"
+import e6 from "../Assets/Welfares/welfare/point.webp"
+import e7 from "../Assets/Welfares/welfare/jeep.webp"
+import e8 from "../Assets/Welfares/welfare/international.webp"
+import e9 from "../Assets/Welfares/welfare/airline.webp"
+import e10 from "../Assets/Welfares/welfare/cou.webp"
+import e11 from "../Assets/Welfares/welfare/place.webp"
+import e12 from "../Assets/Welfares/welfare/city.webp"
+import e13 from "../Assets/Welfares/welfare/local.webp"
+import e14 from "../Assets/Welfares/welfare/tour.webp"
+import e15 from "../Assets/Welfares/welfare/document.webp"
+import e16 from "../Assets/Welfares/welfare/booking.webp"
+import e17 from "../Assets/Welfares/welfare/stop.webp"
+import e18 from "../Assets/Welfares/welfare/haj.webp"
+import e19 from "../Assets/Welfares/welfare/reminder.webp"
 import "./Travel.css";
 
 const Travel = () => {                                                        
     const services =[
         {
             name: "Local Area",
-            img: e3,
+            img: e1,
         },
         {
             name: "Our partner companies",
-            img: e3,
+            img: e2,
         },
         {
             name: "Foundation",
@@ -23,67 +39,67 @@ const Travel = () => {
         },
         {
             name: "Hotel",
-            img: e3,
+            img: e4,
         },
         {
             name: "Restaurant",
-            img: e3,
+            img: e5,
         },
         {
             name: "Points",
-            img: e3,
+            img: e6,
         },
         {
             name: "Jeep",
-            img: e3,
+            img: e7,
         },
         {
             name: "International tours",
-            img: e3,
+            img: e8,
         },
         {
             name: "Airlines",
-            img: e3,
+            img: e9,
         },
         {
             name: "Countries",
-            img: e3,
+            img: e10,
         },
         {
             name: "Places",
-            img: e3,
+            img: e11,
         },
         {
             name: "City",
-            img: e3,
+            img: e12,
         },
         {
             name: "Local transport",
-            img: e3,
+            img: e13,
         },
         {
             name: "Tour guide",
-            img: e3,
+            img: e14,
         },
         {
             name: "Documents",
-            img: e3,
+            img: e15,
         },
         {
             name: "Advance booking",
-            img: e3,
+            img: e16,
         },
         {
             name: "Sop's",
-            img: e3,
+            img: e17,
         },
         {
             name: "Hajj and umrah",
-            img: e3,
+            img: e18,
         },
         {
             name: "Reminder message",
-            img: e3,
+            img: e19,
         }
     ];
     

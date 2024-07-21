@@ -236,7 +236,7 @@ export const TeacherAddTask = () => {
             <p>Description: {task.description}</p>
             {task.image && (
               <img
-                src={URL.createObjectURL(task.image)}
+                src={task.image}
                 alt="Task"
                 className="w-30 h-30 object-cover mb-4"
               />
