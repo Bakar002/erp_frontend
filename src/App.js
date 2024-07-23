@@ -113,6 +113,9 @@ import MedicalCamp from './MedicalPortal/Mangement/MedicalCamps.js';
 import Job from './Jobs/Job.js';
 import Food from './Foods/Food.js';
 import Legal from './LegalServices/Legal.js';
+import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
+import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
+import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
 
 
 
@@ -172,6 +175,10 @@ function App() {
 
           <Route path="/schoolblocks" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
+          <Route path="/afaq-sub-campus" element={<AfaqSubCampus/>} />
+          <Route path="/lwss-sub-campus" element={<LwssSubCampus/>} />
+          <Route path="/pak-sub-campus" element={<PakSubCampus/>} />
+
 
 
 
