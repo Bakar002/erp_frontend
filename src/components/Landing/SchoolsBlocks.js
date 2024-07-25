@@ -71,12 +71,12 @@ const SchoolBlocks = () => {
     },
     {
       name: "Tafakur-e-Pakistan",
-      logo: schoolportallogo10, // Replace with your actual school logo path
+      logo: schoolportallogo11, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
     {
       name: "Green Academy",
-      logo: schoolportallogo11, // Replace with your actual school logo path
+      logo: schoolportallogo10, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
   ];

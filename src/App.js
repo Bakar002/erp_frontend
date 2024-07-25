@@ -263,7 +263,7 @@ function App() {
 
           <Route
             path="/admin-dashboard"
-            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminDashboard />}
+            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminLogin />}
           />
 
 <Route
