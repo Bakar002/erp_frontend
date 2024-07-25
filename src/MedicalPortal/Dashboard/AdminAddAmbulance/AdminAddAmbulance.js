@@ -148,37 +148,48 @@ const AddAmbulance = () => {
       <div className="mt-8 flex justify-center">
         <div className="w-full max-w-screen-lg">
           <h2 className="text-2xl font-bold mb-4 text-center" style={{ color: '#033e71' }}>Added Ambulances</h2>
-          <ul className="list-none p-0">
-            {apiLoaded && ambulances.length === 0 ? (
-              dummyAmbulances.map((ambulance) => (
-                <li key={ambulance._id} className="mb-4 p-4 border-b" style={{ backgroundColor: '#f9f9f9' }}>
-                  <h3 className="text-xl font-bold" style={{ color: '#033e71' }}>{ambulance.name}</h3>
-                  <p style={{ color: '#333' }}>Contact: {ambulance.contactNumber}</p>
-                  {ambulance.image && <img src={ambulance.image} alt="Ambulance" className="w-24 h-24 mt-2" />}
-                  <div className="flex justify-end mt-2">
-                    <button className="bg-[#033e71] hover:bg-blue-700 text-white px-3 py-1 rounded mr-2" onClick={() => handleUpdate(ambulance._id, { name: 'Updated Ambulance' })}>Update</button>
-                    <button className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded" onClick={() => handleDelete(ambulance._id)}>Delete</button>
-                  </div>
-                </li>
-              ))
-            ) : (
-              ambulances.map((ambulance) => (
-                <li key={ambulance._id} className="mb-4 p-4 border-b" style={{ backgroundColor: '#f9f9f9' }}>
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h3 className="text-xl font-bold" style={{ color: '#033e71' }}>{ambulance.name}</h3>
-                      <p style={{ color: '#333' }}>Contact: {ambulance.contactNumber}</p>
-                    </div>
-                    <div>
-                      <button className="bg-[#033e71] hover:bg-blue-700 text-white px-3 py-1 rounded mr-2" onClick={() => handleUpdate(ambulance._id, { name: 'Updated Ambulance' })}>Update</button>
-                      <button className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded" onClick={() => handleDelete(ambulance._id)}>Delete</button>
-                    </div>
-                  </div>
-                  {ambulance.image && <img src={ambulance.image} alt="Ambulance" className="w-24 h-24 mt-2" />}
-                </li>
-              ))
-            )}
-          </ul>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white">
+              <thead>
+                <tr>
+                  <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Contact Number</th>
+                  <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Image</th>
+                  <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white">
+                {apiLoaded && ambulances.length === 0 ? (
+                  dummyAmbulances.map((ambulance) => (
+                    <tr key={ambulance._id} className="text-black">
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{ambulance.name}</td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{ambulance.contactNumber}</td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        {ambulance.image && <img src={ambulance.image} alt="Ambulance" className="w-16 h-16 object-cover" />}
+                      </td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <button className="bg-red-500 text-white p-2 rounded" onClick={() => handleDelete(ambulance._id)}>Delete</button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  ambulances.map((ambulance) => (
+                    <tr key={ambulance._id}>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{ambulance.name}</td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{ambulance.contactNumber}</td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        {ambulance.image && <img src={ambulance.image} alt="Ambulance" className="w-16 h-16 object-cover" />}
+                      </td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <button className="bg-red-500 text-white p-2 rounded" onClick={() => handleDelete(ambulance._id)}>Delete</button>
+                        {/* Include an update button and form here if needed */}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
