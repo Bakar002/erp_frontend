@@ -17,7 +17,6 @@ export const AdminAddList = ({ adminId, token }) => {
           },
         });
         setAdmissions(response.data.data);
-        console.log(response.data.data);
         setLoading(false);
       } catch (error) {
         toast.error(error.response?.data?.message || 'Something went wrong');
@@ -68,24 +67,28 @@ export const AdminAddList = ({ adminId, token }) => {
             <tbody className="text-gray-700">
               {admissions.map((admission) => (
                 <tr key={admission._id}>
-                  <td className="py-2 px-4 border">{admission.studentName}</td>
-                  <td className="py-2 px-4 border">{admission.studentEmail}</td>
-                  <td className="py-2 px-4 border">{admission.studentPhone}</td>
-                  <td className="py-2 px-4 border">{new Date(admission.studentDOB).toLocaleDateString()}</td>
-                  <td className="py-2 px-4 border">{admission.studentAddress}</td>
-                  <td className="py-2 px-4 border">{admission.guardianName}</td>
-                  <td className="py-2 px-4 border">{admission.guardianPhone}</td>
-                  <td className="py-2 px-4 border">{admission.studentClass}</td>
-                  <td className="py-2 px-4 border">{admission.courseList.join(', ')}</td>
-                  <td className="py-2 px-4 border">{admission.duration}</td>
-                  <td className="py-2 px-4 border">{admission.paymentMethod}</td>
+                  <td className="py-2 px-4 border">{admission.studentName || ''}</td>
+                  <td className="py-2 px-4 border">{admission.studentEmail || ''}</td>
+                  <td className="py-2 px-4 border">{admission.studentPhone || ''}</td>
+                  <td className="py-2 px-4 border">{admission.studentDOB ? new Date(admission.studentDOB).toLocaleDateString() : ''}</td>
+                  <td className="py-2 px-4 border">{admission.studentAddress || ''}</td>
+                  <td className="py-2 px-4 border">{admission.guardianName || ''}</td>
+                  <td className="py-2 px-4 border">{admission.guardianPhone || ''}</td>
+                  <td className="py-2 px-4 border">{admission.studentClass || ''}</td>
+                  <td className="py-2 px-4 border">{admission.courseList ? admission.courseList.join(', ') : ''}</td>
+                  <td className="py-2 px-4 border">{admission.duration || ''}</td>
+                  <td className="py-2 px-4 border">{admission.paymentMethod || ''}</td>
                   <td className="py-2 px-4 border">
-                    <img
-                      src={admission.studentIdPhoto}
-                      alt="Student Photo"
-                      className="h-16 w-16 object-cover rounded-full cursor-pointer"
-                      onClick={() => openImageModal(admission.studentIdPhoto)}
-                    />
+                    {admission.studentIdPhoto ? (
+                      <img
+                        src={admission.studentIdPhoto}
+                        alt="Student Photo"
+                        className="h-16 w-16 object-cover rounded-full cursor-pointer"
+                        onClick={() => openImageModal(admission.studentIdPhoto)}
+                      />
+                    ) : (
+                      ''
+                    )}
                   </td>
                   <td className="py-2 px-4 border">
                     {admission.paymentSlip ? (
@@ -99,7 +102,7 @@ export const AdminAddList = ({ adminId, token }) => {
                       'N/A'
                     )}
                   </td>
-                  <td className="py-2 px-4 border">{new Date(admission.submissionDate).toLocaleDateString()}</td>
+                  <td className="py-2 px-4 border">{admission.submissionDate ? new Date(admission.submissionDate).toLocaleDateString() : ''}</td>
                 </tr>
               ))}
             </tbody>
