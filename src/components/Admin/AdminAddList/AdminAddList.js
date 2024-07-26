@@ -11,7 +11,7 @@ export const AdminAddList = ({ adminId, token }) => {
   useEffect(() => {
     const fetchAdmissions = async () => {
       try {
-        const response = await axios.get('https://belikeerp-3.onrender.com/api/v1/admin/getItStudent', {
+        const response = await axios.get('https://belikeerp-3.onrender.com/api/v1/admin/load-all-admissions', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -57,7 +57,7 @@ export const AdminAddList = ({ adminId, token }) => {
                 <th className="py-2 px-4">Guardian Name</th>
                 <th className="py-2 px-4">Guardian Phone</th>
                 <th className="py-2 px-4">Student Class</th>
-                <th className="py-2 px-4">Course</th>
+                <th className="py-2 px-4">Courses</th>
                 <th className="py-2 px-4">Duration</th>
                 <th className="py-2 px-4">Payment Method</th>
                 <th className="py-2 px-4">Student ID Photo</th>
@@ -76,7 +76,7 @@ export const AdminAddList = ({ adminId, token }) => {
                   <td className="py-2 px-4 border">{admission.guardianName}</td>
                   <td className="py-2 px-4 border">{admission.guardianPhone}</td>
                   <td className="py-2 px-4 border">{admission.studentClass}</td>
-                  <td className="py-2 px-4 border">{admission.course}</td>
+                  <td className="py-2 px-4 border">{admission.courseList.join(', ')}</td>
                   <td className="py-2 px-4 border">{admission.duration}</td>
                   <td className="py-2 px-4 border">{admission.paymentMethod}</td>
                   <td className="py-2 px-4 border">
