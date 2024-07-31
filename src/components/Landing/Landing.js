@@ -1,271 +1,137 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "./Landing.css";
-import Footer from "../Footer/Footer.js";
+import { motion } from "framer-motion";
 import Navbar from "../Navbar/Navbar.js";
+import Footer from "../Footer/Footer.js";
+// import Project from "./Project.js";
+import Info from "./Info.js";
+import Team from "./Team.js";
+import Investor from "./Investor.js";
 import heroimg from "../../Assets/hero-section-img.webp";
 import schoolimg from "../../Assets/school.webp";
 import collegeimg from "../../Assets/college.webp";
 import universityimg from "../../Assets/uni.webp";
-import intduimg from "../../Assets/int-edu.webp";
 import Itskillimg from "../../Assets/it.webp";
 import travelimg from "../../Assets/travel.webp";
-import internationalimg from "../../Assets/constulant.webp";
+import internationalimg from "../../Assets/int-edu.png";
 import marketimg from "../../Assets/market.webp";
 import foodimg from "../../Assets/food1.webp";
 import donationimg from "../../Assets/donate.webp";
 import belikecustomimg from "../../Assets/bgp.webp";
 import belikecustomimg2 from "../../Assets/Images/customer.jpeg";
 import belikeproperty from "../../Assets/property.png";
-
-
 import ecomimg from "../../Assets/e-com.webp";
 import jobimg from "../../Assets/jobs.webp";
 import healthimg from "../../Assets/health.webp";
-import { NavLink } from "react-router-dom";
+
+const services = [
+  { img: belikecustomimg, title: "Our IT Clients", link: "/schoolblock2" },
+  { img: schoolimg, title: "Schools", link: "/school-portal-home" },
+  { img: collegeimg, title: "Colleges", link: "/schoolblocks" },
+  { img: universityimg, title: "Universities", link: "/uni-portal-home" },
+  { img: healthimg, title: "Health", link: "/health-portal-home" },
+  { img: belikeproperty, title: "Property Services", link: "/ser-portal-home" },
+  { img: Itskillimg, title: "IT Skills", link: "/it-portal-home" },
+  { img: donationimg, title: "Welfare Activities", link: "/donation-portal-home" },
+  { img: travelimg, title: "Travel", link: "/tra-portal-home" },
+  { img: internationalimg, title: "International Consultant", link: "/Consultant-portal-home" },
+  { img: ecomimg, title: "Ecommerce", link: "/Ecommerce-portal-home" },
+  { img: jobimg, title: "Jobs", link: "/Job-portal-home" },
+  { img: marketimg, title: "Influencer/Bloggers", link: "/Influencer-portal-home" },
+  { img: foodimg, title: "Food", link: "/food-portal-home" },
+  { img: belikecustomimg2, title: "Legal Service", link: "/legal-home-portal" },
+];
+
 const Landingpage = () => {
   return (
     <>
-      <div className="bg-white">
-        {/* Navbar Menu */}
+      <div className="">
         <Navbar />
-
-        {/* ######################## hero Section ##################################### */}
-        <div className="h-[100vh] mt-8 flex flex-col items-center justify-center bg-white">
-          <div className="mt-4 w-[95%] md:flex md:items-center">
-            <div className="md:w-[50%] ">
-              <h1 className="text-center md:text-left text-4xl font-bold">
-                <span className="text-[#40b08c]">
-                  Focus on how to be social,
-                </span>
+        {/* Hero Section */}
+        <div className="p-10 sm:p-20 flex flex-col items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
+          <div className="container mx-auto flex flex-col md:flex-row items-center px-6 md:px-12">
+            {/* Text Section */}
+            <motion.div
+              className="md:w-1/2 text-white text-center md:text-left"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.h1
+                className="text-3xl sm:text-4xl font-bold"
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <span>Focus on how to be social,</span>
                 <br />
-                <span className="text-[#033e71]">not how to do social.</span>
-              </h1>
-              <p className="text-[#033e71] text-center md:text-left mt-2">
-                Belike Group architects of brand stories, blending innovation
-                and strategy to create compelling digital narratives that
-                resonate with customers and leave a lasting imprint on the
-                business landscape.
-              </p>
-            </div>
-            <div className="md:w-[50%]  flex flex-col items-center">
-              <div>
-                <img src={heroimg} alt="" />
-              </div>
-            </div>
+                <span>not how to do social.</span>
+              </motion.h1>
+              <motion.p
+                className="mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Belike Group architects of brand stories, blending innovation and strategy to create compelling digital narratives that resonate with customers and leave a lasting imprint on the business landscape.
+              </motion.p>
+              <motion.button
+                className="mt-6 px-4 sm:px-6 py-2 bg-white text-blue-500 font-bold rounded-lg hover:bg-blue-500 hover:text-white transition duration-300"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Learn More
+              </motion.button>
+            </motion.div>
+            {/* Image Section */}
+            <motion.div
+              className="md:w-1/2 flex justify-center mt-8 md:mt-0"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <motion.img
+                src={heroimg}
+                alt="Hero Section Image"
+                className="w-full max-w-md animate-fadeIn"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              />
+            </motion.div>
           </div>
         </div>
 
-        {/* ################################ Services ################################### */}
-        <div
-          className="flex flex-col justify-center items-center mt-8 bg-white"
-          id="servicesSection"
-        >
-          <h1 className="text-[#40b08c] text-5xl font-bold">Services</h1>
-          <div className="  flex flex-wrap justify-center gap-5 w-[85%] mt-4">
-
-
-          <Link to={"/schoolblock2"}>
-
-<div className="servcard flex flex-col items-center">
-  <div className=" w-[10rem] h-[10rem]">
-    <img src={belikecustomimg} alt="" />
-  </div>
-  <div>
-    <h2>Our IT Clients</h2>
-  </div>
-</div></Link>
-
-            <Link to={"/school-portal-home"}>
-              <div className="servcard flex flex-col items-center">
-                <div className=" w-[10rem] h-[10rem]">
-                  <img src={schoolimg} alt="" />
-                </div>
-                <div>
-                  <h2>Schools</h2>
-                </div>
-              </div>
-            </Link>
-            <Link to={"/schoolblocks"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={collegeimg} alt="" />
-              </div>
-              <div>
-                <h2>Colleges</h2>
-              </div>
+        {/* Services Section */}
+        <div className="py-16 bg-gradient-to-r from-blue-400 to-white" id="servicesSection">
+          <div className="container mx-auto text-center">
+            <h1 className="text-3xl sm:text-5xl font-bold text-white mb-8">Services</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  className="transform hover:scale-105 transition duration-300"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                >
+                  <Link to={service.link} className="flex flex-col items-center p-4 sm:p-6 bg-gradient-to-br from-white to-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
+                    <img src={service.img} alt={service.title} className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-full mb-4" />
+                    <h2 className="text-lg sm:text-xl font-semibold text-gray-800">{service.title}</h2>
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-
-            </Link>
-            <Link to={"/uni-portal-home"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={universityimg} alt="" />
-              </div>
-              <div>
-                <h2>Universities</h2>
-              </div>
-            </div>
-            </Link>
-
-            <Link to={"/health-portal-home"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={healthimg} alt="" />
-              </div>
-              <div>
-                <h2>Health</h2>
-              </div>
-            </div>
-            </Link>
-            
-           
-            <Link to={"/ser-portal-home"}>
-
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={belikeproperty} alt="" />
-              </div>
-              <div>
-                <h2> Property Services</h2>
-              </div> 
-            </div>
-            </Link>
-            <Link to={"/it-portal-home"}>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={Itskillimg} alt="" />
-              </div>
-              <div>
-                <h2>It Skills</h2>
-              </div>
-            </div>
-
-            </Link>
-
-
-
-            <Link to={"donation-portal-home"}>
-           <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={donationimg} alt="" />
-              </div>
-              <div>
-                <h2>Welfare Activities</h2>
-              </div>
-            </div>
-           </Link>
-
- <Link to={"tra-portal-home"}>
- <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={travelimg} alt="" />
-              </div>
-              <div>
-                <h2>Travel</h2>
-              </div>
-            </div>
-            </Link>
-
-            <Link to={"Consultant-portal-home"}>
- <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={internationalimg} alt="" />
-              </div>
-              <div>
-                <h2>International-Consultant</h2>
-              </div>
-            </div>
-            </Link>
-           
-            <Link to={"Ecommerce-portal-home"}>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={ecomimg} alt="" />
-              </div>
-              <div>
-                <h2>Ecommerce</h2>
-              </div>
-            </div>
-            </Link>
-
-
-            <Link to={"Job-portal-home"}>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={jobimg} alt="" />
-              </div>
-              <div>
-                <h2>Jobs</h2>
-              </div>
-            </div>
-            </Link>
-            
-          <Link to={"Influencer-portal-home"}>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={marketimg} alt="" />
-              </div>
-              <div>
-                <h2>Influencer/Bloggers</h2>
-              </div>
-            </div>
-            </Link>
-
-            <Link to={"food-portal-home"}>
-            <div className="servcard flex flex-col items-center">
-              <div className="w-[10rem] h-[10rem]">
-                <img src={foodimg} alt="" />
-              </div>
-              <div>
-                <h2>Food</h2>
-              </div>
-            </div>
-            </Link>
-            
-<Link to={"legal-home-portal"}>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={belikecustomimg2} alt="" />
-              </div>
-              <div>
-                <h2> Legal Service</h2>
-              </div>
-            </div>
-
-            </Link>
-            <div className="servcard flex flex-col items-center">
-              <div className=" w-[10rem] h-[10rem]">
-                <img src={intduimg} alt="" />
-              </div>
-              <div>
-                <h2>Int.Edu</h2>
-              </div>
-            </div>
-
-
-           
-          </div>
-          <div className="w-full flex flex-col items-center mt-8">
-            <div className="w-[40%] border-2 border-b-black"></div>
           </div>
         </div>
-        <div className="flex flex-col items-center mt-4 p-8">
-          <div className=" text-center">
-            <h2 className="text-xl text-[#033e71]">
-              Belike Group services involve SEO, social media, PPC advertising,
-              content marketing, and email campaigns. These strategies aim to
-              boost online visibility, engage audiences, and drive business
-              growth by leveraging various online platforms and analytics for
-              optimization.
-            </h2>
-          </div>
-        </div>
+        {/* <Project/> */}
+        <Info />
+        <Team />
+        <Investor />
+        {/* Footer */}
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

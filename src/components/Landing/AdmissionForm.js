@@ -35,51 +35,70 @@ const AdmissionForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    
-    const formData = new FormData();
-    if (studentName) formData.append("studentName", studentName);
-    if (studentEmail) formData.append("studentEmail", studentEmail);
-    if (studentPhone) formData.append("studentPhone", studentPhone);
-    if (studentDOB) formData.append("studentDOB", studentDOB);
-    if (studentAddress) formData.append("studentAddress", studentAddress);
-    if (guardianName) formData.append("guardianName", guardianName);
-    if (guardianPhone) formData.append("guardianPhone", guardianPhone);
-    if (studentClass) formData.append("studentClass", studentClass);
-    if (studentIdPhoto) formData.append("studentIdPhoto", studentIdPhoto);
-    if (lastDegree) formData.append("lastDegree", lastDegree);
-    if (adminId) formData.append("adminId", adminId);
-    if (paymentMethod) formData.append("paymentMethod", paymentMethod);
-    if (paymentMethod === "online" && paymentSlip) formData.append("paymentSlip", paymentSlip);
+    if (
+      studentName &&
+      studentEmail &&
+      studentPhone &&
+      studentDOB &&
+      studentAddress &&
+      guardianName &&
+      guardianPhone &&
+      studentClass &&
+      studentIdPhoto &&
+      lastDegree &&
+      adminId &&
+      paymentMethod &&
+      (paymentMethod !== "online" || paymentSlip)  // Ensure payment slip is provided for online payment method
+    ) {
+      const formData = new FormData();
+      formData.append("studentName", studentName);
+      formData.append("studentEmail", studentEmail);
+      formData.append("studentPhone", studentPhone);
+      formData.append("studentDOB", studentDOB);
+      formData.append("studentAddress", studentAddress);
+      formData.append("guardianName", guardianName);
+      formData.append("guardianPhone", guardianPhone);
+      formData.append("studentClass", studentClass);
+      formData.append("studentIdPhoto", studentIdPhoto);
+      formData.append("lastDegree", lastDegree);
+      formData.append("adminId", adminId);
+      formData.append("paymentMethod", paymentMethod);
+      if (paymentMethod === "online") {
+        formData.append("paymentSlip", paymentSlip);
+      }
 
-    try {
-      setLoading(true);
-      const response = await axios.post(
-        "https://belikeerp-3.onrender.com/api/v1/student/admissionsubmit",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      toast.success(response.data.message);
-      setLoading(false);
-      setStudentName("");
-      setStudentEmail("");
-      setStudentPhone("");
-      setStudentDOB("");
-      setStudentAddress("");
-      setGuardianName("");
-      setGuardianPhone("");
-      setStudentClass("");
-      setStudentIdPhoto(null);
-      setLastDegree(null);
-      setAdminId("");
-      setPaymentMethod("");
-      setPaymentSlip(null);
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Submission failed");
-      setLoading(false);
+      try {
+        setLoading(true);
+        const response = await axios.post(
+          "https://belikeerp-3.onrender.com/api/v1/student/admissionsubmit",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        toast.success(response.data.message);
+        setLoading(false);
+        setStudentName("");
+        setStudentEmail("");
+        setStudentPhone("");
+        setStudentDOB("");
+        setStudentAddress("");
+        setGuardianName("");
+        setGuardianPhone("");
+        setStudentClass("");
+        setStudentIdPhoto(null);
+        setLastDegree(null);
+        setAdminId("");
+        setPaymentMethod("");
+        setPaymentSlip(null);
+      } catch (error) {
+        toast.error(error.response.data.message);
+        setLoading(false);
+      }
+    } else {
+      toast.error("Please fill in all fields!");
     }
   };
 

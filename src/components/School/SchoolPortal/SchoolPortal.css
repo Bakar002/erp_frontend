@@ -1,3 +1,6 @@
+.container {
+  max-width: 100%;
+}
 .chatbot {
   position: fixed;
   z-index: 99999999;
@@ -21,7 +24,7 @@ body {
   filter: invert(100%);
 }
 .punjab {
-  color: #40b08c;
+  color: #e2edea;
   font-weight: 700;
   font-size: 2rem;
 }
@@ -32,7 +35,7 @@ h6 {
   display: flex;
   font-weight: 700;
   font-size: 2.9rem;
-  color: #40b08c;
+  color: #f0f9f6;
 }
 
 .img-container {
@@ -40,7 +43,7 @@ h6 {
 }
 
 .img-container img {
-  max-width: 100%;
+  width: 96px;
   height: auto;
 }
 
@@ -57,7 +60,7 @@ h6 {
 .card i {
   /* color: rgb(255, 183, 0); */
   /* color: #033e71; */
-  color: #40b08c;
+  color: #ffffff;
 }
 
 .btn h6 {
@@ -68,7 +71,7 @@ h6 {
 }
 .custom-hover,
 .card:hover {
-  background-color: #40b08c;
+  background-color: white;
 }
 
 .custom-hover,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import  AddCourse  from "./AdminAddCourse/AdminAddCourse";
-import { AdminAddTeacher } from "./AdminAddTeacher/AdminnAddTeachers";
+import  {AdminAddTeacher}  from "./AdminAddTeacher/AdminAddTeachers";
 import { AdminAddList } from "./AdminAddList/AdminAddList";
 import { AdminAddStudent } from "./AdminAddStudent/AdminAddStudent";
 

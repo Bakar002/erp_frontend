@@ -2,8 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 // import Landingpage from "./components/Landing/Landing";
-
-// import SchoolPortalHome from "./components/SchoolPortal/SchoolPortalHome/SchoolPortalHome";
+ //import SchoolPortalHome from "./components/SchoolPortal/SchoolPortalHome/SchoolPortalHome";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 // import TeacherDashboard from "./components/Teacher/TeacherDashboard.js";
 import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
@@ -27,6 +26,7 @@ import loadCurrentStudentAction from "./components/Redux/Student/Actions/loadCur
 import RingLoader from "./components/Loaders/RingLoader";
 import loadCurrentAdminAction from "./components/Redux/Admin/Actions/loadCurrentAdminAction.Admin";
 import Landingpage from "./components/Landing/Landing";
+import SchoolData from './components/School/SchoolPortal/SchoolData.jsx';
 import SchoolPortalHome from "./components/School/SchoolPortal/SchoolPortal.js";
 import One from "./components/School/Grades/One/One.js";
 import Two from "./components/School/Grades/Two/Two.js";
@@ -55,6 +55,11 @@ import AddResult from "./components/Student/StudentResult/StudentResult.js";
 import AdmissionForm from './components/Landing/AdmissionForm';
 import SchoolBlocks from './components/Landing/SchoolsBlocks';
 import SchoolBlock2 from './components/Landing/SchoolBlocks2';
+import Addmisionsall from './components/School/SchoolPortal/Addmisionsall.js';
+import Board from './components/School/SchoolPortal/Board.js';
+
+
+
 
 import ReceiptApp from './components/Landing/Receipt';
 import Accounts from './components/Landing/Accounts';
@@ -70,6 +75,7 @@ import { Appointments } from './MedicalPortal/Form/Appointments';
 import PatientSlips from './MedicalPortal/Form/PatientSlips';
 import Pharmacy from './MedicalPortal/Partners/Pharmacies/Pharmacy';
 import Hospital from './MedicalPortal/Partners/Hospitals/Hospital';
+
 import Ambulance from './MedicalPortal/Partners/Ambulances/Ambulance';
 import Complex from './MedicalPortal/Partners/Complexes/Complex';
 import Laboratory from './MedicalPortal/Partners/Laboratories/Laboratory.js';
@@ -113,12 +119,16 @@ import MedicalCamp from './MedicalPortal/Mangement/MedicalCamps.js';
 import Job from './Jobs/Job.js';
 import Food from './Foods/Food.js';
 import Legal from './LegalServices/Legal.js';
+
+import Syllabus1to10 from './components/School/SchoolPortal/Syllabus1to10.js';
+import Stu from './components/School/SchoolPortal/Student/Stu.jsx';
+import StudentCourseTimeTable from './components/Student/StudentCourseTimetable/StudentCourseTimeTable.js';
+import Tec from './components/School/SchoolPortal/Teacher/Tec.js';
+import Adm from './components/School/SchoolPortal/Admins/Adm.js';
+
 import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
 import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
 import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
-import { TeacherAddTask } from './components/Teacher/TeacherAddTask/TeacherAddTask';
-
-
 
 
 function App() {
@@ -174,7 +184,16 @@ function App() {
           <Route path="/teacher-login" element={<TeacherLogin />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
 
-          <Route path="/schoolblocks" element={<SchoolBlocks />} />
+
+
+
+
+
+
+
+
+
+          <Route path="/all-schools-and-academies-collaborations" element={<SchoolBlocks />} />
           <Route path="/schoolblock2" element={<SchoolBlock2/>} />
           <Route path="/afaq-sub-campus" element={<AfaqSubCampus/>} />
           <Route path="/lwss-sub-campus" element={<LwssSubCampus/>} />
@@ -182,11 +201,62 @@ function App() {
 
 
 
+          <Route path="/admission-for-all" element={<Addmisionsall/>} />
+          <Route path="/board-papers" element={<Board/>} />
+          <Route path="/syllabus-grade-1-10" element={<Syllabus1to10/>} />
+           {/* <Route path="/students" element={<Stu/>} />   */}
+           <Route path="/teachers"
+           
+           
+           
+           element={
+            isTeacherAuthenticated ? (
+              <Tec />
+            ) : (
+              <TeacherLogin />
+            )
+          }
+        />
+           
+           
+
+
+           
+           
+           <Route path="/administration" 
+           
+           
+           
+           element={isAdminAuthenticated ? <Adm /> : <AdminLogin />}
+
+           
+           />
+           
+
+         {/*   <Route
+            path="/students"
+            element={
+              isStudentAuthenticated ? <Stu /> : <StudentLogin />
+            }
+            ></Route>
+
+<Route
+            path="/teachers"
+            element={
+              isStudentAuthenticated ? <Tec /> : <TeacherLogin />
+            }
+            ></Route> */}
 
 
 
 
-          <Route path="/health-login" element={<Login/>} />
+
+
+
+
+
+            
+           <Route path="/health-login" element={<Login/>} />
 
           <Route path="/health-admin" element={<MAdmin />} />
 
@@ -195,6 +265,8 @@ function App() {
           <Route path="/patient-slips" element={<PatientSlips/>} />
           <Route path="/pharmacy" element={<Pharmacy/>} />
           <Route path="/hospital" element={<Hospital/>} />
+
+
           <Route path="/ambulance" element={<Ambulance/>} />
           <Route path="/medical-complex" element={<Complex/>} />
           <Route path="/laboratory" element={<Laboratory/>} />
@@ -258,13 +330,14 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/student-login" element={<StudentLogin />} />
           <Route path="/admin-add-course" element={<AddCourse />} />
-          <Route path="/school-portal-home" element={<SchoolPortalHome />} />
+          <Route path="/school-portal-home" element={<SchoolData />} />
+          {/* <Route path="/school-portal-home" element={<SchoolPortalHome />} /> */}
           <Route path="/uni-portal-home" element={<UniPortal />} />
 
 
           <Route
             path="/admin-dashboard"
-            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminLogin />}
+            element={isAdminAuthenticated ? <AdminDashboard /> : <AdminDashboard />}
           />
 
 <Route
@@ -337,11 +410,12 @@ function App() {
             element={
               isStudentAuthenticated ? <StudentCourseTimetable /> : <StudentLogin />
             }
+
           />
+          
           <Route
-            path="/student-attendance"
-            element={isStudentAuthenticated ? <StudentAttendance /> : <StudentLogin />}
-          />
+            path="/student-attendance" element={<StudentAttendance /> }></Route>
+            
           <Route
             path="/student-weekly-attendance"
             element={
@@ -366,6 +440,17 @@ function App() {
               isStudentAuthenticated ? <StudentAddFeedback /> : <StudentLogin />
             }
           />
+
+<Route
+            path="/students"
+            element={
+              isStudentAuthenticated ? <Stu /> : <Stu />
+            }
+          />
+
+
+
+          
           <Route
             path="/student-result"
             element={isStudentAuthenticated ? <AddResult /> : <StudentLogin/>}
@@ -381,23 +466,6 @@ function App() {
               )
             }
           />
-
-<Route
-            path="/teacher-add-task"
-            element={
-              isTeacherAuthenticated ? (
-                <TeacherAddTask />
-              ) : (
-                <TeacherLogin />
-              )
-            }
-          />
-
-
-
-
-
-
 
           <Route
             path="/teacher-view-attendance"

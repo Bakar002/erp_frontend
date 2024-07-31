@@ -9,7 +9,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="bg-black md:flex justify-between p-3 overflow-hidden">
+      <nav className=" md:flex justify-between p-3 overflow-hidden bg-gradient-to-r from-blue-400 to-green-500">
         <div className="flex items-center justify-between w-full md:w-1/4">
           <img src={logo} className="w-[11rem] h-[4rem]" alt="" />
           <div className="md:hidden">
@@ -50,7 +50,7 @@ export default function Navbar() {
               <li className="mt-2 md:mt-0 md:ml-4">
                 <Link
                   to="/admin-login"
-                  className="block px-6 md:px-4 py-1 rounded-md font-bold border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white text-center"
+                  className="bg-blue-700 block px-6 md:px-4 py-1 rounded-md font-bold border-2 border-blue-700 text-white hover:bg-blue-900 hover:text-white text-center"
                 >
                   Login
                 </Link>
@@ -58,7 +58,7 @@ export default function Navbar() {
               <li className="mt-2 md:mt-0 ">
                 <Link
                   to="/admin-signup"
-                  className="block px-6 md:px-4 py-1 rounded-md font-bold border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-white text-center"
+                  className="bg-green-700 block px-6 md:px-4 py-1 rounded-md font-bold border-2 border-green-700 text-white hover:bg-green-900 hover:text-white text-center"
                 >
                   Signup
                 </Link>

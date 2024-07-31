@@ -25,9 +25,9 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-export const AdminAddStudent = () => {
+export const AdminAddTeacher = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  const [students, setStudents] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [grades, setGrades] = useState([]);
@@ -52,9 +52,9 @@ export const AdminAddStudent = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-student", data);
+      const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-teacher", data);
       handleShowSuccessToast(response.data.message);
-      setStudents([...students, response.data.student]);
+      setTeachers([...teachers, response.data.teacher]);
       setLoading(false);
       closeModal();
       reset();
@@ -70,9 +70,9 @@ export const AdminAddStudent = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true);
-      const response = await axios.delete(`https://belikeerp-3.onrender.com/api/v1/admin/delete-student/${id}`);
+      const response = await axios.delete(`https://belikeerp-3.onrender.com/api/v1/admin/delete-teacher/${id}`);
       handleShowSuccessToast(response.data.message);
-      setStudents(students.filter(student => student._id !== id));
+      setTeachers(teachers.filter(teacher => teacher._id !== id));
       setLoading(false);
     } catch (error) {
       handleShowFailureToast(error.response.data.message);
@@ -83,15 +83,15 @@ export const AdminAddStudent = () => {
   const handleUpdate = async (id, updatedData) => {
     try {
       setLoading(true);
-      const response = await axios.put(`https://belikeerp-3.onrender.com/api/v1/admin/update-student/${id}`, updatedData);
+      const response = await axios.put(`https://belikeerp-3.onrender.com/api/v1/admin/update-teacher/${id}`, updatedData);
       handleShowSuccessToast(response.data.message);
-      const updatedStudents = students.map(student => {
-        if (student._id === id) {
-          return { ...student, ...updatedData };
+      const updatedTeachers = teachers.map(teacher => {
+        if (teacher._id === id) {
+          return { ...teacher, ...updatedData };
         }
-        return student;
+        return teacher;
       });
-      setStudents(updatedStudents);
+      setTeachers(updatedTeachers);
       setLoading(false);
     } catch (error) {
       handleShowFailureToast(error.response.data.message);
@@ -103,13 +103,13 @@ export const AdminAddStudent = () => {
     <div className="md:px-8 mt-4">
       <Toaster />
       <div className="flex justify-end mb-4">
-        <button onClick={openModal} className="bg-[#033e71] text-white p-2 rounded">Add Student</button>
+        <button onClick={openModal} className="bg-[#033e71] text-white p-2 rounded">Add Teacher</button>
       </div>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Add Student">
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Add Teacher">
         <div className="flex justify-end">
           <button onClick={closeModal} className="bg-gray-500 text-white p-2 rounded">✕</button>
         </div>
-        <h2 className="text-xl font-bold mb-4 text-center" style={{ color: '#033e71' }}>Add Student</h2>
+        <h2 className="text-xl font-bold mb-4 text-center" style={{ color: '#033e71' }}>Add Teacher</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="text-gray-600 grid gap-4 grid-cols-1 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
@@ -150,44 +150,49 @@ export const AdminAddStudent = () => {
             {errors.grade && <p className="text-red-500 text-xs mt-1">Grade is required</p>}
           </div>
           <div>
-            <label htmlFor="course" className="leading-7 text-sm text-gray-600">Course</label>
-            <select id="course" {...register("course", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <option value="">Select Course</option>
+            <label htmlFor="courses" className="leading-7 text-sm text-gray-600">Courses</label>
+            <select id="courses" {...register("courses", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              <option value="">Select Courses</option>
               {courses.map(course => (
                 <option key={course.courseId} value={course.courseId}>{course.courseName}</option>
               ))}
             </select>
-            {errors.course && <p className="text-red-500 text-xs mt-1">Course is required</p>}
+            {errors.courses && <p className="text-red-500 text-xs mt-1">Courses are required</p>}
           </div>
-          <button type="submit" className="bg-[#033e71] text-white py-2 px-4 rounded">{loading ? <ThreeDotLoader /> : 'Submit'}</button>
+          <div className="col-span-1 sm:col-span-2">
+            <button type="submit" className="w-full bg-[#033e71] text-white p-2 rounded">{loading ? <ThreeDotLoader /> : "Add Teacher"}</button>
+          </div>
         </form>
       </Modal>
-
-      <table className="w-full text-sm text-left text-gray-500 mt-8">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-          <tr>
-            <th className="px-6 py-3">Name</th>
-            <th className="px-6 py-3">Email</th>
-            <th className="px-6 py-3">Grade</th>
-            <th className="px-6 py-3">Course</th>
-            <th className="px-6 py-3">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student) => (
-            <tr key={student._id} className="bg-white border-b hover:bg-gray-50">
-              <td className="px-6 py-4">{student.name}</td>
-              <td className="px-6 py-4">{student.email}</td>
-              <td className="px-6 py-4">{student.gradeName}</td>
-              <td className="px-6 py-4">{student.courseName}</td>
-              <td className="px-6 py-4 flex space-x-2">
-                <button onClick={() => handleUpdate(student._id, { /* updated data */ })} className="bg-blue-500 text-white p-2 rounded">Update</button>
-                <button onClick={() => handleDelete(student._id)} className="bg-red-500 text-white p-2 rounded">Delete</button>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white">
+          <thead>
+            <tr>
+              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</th>
+              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Courses</th>
+              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="bg-white">
+            {teachers.map((teacher) => (
+              <tr key={teacher._id}>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.name}</td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.email}</td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.grade.gradeName}</td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.courses.map(course => course.courseName).join(", ")}</td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                  <button onClick={() => handleDelete(teacher._id)} className="text-red-600 hover:text-red-900 mr-2">Delete</button>
+                  <button onClick={() => handleUpdate(teacher._id, teacher)} className="text-indigo-600 hover:text-indigo-900">Edit</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
+
+
