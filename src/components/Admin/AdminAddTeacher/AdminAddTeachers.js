@@ -50,7 +50,7 @@ export const AdminAddTeacher = () => {
     const fetchTeachers = async () => {
       try {
         const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
-        setTeachers(response.data.teachers);
+        setTeachers(response.data.teachers || []);
       } catch (error) {
         console.log("API Error:", error?.response?.data?.message);
       }
@@ -155,18 +155,18 @@ export const AdminAddTeacher = () => {
             <label htmlFor="gradeId" className="leading-7 text-sm text-gray-600">Grade</label>
             <select id="gradeId" {...register("gradeId", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
               <option value="">Select Grade</option>
-              {grades.map((grade) => (
+              {grades.length > 0 ? grades.map((grade) => (
                 <option key={grade._id} value={grade._id}>{grade.name}</option>
-              ))}
+              )) : <option disabled>No Grades Available</option>}
             </select>
             {errors.gradeId && <p className="text-red-500 text-xs mt-1">Grade is required</p>}
           </div>
           <div>
             <label htmlFor="courseIds" className="leading-7 text-sm text-gray-600">Courses</label>
             <select id="courseIds" {...register("courseIds", { required: true })} multiple className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              {courses.map((course) => (
+              {courses.length > 0 ? courses.map((course) => (
                 <option key={course._id} value={course._id}>{course.name}</option>
-              ))}
+              )) : <option disabled>No Courses Available</option>}
             </select>
             {errors.courseIds && <p className="text-red-500 text-xs mt-1">Courses are required</p>}
           </div>
@@ -192,23 +192,27 @@ export const AdminAddTeacher = () => {
             </tr>
           </thead>
           <tbody>
-            {teachers.map((teacher) => (
+            {teachers.length > 0 ? teachers.map((teacher) => (
               <tr key={teacher._id}>
-                <td className="py-2 px-4 border-b">{teacher.name}</td>
-                <td className="py-2 px-4 border-b">{teacher.email}</td>
-                <td className="py-2 px-4 border-b">{teacher.gradeId}</td>
+                <td className="py-2 px-4 border-b">{teacher.name || ''}</td>
+                <td className="py-2 px-4 border-b">{teacher.email || ''}</td>
+                <td className="py-2 px-4 border-b">{grades.find(grade => grade._id === teacher.gradeId)?.name || 'N/A'}</td>
                 <td className="py-2 px-4 border-b">
-                  {teacher.courseIds.map(courseId => {
+                  {teacher.courseIds?.map(courseId => {
                     const course = courses.find(c => c._id === courseId);
                     return course ? course.name : 'N/A';
-                  }).join(", ")}
+                  }).join(", ") || 'N/A'}
                 </td>
                 <td className="py-2 px-4 border-b">
                   <button onClick={() => handleUpdate(teacher._id)} className="bg-yellow-500 text-white px-2 py-1 rounded mr-2">Update</button>
                   <button onClick={() => handleDelete(teacher._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                 </td>
               </tr>
-            ))}
+            )) : (
+              <tr>
+                <td className="py-2 px-4 border-b text-center" colSpan="5">No teachers available</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
