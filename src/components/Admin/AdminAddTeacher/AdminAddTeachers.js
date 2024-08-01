@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { Toaster } from "react-hot-toast";
+import ThreeDotLoader from "../../../components/Loaders/ThreeDotLoader";
 import {
   handleShowFailureToast,
   handleShowSuccessToast,
 } from "../../../components/ToastMessages/ToastMessage";
-import axios from "axios";
-import { Toaster } from "react-hot-toast";
-import ThreeDotLoader from "../../../components/Loaders/ThreeDotLoader";
 
 // Modal styles
 const customStyles = {
@@ -46,7 +46,18 @@ export const AdminAddTeacher = () => {
         console.log("API Error:", error?.response?.data?.message);
       }
     };
+
+    const fetchTeachers = async () => {
+      try {
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
+        setTeachers(response.data.teachers);
+      } catch (error) {
+        console.log("API Error:", error?.response?.data?.message);
+      }
+    };
+
     fetchGradesAndCourses();
+    fetchTeachers();
   }, []);
 
   const onSubmit = async (data) => {
@@ -137,54 +148,64 @@ export const AdminAddTeacher = () => {
           </div>
           <div>
             <label htmlFor="idCardNumber" className="leading-7 text-sm text-gray-600">ID Card Number</label>
-            <input type="text" id="idCardNumber" {...register("idCardNumber")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <input type="text" id="idCardNumber" {...register("idCardNumber", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            {errors.idCardNumber && <p className="text-red-500 text-xs mt-1">ID Card Number is required</p>}
           </div>
           <div>
-            <label htmlFor="grade" className="leading-7 text-sm text-gray-600">Grade</label>
-            <select id="grade" {...register("grade", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label htmlFor="gradeId" className="leading-7 text-sm text-gray-600">Grade</label>
+            <select id="gradeId" {...register("gradeId", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
               <option value="">Select Grade</option>
-              {grades.map(grade => (
-                <option key={grade.gradeId} value={grade.gradeId}>{grade.gradeName}</option>
+              {grades.map((grade) => (
+                <option key={grade._id} value={grade._id}>{grade.name}</option>
               ))}
             </select>
-            {errors.grade && <p className="text-red-500 text-xs mt-1">Grade is required</p>}
+            {errors.gradeId && <p className="text-red-500 text-xs mt-1">Grade is required</p>}
           </div>
           <div>
-            <label htmlFor="courses" className="leading-7 text-sm text-gray-600">Courses</label>
-            <select id="courses" {...register("courses", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <option value="">Select Courses</option>
-              {courses.map(course => (
-                <option key={course.courseId} value={course.courseId}>{course.courseName}</option>
+            <label htmlFor="courseIds" className="leading-7 text-sm text-gray-600">Courses</label>
+            <select id="courseIds" {...register("courseIds", { required: true })} multiple className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              {courses.map((course) => (
+                <option key={course._id} value={course._id}>{course.name}</option>
               ))}
             </select>
-            {errors.courses && <p className="text-red-500 text-xs mt-1">Courses are required</p>}
+            {errors.courseIds && <p className="text-red-500 text-xs mt-1">Courses are required</p>}
           </div>
-          <div className="col-span-1 sm:col-span-2">
-            <button type="submit" className="w-full bg-[#033e71] text-white p-2 rounded">{loading ? <ThreeDotLoader /> : "Add Teacher"}</button>
+          <div className="flex justify-center sm:col-span-2">
+            {loading ? (
+              <ThreeDotLoader />
+            ) : (
+              <button type="submit" className="bg-[#033e71] text-white p-2 rounded">Submit</button>
+            )}
           </div>
         </form>
       </Modal>
+      <h2 className="text-2xl font-bold mb-4">Teachers List</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead>
             <tr>
-              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</th>
-              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Grade</th>
-              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Courses</th>
-              <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="py-2 px-4 border-b">Name</th>
+              <th className="py-2 px-4 border-b">Email</th>
+              <th className="py-2 px-4 border-b">Grade</th>
+              <th className="py-2 px-4 border-b">Courses</th>
+              <th className="py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white">
+          <tbody>
             {teachers.map((teacher) => (
               <tr key={teacher._id}>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.name}</td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.email}</td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.grade.gradeName}</td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{teacher.courses.map(course => course.courseName).join(", ")}</td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <button onClick={() => handleDelete(teacher._id)} className="text-red-600 hover:text-red-900 mr-2">Delete</button>
-                  <button onClick={() => handleUpdate(teacher._id, teacher)} className="text-indigo-600 hover:text-indigo-900">Edit</button>
+                <td className="py-2 px-4 border-b">{teacher.name}</td>
+                <td className="py-2 px-4 border-b">{teacher.email}</td>
+                <td className="py-2 px-4 border-b">{teacher.gradeId}</td>
+                <td className="py-2 px-4 border-b">
+                  {teacher.courseIds.map(courseId => {
+                    const course = courses.find(c => c._id === courseId);
+                    return course ? course.name : 'N/A';
+                  }).join(", ")}
+                </td>
+                <td className="py-2 px-4 border-b">
+                  <button onClick={() => handleUpdate(teacher._id)} className="bg-yellow-500 text-white px-2 py-1 rounded mr-2">Update</button>
+                  <button onClick={() => handleDelete(teacher._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                 </td>
               </tr>
             ))}
@@ -195,4 +216,4 @@ export const AdminAddTeacher = () => {
   );
 };
 
-
+export default AdminAddTeacher;
