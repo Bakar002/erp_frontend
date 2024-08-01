@@ -197,12 +197,8 @@ export const AdminAddTeacher = () => {
                 <td className="py-2 px-4 border-b">{teacher.name || ''}</td>
                 <td className="py-2 px-4 border-b">{teacher.email || ''}</td>
                 <td className="py-2 px-4 border-b">{grades.find(grade => grade._id === teacher.gradeId)?.name || 'N/A'}</td>
-                <td className="py-2 px-4 border-b">
-                  {teacher.courseIds?.map(courseId => {
-                    const course = courses.find(c => c._id === courseId);
-                    return course ? course.name : 'N/A';
-                  }).join(", ") || 'N/A'}
-                </td>
+                <td className="py-2 px-4 border-b">{teacher.email || ''}</td>
+
                 <td className="py-2 px-4 border-b">
                   <button onClick={() => handleUpdate(teacher._id)} className="bg-yellow-500 text-white px-2 py-1 rounded mr-2">Update</button>
                   <button onClick={() => handleDelete(teacher._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
