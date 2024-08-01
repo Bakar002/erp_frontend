@@ -181,7 +181,7 @@ export const AdminAddTeacher = () => {
       </Modal>
       <h2 className="text-2xl font-bold mb-4">Teachers List</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white">
+        <table className="min-w-full bg-white text-black">
           <thead>
             <tr>
               <th className="py-2 px-4 border-b">Name</th>
