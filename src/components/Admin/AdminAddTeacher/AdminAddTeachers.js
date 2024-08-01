@@ -51,6 +51,7 @@ export const AdminAddTeacher = () => {
       try {
         const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
         setTeachers(response.data.teachers || []);
+        console.log(response.data.teachers);
       } catch (error) {
         console.log("API Error:", error?.response?.data?.message);
       }
