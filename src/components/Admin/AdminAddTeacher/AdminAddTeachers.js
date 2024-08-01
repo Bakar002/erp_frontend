@@ -194,8 +194,8 @@ export const AdminAddTeacher = () => {
           <tbody>
             {teachers.length > 0 ? teachers.map((teacher) => (
               <tr key={teacher._id}>
-                <td className="py-2 px-4 border-b">{teacher.name || ''}</td>
-                <td className="py-2 px-4 border-b">{teacher.email || ''}</td>
+                <td className="py-2 px-4 border-b">{teacher.teacherName || ''}</td>
+                <td className="py-2 px-4 border-b">{teacher.teacherEmail || ''}</td>
                 <td className="py-2 px-4 border-b">{grades.find(grade => grade._id === teacher.gradeId)?.name || 'N/A'}</td>
                 <td className="py-2 px-4 border-b">{teacher.email || ''}</td>
 
