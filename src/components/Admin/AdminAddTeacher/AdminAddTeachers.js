@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 import ThreeDotLoader from "../../Loaders/ThreeDotLoader";
 import Modal from "react-modal";
 
-Modal.setAppElement("#root"); // Ensure accessibility
+Modal.setAppElement("#root");
 
 export const AdminAddTeacher = () => {
   const [formData, setFormData] = useState({
@@ -174,7 +174,10 @@ export const AdminAddTeacher = () => {
   return (
     <div className="h-auto md:px-8 mt-4">
       <Toaster />
-      <button onClick={() => openModal()} className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg">
+      <button
+        onClick={() => openModal()}
+        className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg"
+      >
         Add New Teacher
       </button>
 
@@ -194,17 +197,27 @@ export const AdminAddTeacher = () => {
               <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherEmail}</td>
               <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherSalary}</td>
               <td className="px-6 py-4 text-sm font-medium">
-                <button onClick={() => openModal(teacher)} className="text-blue-600 bg-white hover:text-blue-900 mr-4">Edit</button>
-                <button onClick={() => handleDelete(teacher._id)} className="text-red-600 bg-white hover:text-red-900">Delete</button>
+                <button
+                  onClick={() => openModal(teacher)}
+                  className="text-blue-500 hover:text-blue-700"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(teacher._id)}
+                  className="text-red-500 hover:text-red-700 ml-4"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} className="Modal" overlayClassName="Overlay">
-        <div className="p-6 bg-white rounded shadow-lg">
-          <div className="flex justify-between items-center mb-4">
+      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} className="modal" overlayClassName="overlay">
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-semibold">{editingTeacher ? "Edit Teacher" : "Add New Teacher"}</h2>
             <button onClick={() => setIsModalOpen(false)} className="text-gray-600 hover:text-gray-900">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -213,21 +226,80 @@ export const AdminAddTeacher = () => {
             </button>
           </div>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" name="teacherName" value={formData.teacherName} onChange={handleInputChange} placeholder="Name" className="w-full p-2 border border-gray-300 rounded" />
-            <input type="email" name="teacherEmail" value={formData.teacherEmail} onChange={handleInputChange} placeholder="Email" className="w-full p-2 border border-gray-300 rounded" />
-            <input type="password" name="teacherPassword" value={formData.teacherPassword} onChange={handleInputChange} placeholder="Password" className="w-full p-2 border border-gray-300 rounded" />
-            <input type="number" name="teacherSalary" value={formData.teacherSalary} onChange={handleInputChange} placeholder="Salary" className="w-full p-2 border border-gray-300 rounded" />
-            <input type="text" name="teacherIdCardNumber" value={formData.teacherIdCardNumber} onChange={handleInputChange} placeholder="ID Card Number" className="w-full p-2 border border-gray-300 rounded" />
-            <input type="date" name="teacherJobDate" value={formData.teacherJobDate} onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" />
-            <input type="file" name="teacherAvatar" onChange={handleFileChange} className="w-full p-2 border border-gray-300 rounded" />
-            <input type="file" name="teacherIdCardCopy" onChange={handleFileChange} className="w-full p-2 border border-gray-300 rounded" />
-            <select name="grades" onChange={handleSelectChange} className="w-full p-2 border border-gray-300 rounded">
+            <input
+              type="text"
+              name="teacherName"
+              value={formData.teacherName}
+              onChange={handleInputChange}
+              placeholder="Name"
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="email"
+              name="teacherEmail"
+              value={formData.teacherEmail}
+              onChange={handleInputChange}
+              placeholder="Email"
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="password"
+              name="teacherPassword"
+              value={formData.teacherPassword}
+              onChange={handleInputChange}
+              placeholder="Password"
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="number"
+              name="teacherSalary"
+              value={formData.teacherSalary}
+              onChange={handleInputChange}
+              placeholder="Salary"
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="text"
+              name="teacherIdCardNumber"
+              value={formData.teacherIdCardNumber}
+              onChange={handleInputChange}
+              placeholder="ID Card Number"
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="date"
+              name="teacherJobDate"
+              value={formData.teacherJobDate}
+              onChange={handleInputChange}
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="file"
+              name="teacherAvatar"
+              onChange={handleFileChange}
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+            />
+            <input
+              type="file"
+              name="teacherIdCardCopy"
+              onChange={handleFileChange}
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+            />
+            <select
+              name="grades"
+              onChange={handleSelectChange}
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <option>Select Grades</option>
               {grades.map((grade) => (
                 <option key={grade.gradeId} value={JSON.stringify(grade)}>{grade.gradeName}</option>
               ))}
             </select>
-            <select name="courses" onChange={handleSelectChange} className="w-full p-2 border border-gray-300 rounded">
+            <select
+              name="courses"
+              onChange={handleSelectChange}
+              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <option>Select Courses</option>
               {courses.map((course) => (
                 <option key={course.courseId} value={JSON.stringify(course)}>{course.courseName}</option>
@@ -238,8 +310,8 @@ export const AdminAddTeacher = () => {
                 {selectedGrades.map((gradeId) => {
                   const grade = grades.find((g) => g.gradeId === gradeId);
                   return (
-                    <div key={gradeId} className="flex items-center p-1 bg-gray-200 rounded mr-2 mb-2">
-                      <span className="mr-1">{grade.gradeName}</span>
+                    <div key={gradeId} className="flex items-center p-2 bg-gray-200 rounded mr-2 mb-2">
+                      <span className="mr-2">{grade.gradeName}</span>
                       <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500">x</button>
                     </div>
                   );
@@ -249,15 +321,18 @@ export const AdminAddTeacher = () => {
                 {selectedCourses.map((courseId) => {
                   const course = courses.find((c) => c.courseId === courseId);
                   return (
-                    <div key={courseId} className="flex items-center p-1 bg-gray-200 rounded mr-2 mb-2">
-                      <span className="mr-1">{course.courseName}</span>
+                    <div key={courseId} className="flex items-center p-2 bg-gray-200 rounded mr-2 mb-2">
+                      <span className="mr-2">{course.courseName}</span>
                       <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-500">x</button>
                     </div>
                   );
                 })}
               </div>
             </div>
-            <button type="submit" className="col-span-2 w-full bg-blue-500 text-white py-2 px-4 rounded mt-2">
+            <button
+              type="submit"
+              className="col-span-2 w-full bg-blue-500 text-white py-3 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               {loading ? <ThreeDotLoader /> : "Submit"}
             </button>
           </form>
