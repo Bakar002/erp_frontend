@@ -33,9 +33,9 @@ export const AdminAddTeacher = () => {
     const fetchData = async () => {
       try {
         const [gradesResponse, coursesResponse, teachersResponse] = await Promise.all([
-          axios.get("https://belikeerp.onrender.com/load-all-grades"),
-          axios.get("https://belikeerp.onrender.com/load-all-courses"),
-          axios.get("https://belikeerp.onrender.com/load-all-teachers"),
+          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades"),
+          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses"),
+          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers"),
         ]);
 
         setGrades(gradesResponse.data.grades);
@@ -93,7 +93,7 @@ export const AdminAddTeacher = () => {
 
     try {
       setLoading(true);
-      const url = editingTeacher ? `https://belikeerp.onrender.com/update-teacher/${editingTeacher._id}` : "https://belikeerp.onrender.com/add-teacher";
+      const url = editingTeacher ? `https://belikeerp-3.onrender.com/api/v1/admin/update-teacher/${editingTeacher._id}` : "https://belikeerp-3.onrender.com/api/v1/admin/add-teacher";
       const response = await axios.post(url, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -114,7 +114,7 @@ export const AdminAddTeacher = () => {
       setEditingTeacher(null);
 
       // Fetch updated teachers
-      const teachersResponse = await axios.get("https://belikeerp.onrender.com/load-all-teachers");
+      const teachersResponse = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
       setTeachers(teachersResponse.data.teachers);
     } catch (error) {
       handleShowFailureToast(error.response?.data?.message || error.message);
@@ -150,10 +150,10 @@ export const AdminAddTeacher = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://belikeerp.onrender.com/delete-teacher/${id}`);
+      await axios.delete(`https://belikeerp-3.onrender.com/api/v1/admin/delete-teacher/${id}`);
       handleShowSuccessToast("Teacher deleted successfully!");
       // Fetch updated teachers
-      const teachersResponse = await axios.get("https://belikeerp.onrender.com/load-all-teachers");
+      const teachersResponse = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
       setTeachers(teachersResponse.data.teachers);
     } catch (error) {
       handleShowFailureToast(error.response?.data?.message || error.message);
