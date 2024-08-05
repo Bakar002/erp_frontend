@@ -32,6 +32,10 @@ export const AdminAddTeacher = () => {
   const [loading, setLoading] = useState(false);
   const [grades, setGrades] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [idCardCopy, setIdCardCopy] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [selectedGrades, setSelectedGrades] = useState([]);
 
   useEffect(() => {
     const fetchGradesAndCourses = async () => {
@@ -70,6 +74,15 @@ export const AdminAddTeacher = () => {
           formData.append(key, data[key]);
         }
       }
+      if (idCardCopy) {
+        formData.append("teacherIdCardCopy", idCardCopy);
+      }
+      if (avatar) {
+        formData.append("teacherAvatar", avatar);
+      }
+      formData.append("teacherCourses", JSON.stringify(selectedCourses));
+      formData.append("teacherGrades", JSON.stringify(selectedGrades));
+
       const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-teacher", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -121,6 +134,22 @@ export const AdminAddTeacher = () => {
     }
   };
 
+  const handleCourseChange = (e) => {
+    const value = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setSelectedCourses(value);
+  };
+
+  const handleGradeChange = (e) => {
+    const value = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setSelectedGrades(value);
+  };
+
   return (
     <div className="md:px-8 mt-4">
       <Toaster />
@@ -159,11 +188,27 @@ export const AdminAddTeacher = () => {
           </div>
           <div>
             <label htmlFor="teacherIdCardCopy" className="leading-7 text-sm text-gray-600">ID Card Copy</label>
-            <input type="file" id="teacherIdCardCopy" {...register("teacherIdCardCopy")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <input type="file" id="teacherIdCardCopy" {...register("teacherIdCardCopy")} onChange={(e) => setIdCardCopy(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
           </div>
           <div>
             <label htmlFor="teacherAvatar" className="leading-7 text-sm text-gray-600">Avatar</label>
-            <input type="file" id="teacherAvatar" {...register("teacherAvatar")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <input type="file" id="teacherAvatar" {...register("teacherAvatar")} onChange={(e) => setAvatar(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+          </div>
+          <div>
+            <label htmlFor="teacherCourses" className="leading-7 text-sm text-gray-600">Courses</label>
+            <select id="teacherCourses" multiple {...register("teacherCourses")} onChange={handleCourseChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              {courses.map((course) => (
+                <option key={course._id} value={course._id}>{course.courseName}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="teacherGrades" className="leading-7 text-sm text-gray-600">Grades</label>
+            <select id="teacherGrades" multiple {...register("teacherGrades")} onChange={handleGradeChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              {grades.map((grade) => (
+                <option key={grade._id} value={grade._id}>{grade.gradeName}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label htmlFor="teacherGradeIncharge" className="leading-7 text-sm text-gray-600">Grade Incharge</label>
@@ -173,6 +218,14 @@ export const AdminAddTeacher = () => {
                 <option key={grade._id} value={grade._id}>{grade.gradeName}</option>
               ))}
             </select>
+          </div>
+          <div>
+            <label htmlFor="teacherJobDate" className="leading-7 text-sm text-gray-600">Job Date</label>
+            <input type="date" id="teacherJobDate" {...register("teacherJobDate")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+          </div>
+          <div>
+            <label htmlFor="adminId" className="leading-7 text-sm text-gray-600">Admin ID</label>
+            <input type="text" id="adminId" {...register("adminId")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
           </div>
           <div className="sm:col-span-2 flex justify-center">
             <button type="submit" className="bg-[#033e71] text-white px-4 py-2 rounded">Add Teacher</button>
