@@ -235,14 +235,14 @@ export const AdminAddTeacher = () => {
   isOpen={isModalOpen}
   onRequestClose={() => setIsModalOpen(false)}
   contentLabel="Teacher Form"
-  className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg"
+  className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg"
   overlayClassName="fixed inset-0 bg-gray-800 bg-opacity-50"
 >
-  <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+  <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
     {editingTeacher ? "Edit Teacher" : "Add Teacher"}
   </h2>
-  <form onSubmit={handleSubmit} className="space-y-6">
-    <div className="grid gap-6 md:grid-cols-2">
+  <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="grid gap-4">
       <div className="relative">
         <label htmlFor="teacherName" className="block text-sm font-medium text-gray-700">Name</label>
         <input
@@ -402,7 +402,7 @@ export const AdminAddTeacher = () => {
         })}
       </ul>
     </div>
-    <div className="flex justify-between items-center mt-6">
+    <div className="flex justify-between items-center mt-4">
       <button
         type="submit"
         className="bg-[#40b08c] text-white py-2 px-4 rounded-md shadow-sm hover:bg-[#75dbbb] focus:outline-none focus:ring-2 focus:ring-[#40b08c] text-lg"
