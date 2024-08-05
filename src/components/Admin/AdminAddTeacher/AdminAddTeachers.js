@@ -74,7 +74,7 @@ export const AdminAddTeacher = () => {
     const fetchAllTeachers = async () => {
       try {
         const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
-        setCourses(response.data.teachers);
+        setTeachers(response.data.teachers);
       } catch (error) {
         console.log(error.response.data.message);
       }
@@ -345,7 +345,7 @@ export const AdminAddTeacher = () => {
               {selectedGrades.map((gradeId) => {
                 const grade = grades.find((g) => g.gradeId === gradeId);
                 return (
-                  <li key={gradeId} className="flex justify-between">
+                  <li key={gradeId} className="flex justify-between bg-black text-white">
                     {grade?.gradeName}
                     <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-600 hover:text-red-900">
                       Remove
@@ -374,7 +374,7 @@ export const AdminAddTeacher = () => {
               {selectedCourses.map((courseId) => {
                 const course = courses.find((c) => c.courseId === courseId);
                 return (
-                  <li key={courseId} className="flex justify-between">
+                  <li key={courseId} className="flex justify-between bg-black text-white">
                     {course?.courseName}
                     <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-600 hover:text-red-900">
                       Remove
