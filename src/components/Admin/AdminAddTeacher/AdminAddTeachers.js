@@ -231,167 +231,195 @@ export const AdminAddTeacher = () => {
         </tbody>
       </table>
 
-      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} contentLabel="Teacher Form">
-        <h2 className="text-2xl font-bold mb-4">{editingTeacher ? "Edit Teacher" : "Add Teacher"}</h2>
-        <form onSubmit={handleSubmit} className="text-gray-600 body-font relative">
-          <div className="relative mb-4">
-            <label htmlFor="teacherName" className="leading-7 text-sm text-gray-600">Name</label>
-            <input
-              type="text"
-              id="teacherName"
-              name="teacherName"
-              value={formData.teacherName}
-              onChange={handleInputChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
-              required
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="teacherEmail" className="leading-7 text-sm text-gray-600">Email</label>
-            <input
-              type="email"
-              id="teacherEmail"
-              name="teacherEmail"
-              value={formData.teacherEmail}
-              onChange={handleInputChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
-              required
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="teacherPassword" className="leading-7 text-sm text-gray-600">Password</label>
-            <input
-              type="password"
-              id="teacherPassword"
-              name="teacherPassword"
-              value={formData.teacherPassword}
-              onChange={handleInputChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
-              required
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="teacherSalary" className="leading-7 text-sm text-gray-600">Salary</label>
-            <input
-              type="number"
-              id="teacherSalary"
-              name="teacherSalary"
-              value={formData.teacherSalary}
-              onChange={handleInputChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
-              required
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="teacherIdCardNumber" className="leading-7 text-sm text-gray-600">ID Card Number</label>
-            <input
-              type="text"
-              id="teacherIdCardNumber"
-              name="teacherIdCardNumber"
-              value={formData.teacherIdCardNumber}
-              onChange={handleInputChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
-              required
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="teacherJobDate" className="leading-7 text-sm text-gray-600">Job Date</label>
-            <input
-              type="date"
-              id="teacherJobDate"
-              name="teacherJobDate"
-              value={formData.teacherJobDate}
-              onChange={handleInputChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
-              required
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="teacherAvatar" className="leading-7 text-sm text-gray-600">Avatar</label>
-            <input
-              type="file"
-              id="teacherAvatar"
-              name="teacherAvatar"
-              onChange={handleFileChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="teacherIdCardCopy" className="leading-7 text-sm text-gray-600">ID Card Copy</label>
-            <input
-              type="file"
-              id="teacherIdCardCopy"
-              name="teacherIdCardCopy"
-              onChange={handleFileChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="grades" className="leading-7 text-sm text-gray-600">Grades</label>
-            <select
-              id="grades"
-              name="grades"
-              onChange={handleSelectChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
-              multiple
-            >
-              {grades.map((grade) => (
-                <option key={grade.gradeId} value={JSON.stringify(grade)} selected={selectedGrades.includes(grade.gradeId)}>
-                  {grade.gradeName}
-                </option>
-              ))}
-            </select>
-            <ul>
-              {selectedGrades.map((gradeId) => {
-                const grade = grades.find((g) => g.gradeId === gradeId);
-                return (
-                  <li key={gradeId} className="flex justify-between bg-black text-white">
-                    {grade?.gradeName}
-                    <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-600 hover:text-red-900">
-                      Remove
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="courses" className="leading-7 text-sm text-gray-600">Courses</label>
-            <select
-              id="courses"
-              name="courses"
-              onChange={handleSelectChange}
-              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
-              multiple
-            >
-              {courses.map((course) => (
-                <option key={course.courseId} value={JSON.stringify(course)} selected={selectedCourses.includes(course.courseId)}>
-                  {course.courseName}
-                </option>
-              ))}
-            </select>
-            <ul>
-              {selectedCourses.map((courseId) => {
-                const course = courses.find((c) => c.courseId === courseId);
-                return (
-                  <li key={courseId} className="flex justify-between bg-black text-white">
-                    {course?.courseName}
-                    <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-600 hover:text-red-900">
-                      Remove
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="flex justify-between">
-            <button onClick={handleSubmit} className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg" type="submit">
-              {loading ? <ThreeDotLoader /> : "Submit"}
-            </button>
-            <button onClick={() => setIsModalOpen(false)} className="mt-4 text-blue-600 hover:text-blue-900">Close</button>
-          </div>
-        </form>
-      </Modal>
+      <Modal
+  isOpen={isModalOpen}
+  onRequestClose={() => setIsModalOpen(false)}
+  contentLabel="Teacher Form"
+  className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg"
+  overlayClassName="fixed inset-0 bg-gray-800 bg-opacity-50"
+>
+  <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    {editingTeacher ? "Edit Teacher" : "Add Teacher"}
+  </h2>
+  <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="grid gap-6 md:grid-cols-2">
+      <div className="relative">
+        <label htmlFor="teacherName" className="block text-sm font-medium text-gray-700">Name</label>
+        <input
+          type="text"
+          id="teacherName"
+          name="teacherName"
+          value={formData.teacherName}
+          onChange={handleInputChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+          required
+        />
+      </div>
+      <div className="relative">
+        <label htmlFor="teacherEmail" className="block text-sm font-medium text-gray-700">Email</label>
+        <input
+          type="email"
+          id="teacherEmail"
+          name="teacherEmail"
+          value={formData.teacherEmail}
+          onChange={handleInputChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+          required
+        />
+      </div>
+      <div className="relative">
+        <label htmlFor="teacherPassword" className="block text-sm font-medium text-gray-700">Password</label>
+        <input
+          type="password"
+          id="teacherPassword"
+          name="teacherPassword"
+          value={formData.teacherPassword}
+          onChange={handleInputChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+          required
+        />
+      </div>
+      <div className="relative">
+        <label htmlFor="teacherSalary" className="block text-sm font-medium text-gray-700">Salary</label>
+        <input
+          type="number"
+          id="teacherSalary"
+          name="teacherSalary"
+          value={formData.teacherSalary}
+          onChange={handleInputChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+          required
+        />
+      </div>
+      <div className="relative">
+        <label htmlFor="teacherIdCardNumber" className="block text-sm font-medium text-gray-700">ID Card Number</label>
+        <input
+          type="text"
+          id="teacherIdCardNumber"
+          name="teacherIdCardNumber"
+          value={formData.teacherIdCardNumber}
+          onChange={handleInputChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+          required
+        />
+      </div>
+      <div className="relative">
+        <label htmlFor="teacherJobDate" className="block text-sm font-medium text-gray-700">Job Date</label>
+        <input
+          type="date"
+          id="teacherJobDate"
+          name="teacherJobDate"
+          value={formData.teacherJobDate}
+          onChange={handleInputChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+          required
+        />
+      </div>
+    </div>
+    <div className="relative">
+      <label htmlFor="teacherAvatar" className="block text-sm font-medium text-gray-700">Avatar</label>
+      <input
+        type="file"
+        id="teacherAvatar"
+        name="teacherAvatar"
+        onChange={handleFileChange}
+        className="mt-1 block w-full border border-gray-300 rounded-md text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
+      />
+    </div>
+    <div className="relative">
+      <label htmlFor="teacherIdCardCopy" className="block text-sm font-medium text-gray-700">ID Card Copy</label>
+      <input
+        type="file"
+        id="teacherIdCardCopy"
+        name="teacherIdCardCopy"
+        onChange={handleFileChange}
+        className="mt-1 block w-full border border-gray-300 rounded-md text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
+      />
+    </div>
+    <div className="relative">
+      <label htmlFor="grades" className="block text-sm font-medium text-gray-700">Grades</label>
+      <select
+        id="grades"
+        name="grades"
+        onChange={handleSelectChange}
+        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+        multiple
+      >
+        {grades.map((grade) => (
+          <option key={grade.gradeId} value={JSON.stringify(grade)} selected={selectedGrades.includes(grade.gradeId)}>
+            {grade.gradeName}
+          </option>
+        ))}
+      </select>
+      <ul className="mt-2 space-y-2">
+        {selectedGrades.map((gradeId) => {
+          const grade = grades.find((g) => g.gradeId === gradeId);
+          return (
+            <li key={gradeId} className="flex justify-between items-center p-2 bg-gray-800 text-white rounded-md">
+              {grade?.gradeName}
+              <button
+                type="button"
+                onClick={() => removeSelection(gradeId, "grades")}
+                className="text-red-400 hover:text-red-600"
+              >
+                Remove
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+    <div className="relative">
+      <label htmlFor="courses" className="block text-sm font-medium text-gray-700">Courses</label>
+      <select
+        id="courses"
+        name="courses"
+        onChange={handleSelectChange}
+        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-[#40b08c] focus:border-[#40b08c] sm:text-sm"
+        multiple
+      >
+        {courses.map((course) => (
+          <option key={course.courseId} value={JSON.stringify(course)} selected={selectedCourses.includes(course.courseId)}>
+            {course.courseName}
+          </option>
+        ))}
+      </select>
+      <ul className="mt-2 space-y-2">
+        {selectedCourses.map((courseId) => {
+          const course = courses.find((c) => c.courseId === courseId);
+          return (
+            <li key={courseId} className="flex justify-between items-center p-2 bg-gray-800 text-white rounded-md">
+              {course?.courseName}
+              <button
+                type="button"
+                onClick={() => removeSelection(courseId, "courses")}
+                className="text-red-400 hover:text-red-600"
+              >
+                Remove
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+    <div className="flex justify-between items-center mt-6">
+      <button
+        type="submit"
+        className="bg-[#40b08c] text-white py-2 px-4 rounded-md shadow-sm hover:bg-[#75dbbb] focus:outline-none focus:ring-2 focus:ring-[#40b08c] text-lg"
+      >
+        {loading ? <ThreeDotLoader /> : "Submit"}
+      </button>
+      <button
+        type="button"
+        onClick={() => setIsModalOpen(false)}
+        className="text-blue-600 hover:text-blue-800 text-lg"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</Modal>
+
     </div>
   );
 };
