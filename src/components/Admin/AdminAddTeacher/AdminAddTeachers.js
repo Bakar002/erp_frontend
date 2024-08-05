@@ -280,8 +280,8 @@ export const AdminAddTeacher = () => {
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
-            width: '90%',
-            maxWidth: '500px',
+            width: '100%',
+            maxWidth: '600px',
           backgroundColor:"black",
           color: "white",
           },
@@ -349,7 +349,7 @@ export const AdminAddTeacher = () => {
               {selectedGrades.map((grade) => {
                 const gradeObj = grades.find((g) => g._id === grade);
                 return (
-                  <li key={grade} className="flex justify-between bg-gray-100 p-2 rounded mb-2">
+                  <li key={grade} className="flex justify-between bg-gray-100 p-2 rounded mb-2 text-black">
                     {gradeObj?.gradeName}
                     <button type="button" onClick={() => removeSelection(grade, "grades")} className="text-red-600">Remove</button>
                   </li>
@@ -371,7 +371,7 @@ export const AdminAddTeacher = () => {
               {selectedCourses.map((course) => {
                 const courseObj = courses.find((c) => c._id === course);
                 return (
-                  <li key={course} className="flex justify-between bg-gray-100 p-2 rounded mb-2">
+                  <li key={course} className="flex justify-between bg-gray-100 p-2 rounded mb-2 text-black">
                     {courseObj?.courseName}
                     <button type="button" onClick={() => removeSelection(course, "courses")} className="text-red-600">Remove</button>
                   </li>
