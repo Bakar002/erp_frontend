@@ -220,105 +220,52 @@ export const AdminAddTeacher = () => {
   return (
     <div className="h-auto md:px-8 mt-4">
       <Toaster />
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-4 md:mx-0 md:w-11/12 w-auto">
-        <button
-          onClick={() => openModal()}
-          className="bg-blue-500 text-white p-2 rounded-md m-4 hover:bg-blue-700"
-        >
-          Add Teacher
-        </button>
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Teacher Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher Email
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher Salary
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher ID Card Number
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher Job Date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher Avatar
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher ID Card Copy
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher Grades
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Teacher Courses
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Actions
-              </th>
+      <button
+        onClick={() => openModal()}
+        className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg"
+      >
+        Add New Teacher
+      </button>
+
+      <table className="min-w-full divide-y divide-gray-200 mt-4">
+        <thead>
+          <tr>
+            <th className="px-6 py-3 bg-black text-white">Name</th>
+            <th className="px-6 py-3 bg-black text-white">Email</th>
+            <th className="px-6 py-3 bg-black text-white">Salary</th>
+            <th className="px-6 py-3 bg-black text-white">Actions</th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {teachers.map((teacher) => (
+            <tr key={teacher._id}>
+              <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                {teacher.teacherName}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-500">
+                {teacher.teacherEmail}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-500">
+                {teacher.teacherSalary}
+              </td>
+              <td className="px-6 py-4 text-sm font-medium">
+                <button
+                  onClick={() => openModal(teacher)}
+                  className="text-blue-600 bg-white hover:text-blue-900 mr-4"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(teacher._id)}
+                  className="text-red-600 bg-white hover:text-red-900"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {teachers.map((teacher) => (
-              <tr
-                key={teacher._id}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-              >
-                <td className="px-6 py-4">{teacher.teacherName}</td>
-                <td className="px-6 py-4">{teacher.teacherEmail}</td>
-                <td className="px-6 py-4">{teacher.teacherSalary}</td>
-                <td className="px-6 py-4">{teacher.teacherIdCardNumber}</td>
-                <td className="px-6 py-4">{teacher.teacherJobDate}</td>
-                <td className="px-6 py-4">
-                  <img
-                    src={teacher.teacherAvatar?.url || ""}
-                    alt="Teacher Avatar"
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                </td>
-                <td className="px-6 py-4">
-                  <a
-                    href={teacher.teacherIdCardCopy?.url || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    View ID Card
-                  </a>
-                </td>
-                <td className="px-6 py-4">
-                  {teacher.teacherGrades
-                    .map((g) => g.gradeName)
-                    .join(", ")}
-                </td>
-                <td className="px-6 py-4">
-                  {teacher.teacherCourses
-                    .map((c) => c.courseName)
-                    .join(", ")}
-                </td>
-                <td className="px-6 py-4 space-x-2">
-                  <button
-                    onClick={() => openModal(teacher)}
-                    className="bg-yellow-500 text-white p-1 rounded-md hover:bg-yellow-700"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(teacher._id)}
-                    className="bg-red-500 text-white p-1 rounded-md hover:bg-red-700"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
 
       <Modal
   isOpen={isModalOpen}
@@ -505,8 +452,8 @@ export const AdminAddTeacher = () => {
   </div>
 </Modal>
 
+
+      {loading && <ThreeDotLoader />}
     </div>
   );
-}
-
-
+};
