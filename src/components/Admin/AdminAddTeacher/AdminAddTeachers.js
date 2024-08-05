@@ -83,8 +83,8 @@ export const AdminAddTeacher = () => {
       if (avatar) {
         formData.append("teacherAvatar", avatar);
       }
-      formData.append("teacherCourses", JSON.stringify(selectedCourses));
-      formData.append("teacherGrades", JSON.stringify(selectedGrades));
+      formData.append("teacherCourses", selectedCourses);
+      formData.append("teacherGrades",selectedGrades);
 
       const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-teacher", formData, {
         headers: {
