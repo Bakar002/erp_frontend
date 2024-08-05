@@ -8,7 +8,7 @@ import {
 import { Toaster } from "react-hot-toast";
 import ThreeDotLoader from "../../Loaders/ThreeDotLoader";
 import Modal from "react-modal";
-import "Modal.css"
+import "./Modal.css"
 Modal.setAppElement("#root"); // Ensure accessibility
 
 export const AdminAddTeacher = () => {
