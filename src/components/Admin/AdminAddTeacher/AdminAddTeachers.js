@@ -20,6 +20,9 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     width: '90%',
     maxWidth: '500px',
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
   },
 };
 
@@ -188,74 +191,83 @@ export const AdminAddTeacher = () => {
           </div>
           <div>
             <label htmlFor="teacherIdCardCopy" className="leading-7 text-sm text-gray-600">ID Card Copy</label>
-            <input type="file" id="teacherIdCardCopy" {...register("teacherIdCardCopy")} onChange={(e) => setIdCardCopy(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <input type="file" id="teacherIdCardCopy" onChange={(e) => setIdCardCopy(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
           </div>
           <div>
             <label htmlFor="teacherAvatar" className="leading-7 text-sm text-gray-600">Avatar</label>
-            <input type="file" id="teacherAvatar" {...register("teacherAvatar")} onChange={(e) => setAvatar(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <input type="file" id="teacherAvatar" onChange={(e) => setAvatar(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
           </div>
-          <div>
+          <div className="sm:col-span-2">
             <label htmlFor="teacherCourses" className="leading-7 text-sm text-gray-600">Courses</label>
-            <select id="teacherCourses" multiple {...register("teacherCourses")} onChange={handleCourseChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <select multiple id="teacherCourses" {...register("teacherCourses")} onChange={handleCourseChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
               {courses.map((course) => (
-                <option key={course._id} value={course._id}>{course.courseName}</option>
+                <option key={course._id} value={course._id}>
+                  {course.courseName}
+                </option>
               ))}
             </select>
           </div>
-          <div>
+          <div className="sm:col-span-2">
             <label htmlFor="teacherGrades" className="leading-7 text-sm text-gray-600">Grades</label>
-            <select id="teacherGrades" multiple {...register("teacherGrades")} onChange={handleGradeChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <select multiple id="teacherGrades" {...register("teacherGrades")} onChange={handleGradeChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
               {grades.map((grade) => (
-                <option key={grade._id} value={grade._id}>{grade.gradeName}</option>
+                <option key={grade._id} value={grade._id}>
+                  {grade.gradeName}
+                </option>
               ))}
             </select>
           </div>
-          <div>
-            <label htmlFor="teacherGradeIncharge" className="leading-7 text-sm text-gray-600">Grade Incharge</label>
+          <div className="sm:col-span-2">
+            <label htmlFor="teacherGradeIncharge" className="leading-7 text-sm text-gray-600">Grade In-Charge</label>
             <select id="teacherGradeIncharge" {...register("teacherGradeIncharge")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <option value="">Select Grade Incharge</option>
+              <option value="">Select Grade</option>
               {grades.map((grade) => (
-                <option key={grade._id} value={grade._id}>{grade.gradeName}</option>
+                <option key={grade._id} value={grade._id}>
+                  {grade.gradeName}
+                </option>
               ))}
             </select>
           </div>
-          <div>
-            <label htmlFor="teacherJobDate" className="leading-7 text-sm text-gray-600">Job Date</label>
-            <input type="date" id="teacherJobDate" {...register("teacherJobDate")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+          <div className="sm:col-span-2">
+            <button type="submit" className="w-full bg-[#033e71] text-white p-2 rounded">
+              {loading ? <ThreeDotLoader /> : "Add Teacher"}
+            </button>
           </div>
-          <div>
-            <label htmlFor="adminId" className="leading-7 text-sm text-gray-600">Admin ID</label>
-            <input type="text" id="adminId" {...register("adminId")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-          </div>
-          <div className="sm:col-span-2 flex justify-center">
-            <button type="submit" className="bg-[#033e71] text-white px-4 py-2 rounded">Add Teacher</button>
-          </div>
-          {loading && (
-            <div className="sm:col-span-2 flex justify-center">
-              <ThreeDotLoader />
-            </div>
-          )}
         </form>
       </Modal>
+
+      {/* Teachers Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white">
-          <thead className="bg-[#033e71] text-white">
+          <thead className="bg-gray-800 text-white">
             <tr>
-              <th className="w-1/4 py-2">Name</th>
-              <th className="w-1/4 py-2">Email</th>
-              <th className="w-1/4 py-2">ID Card Number</th>
-              <th className="w-1/4 py-2">Actions</th>
+              <th className="w-1/3 py-2">Name</th>
+              <th className="w-1/3 py-2">Email</th>
+              <th className="w-1/3 py-2">ID Card Number</th>
+              <th className="w-1/3 py-2">Salary</th>
+              <th className="w-1/3 py-2">Actions</th>
             </tr>
           </thead>
-          <tbody className="text-gray-600">
+          <tbody className="text-gray-700">
             {teachers.map((teacher) => (
-              <tr key={teacher._id} className="border-t">
-                <td className="py-2">{teacher.teacherName}</td>
-                <td className="py-2">{teacher.teacherEmail}</td>
-                <td className="py-2">{teacher.teacherIdCardNumber}</td>
-                <td className="py-2 flex justify-around">
-                  <button onClick={() => handleUpdate(teacher._id, teacher)} className="bg-yellow-400 text-white px-2 py-1 rounded">Update</button>
-                  <button onClick={() => handleDelete(teacher._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <tr key={teacher._id}>
+                <td className="py-2 px-4 border">{teacher.teacherName}</td>
+                <td className="py-2 px-4 border">{teacher.teacherEmail}</td>
+                <td className="py-2 px-4 border">{teacher.teacherIdCardNumber}</td>
+                <td className="py-2 px-4 border">{teacher.teacherSalary}</td>
+                <td className="py-2 px-4 border flex justify-around">
+                  <button
+                    onClick={() => handleUpdate(teacher._id, {/* updated data here */ })}
+                    className="bg-blue-500 text-white p-1 rounded"
+                  >
+                    Update
+                  </button>
+                  <button
+                    onClick={() => handleDelete(teacher._id)}
+                    className="bg-red-500 text-white p-1 rounded"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
