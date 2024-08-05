@@ -29,24 +29,64 @@ export const AdminAddTeacher = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTeacher, setEditingTeacher] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [gradesResponse, coursesResponse, teachersResponse] = await Promise.all([
-          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades"),
-          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses"),
-          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers"),
-        ]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const [gradesResponse, coursesResponse, teachersResponse] = await Promise.all([
+  //         axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades"),
+  //         axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses"),
+  //         axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers"),
+  //       ]);
 
-        setGrades(gradesResponse.data.grades);
-        setCourses(coursesResponse.data.courses);
-        setTeachers(teachersResponse.data.teachers);
+  //       setGrades(gradesResponse.data.grades);
+  //       setCourses(coursesResponse.data.courses);
+  //       setTeachers(teachersResponse.data.teachers);
+  //     } catch (error) {
+  //       console.log(error.response?.data?.message || error.message);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
+
+
+  useEffect(() => {
+    const fetchAllGrades = async () => {
+      try {
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades");
+        setGrades(response.data.grades);
+
       } catch (error) {
-        console.log(error.response?.data?.message || error.message);
+        console.log(error.response.data.message);
       }
     };
-    fetchData();
+    fetchAllGrades();
+
+    const fetchAllCourses = async () => {
+      try {
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses");
+        setCourses(response.data.courses);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    };
+    fetchAllCourses();
+    const fetchAllTeachers = async () => {
+      try {
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
+        setCourses(response.data.teachers);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    };
+    fetchAllTeachers();
+
+
+
+
   }, []);
+
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -170,10 +210,10 @@ export const AdminAddTeacher = () => {
       <table className="min-w-full divide-y divide-gray-200 mt-4">
         <thead>
           <tr>
-            <th className="px-6 py-3 bg-gray-50">Name</th>
-            <th className="px-6 py-3 bg-gray-50">Email</th>
-            <th className="px-6 py-3 bg-gray-50">Salary</th>
-            <th className="px-6 py-3 bg-gray-50">Actions</th>
+            <th className="px-6 py-3 bg-black text-white">Name</th>
+            <th className="px-6 py-3 bg-black text-white">Email</th>
+            <th className="px-6 py-3 bg-black text-white">Salary</th>
+            <th className="px-6 py-3 bg-black text-white">Actions</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -183,7 +223,7 @@ export const AdminAddTeacher = () => {
               <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherEmail}</td>
               <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherSalary}</td>
               <td className="px-6 py-4 text-sm font-medium">
-                <button onClick={() => openModal(teacher)} className="text-blue-600 hover:text-blue-900 mr-4">Edit</button>
+                <button onClick={() => openModal(teacher)} className="text-blue-600  hover:text-blue-900 mr-4">Edit</button>
                 <button onClick={() => handleDelete(teacher._id)} className="text-red-600 hover:text-red-900">Delete</button>
               </td>
             </tr>

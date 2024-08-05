@@ -34,20 +34,49 @@ export const AdminAddStudent = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    const fetchGradesAndCourses = async () => {
+    const fetchAllGrades = async () => {
       try {
-        const [gradesResponse, coursesResponse] = await Promise.all([
-          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades"),
-          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses")
-        ]);
-        setGrades(gradesResponse.data.grades || []);
-        setCourses(coursesResponse.data.courses || []);
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades");
+        setGrades(response.data.grades);
+
       } catch (error) {
-        console.log("API Error:", error?.response?.data?.message);
+        console.log(error.response.data.message);
       }
     };
-    fetchGradesAndCourses();
+    fetchAllGrades();
+
+    const fetchAllCourses = async () => {
+      try {
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses");
+        setCourses(response.data.courses);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    };
+    fetchAllCourses();
   }, []);
+
+
+
+
+  // useEffect(() => {
+  //   const fetchGradesAndCourses = async () => {
+  //     try {
+  //       const [gradesResponse, coursesResponse] = await Promise.all([
+  //         axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades"),
+  //         axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses")
+  //       ]);
+  //       setGrades(gradesResponse.data.grades || []);
+  //       console.log(gradesResponse.data.grades)
+  //       setCourses(coursesResponse.data.courses || []);
+  //       console.log(gradesResponse.data.courses)
+
+  //     } catch (error) {
+  //       console.log("API Error:", error?.response?.data?.message);
+  //     }
+  //   };
+  //   fetchGradesAndCourses();
+  // }, []);
 
   const onSubmit = async (data) => {
     try {
@@ -164,7 +193,7 @@ export const AdminAddStudent = () => {
       </Modal>
 
       <table className="w-full text-sm text-left text-gray-500 mt-8">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+        <thead className="text-xs text-white uppercase bg-black">
           <tr>
             <th className="px-6 py-3">Name</th>
             <th className="px-6 py-3">Email</th>
