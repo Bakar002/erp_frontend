@@ -1,279 +1,357 @@
+import "react-toastify/dist/ReactToastify.css";
 import React, { useEffect, useState } from "react";
-import Modal from "react-modal";
-import { useForm } from "react-hook-form";
 import axios from "axios";
+import { handleShowFailureToast, handleShowSuccessToast } from "../../ToastMessages/ToastMessage";
 import { Toaster } from "react-hot-toast";
-import ThreeDotLoader from "../../../components/Loaders/ThreeDotLoader";
-import {
-  handleShowFailureToast,
-  handleShowSuccessToast,
-} from "../../../components/ToastMessages/ToastMessage";
+import ThreeDotLoader from "../../Loaders/ThreeDotLoader";
+import Modal from "react-modal";
 
-// Modal styles
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    maxWidth: '1000px',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-  },
-};
-
-Modal.setAppElement('#root');
+Modal.setAppElement('#root'); // Ensure accessibility
 
 export const AdminAddTeacher = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  const [teachers, setTeachers] = useState([]);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [grades, setGrades] = useState([]);
+  const [formData, setFormData] = useState({
+    teacherName: "",
+    teacherEmail: "",
+    teacherPassword: "",
+    teacherSalary: "",
+    teacherIdCardNumber: "",
+    teacherJobDate: "",
+    teacherAvatar: null,
+    teacherIdCardCopy: null,
+  });
+  
   const [courses, setCourses] = useState([]);
-  const [idCardCopy, setIdCardCopy] = useState(null);
-  const [avatar, setAvatar] = useState(null);
-  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [grades, setGrades] = useState([]);
   const [selectedGrades, setSelectedGrades] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [teachers, setTeachers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingTeacher, setEditingTeacher] = useState(null);
 
   useEffect(() => {
-    const fetchGradesAndCourses = async () => {
+    const fetchData = async () => {
       try {
-        const [gradesResponse, coursesResponse] = await Promise.all([
-          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades"),
-          axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses")
+        const [gradesResponse, coursesResponse, teachersResponse] = await Promise.all([
+          axios.get("https://belikeerp.onrender.com/load-all-grades"),
+          axios.get("https://belikeerp.onrender.com/load-all-courses"),
+          axios.get("https://belikeerp.onrender.com/load-all-teachers"),
         ]);
-        setGrades(gradesResponse.data.grades || []);
-        setCourses(coursesResponse.data.courses || []);
+
+        setGrades(gradesResponse.data.grades);
+        setCourses(coursesResponse.data.courses);
+        setTeachers(teachersResponse.data.teachers);
       } catch (error) {
-        console.log("API Error:", error?.response?.data?.message);
+        console.log(error.response?.data?.message || error.message);
       }
     };
-
-    const fetchTeachers = async () => {
-      try {
-        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-teachers");
-        setTeachers(response.data.teachers || []);
-        console.log(response.data.teachers);
-      } catch (error) {
-        console.log("API Error:", error?.response?.data?.message);
-      }
-    };
-
-    fetchGradesAndCourses();
-    fetchTeachers();
+    fetchData();
   }, []);
 
-  const onSubmit = async (data) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: files[0] }));
+  };
+
+  const handleSelectChange = (e) => {
+    const { value, name } = e.target;
+    const selectedOption = JSON.parse(value);
+
+    if (name === "grades") {
+      setSelectedGrades((prev) => [...new Set([...prev, selectedOption.gradeId])]);
+    } else if (name === "courses") {
+      setSelectedCourses((prev) => [...new Set([...prev, selectedOption.courseId])]);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (Object.values(formData).some((val) => !val) || selectedGrades.length === 0 || selectedCourses.length === 0) {
+      handleShowFailureToast("Please fill all fields and select at least one grade and course!");
+      return;
+    }
+
+    const { teacherAvatar, teacherIdCardCopy, teacherName, teacherEmail, teacherPassword, teacherSalary, teacherIdCardNumber, teacherJobDate } = formData;
+    const data = {
+      teacherName,
+      teacherEmail,
+      teacherPassword,
+      teacherSalary,
+      teacherIdCardNumber,
+      teacherJobDate,
+      teacherAvatar,
+      teacherIdCardCopy,
+      teacherGrades: selectedGrades.map((grade) => ({ gradeId: grade })),
+      teacherCourses: selectedCourses.map((course) => ({ courseId: course })),
+    };
+
     try {
       setLoading(true);
-      const formData = new FormData();
-      for (const key in data) {
-        if (data[key]) {
-          formData.append(key, data[key]);
-        }
-      }
-      if (idCardCopy) {
-        formData.append("teacherIdCardCopy", idCardCopy);
-      }
-      if (avatar) {
-        formData.append("teacherAvatar", avatar);
-      }
-      formData.append("teacherCourses", selectedCourses);
-      formData.append("teacherGrades",selectedGrades);
-
-      const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-teacher", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      const url = editingTeacher ? `https://belikeerp.onrender.com/update-teacher/${editingTeacher._id}` : "https://belikeerp.onrender.com/add-teacher";
+      const response = await axios.post(url, data, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
       handleShowSuccessToast(response.data.message);
-      setTeachers([...teachers, response.data.teacher]);
-      setLoading(false);
-      closeModal();
-      reset();
+      setFormData({
+        teacherName: "",
+        teacherEmail: "",
+        teacherPassword: "",
+        teacherSalary: "",
+        teacherIdCardNumber: "",
+        teacherJobDate: "",
+        teacherAvatar: null,
+        teacherIdCardCopy: null,
+      });
+      setSelectedGrades([]);
+      setSelectedCourses([]);
+      setIsModalOpen(false);
+      setEditingTeacher(null);
+
+      // Fetch updated teachers
+      const teachersResponse = await axios.get("https://belikeerp.onrender.com/load-all-teachers");
+      setTeachers(teachersResponse.data.teachers);
     } catch (error) {
-      handleShowFailureToast(error.response.data.message);
+      handleShowFailureToast(error.response?.data?.message || error.message);
+    } finally {
       setLoading(false);
     }
   };
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const removeSelection = (id, type) => {
+    if (type === "grades") {
+      setSelectedGrades((prev) => prev.filter((item) => item !== id));
+    } else if (type === "courses") {
+      setSelectedCourses((prev) => prev.filter((item) => item !== id));
+    }
+  };
+
+  const openModal = (teacher = null) => {
+    setEditingTeacher(teacher);
+    setFormData({
+      teacherName: teacher?.teacherName || "",
+      teacherEmail: teacher?.teacherEmail || "",
+      teacherPassword: teacher?.teacherPassword || "",
+      teacherSalary: teacher?.teacherSalary || "",
+      teacherIdCardNumber: teacher?.teacherIdCardNumber || "",
+      teacherJobDate: teacher?.teacherJobDate || "",
+      teacherAvatar: null,
+      teacherIdCardCopy: null,
+    });
+    setSelectedGrades(teacher?.teacherGrades.map((g) => g.gradeId) || []);
+    setSelectedCourses(teacher?.teacherCourses.map((c) => c.courseId) || []);
+    setIsModalOpen(true);
+  };
 
   const handleDelete = async (id) => {
     try {
-      setLoading(true);
-      const response = await axios.delete(`https://belikeerp-3.onrender.com/api/v1/admin/delete-teacher/${id}`);
-      handleShowSuccessToast(response.data.message);
-      setTeachers(teachers.filter(teacher => teacher._id !== id));
-      setLoading(false);
+      await axios.delete(`https://belikeerp.onrender.com/delete-teacher/${id}`);
+      handleShowSuccessToast("Teacher deleted successfully!");
+      // Fetch updated teachers
+      const teachersResponse = await axios.get("https://belikeerp.onrender.com/load-all-teachers");
+      setTeachers(teachersResponse.data.teachers);
     } catch (error) {
-      handleShowFailureToast(error.response.data.message);
-      setLoading(false);
+      handleShowFailureToast(error.response?.data?.message || error.message);
     }
-  };
-
-  const handleUpdate = async (id, updatedData) => {
-    try {
-      setLoading(true);
-      const response = await axios.put(`https://belikeerp-3.onrender.com/api/v1/admin/update-teacher/${id}`, updatedData);
-      handleShowSuccessToast(response.data.message);
-      const updatedTeachers = teachers.map(teacher => {
-        if (teacher._id === id) {
-          return { ...teacher, ...updatedData };
-        }
-        return teacher;
-      });
-      setTeachers(updatedTeachers);
-      setLoading(false);
-    } catch (error) {
-      handleShowFailureToast(error.response.data.message);
-      setLoading(false);
-    }
-  };
-
-  const handleCourseChange = (e) => {
-    const value = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setSelectedCourses(value);
-  };
-
-  const handleGradeChange = (e) => {
-    const value = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setSelectedGrades(value);
   };
 
   return (
     <div className="md:px-8 mt-4">
       <Toaster />
-      <div className="flex justify-end mb-4">
-        <button onClick={openModal} className="bg-[#033e71] text-white p-2 rounded">Add Teacher</button>
-      </div>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Add Teacher">
-        <div className="flex justify-end">
-          <button onClick={closeModal} className="bg-gray-500 text-white p-2 rounded">✕</button>
-        </div>
-        <h2 className="text-xl font-bold mb-4 text-center" style={{ color: '#033e71' }}>Add Teacher</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="text-gray-600 grid gap-4 grid-cols-1 sm:grid-cols-2">
-          <div>
+      <button onClick={() => openModal()} className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg">
+        Add New Teacher
+      </button>
+
+      <table className="min-w-full divide-y divide-gray-200 mt-4">
+        <thead>
+          <tr>
+            <th className="px-6 py-3 bg-gray-50">Name</th>
+            <th className="px-6 py-3 bg-gray-50">Email</th>
+            <th className="px-6 py-3 bg-gray-50">Salary</th>
+            <th className="px-6 py-3 bg-gray-50">Actions</th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {teachers.map((teacher) => (
+            <tr key={teacher._id}>
+              <td className="px-6 py-4 text-sm font-medium text-gray-900">{teacher.teacherName}</td>
+              <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherEmail}</td>
+              <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherSalary}</td>
+              <td className="px-6 py-4 text-sm font-medium">
+                <button onClick={() => openModal(teacher)} className="text-blue-600 hover:text-blue-900 mr-4">Edit</button>
+                <button onClick={() => handleDelete(teacher._id)} className="text-red-600 hover:text-red-900">Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} contentLabel="Teacher Form">
+        <h2 className="text-2xl font-bold mb-4">{editingTeacher ? "Edit Teacher" : "Add Teacher"}</h2>
+        <form onSubmit={handleSubmit} className="text-gray-600 body-font relative">
+          <div className="relative mb-4">
             <label htmlFor="teacherName" className="leading-7 text-sm text-gray-600">Name</label>
-            <input type="text" id="teacherName" {...register("teacherName", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.teacherName && <p className="text-red-500 text-xs mt-1">Name is required</p>}
+            <input
+              type="text"
+              id="teacherName"
+              name="teacherName"
+              value={formData.teacherName}
+              onChange={handleInputChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
+              required
+            />
           </div>
-          <div>
+          <div className="relative mb-4">
             <label htmlFor="teacherEmail" className="leading-7 text-sm text-gray-600">Email</label>
-            <input type="email" id="teacherEmail" {...register("teacherEmail", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.teacherEmail && <p className="text-red-500 text-xs mt-1">Email is required</p>}
+            <input
+              type="email"
+              id="teacherEmail"
+              name="teacherEmail"
+              value={formData.teacherEmail}
+              onChange={handleInputChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
+              required
+            />
           </div>
-          <div>
+          <div className="relative mb-4">
             <label htmlFor="teacherPassword" className="leading-7 text-sm text-gray-600">Password</label>
-            <input type="password" id="teacherPassword" {...register("teacherPassword", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.teacherPassword && <p className="text-red-500 text-xs mt-1">Password is required</p>}
+            <input
+              type="password"
+              id="teacherPassword"
+              name="teacherPassword"
+              value={formData.teacherPassword}
+              onChange={handleInputChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
+              required
+            />
           </div>
-          <div>
+          <div className="relative mb-4">
             <label htmlFor="teacherSalary" className="leading-7 text-sm text-gray-600">Salary</label>
-            <input type="number" id="teacherSalary" {...register("teacherSalary")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <input
+              type="number"
+              id="teacherSalary"
+              name="teacherSalary"
+              value={formData.teacherSalary}
+              onChange={handleInputChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
+              required
+            />
           </div>
-          <div>
+          <div className="relative mb-4">
             <label htmlFor="teacherIdCardNumber" className="leading-7 text-sm text-gray-600">ID Card Number</label>
-            <input type="text" id="teacherIdCardNumber" {...register("teacherIdCardNumber", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.teacherIdCardNumber && <p className="text-red-500 text-xs mt-1">ID Card Number is required</p>}
+            <input
+              type="text"
+              id="teacherIdCardNumber"
+              name="teacherIdCardNumber"
+              value={formData.teacherIdCardNumber}
+              onChange={handleInputChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
+              required
+            />
           </div>
-          <div>
-            <label htmlFor="teacherIdCardCopy" className="leading-7 text-sm text-gray-600">ID Card Copy</label>
-            <input type="file" id="teacherIdCardCopy" onChange={(e) => setIdCardCopy(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+          <div className="relative mb-4">
+            <label htmlFor="teacherJobDate" className="leading-7 text-sm text-gray-600">Job Date</label>
+            <input
+              type="date"
+              id="teacherJobDate"
+              name="teacherJobDate"
+              value={formData.teacherJobDate}
+              onChange={handleInputChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 focus:border-[#40b08c] focus:ring-2 focus:ring-[#40b08c] text-base outline-none text-gray-700 py-1 px-3"
+              required
+            />
           </div>
-          <div>
+          <div className="relative mb-4">
             <label htmlFor="teacherAvatar" className="leading-7 text-sm text-gray-600">Avatar</label>
-            <input type="file" id="teacherAvatar" onChange={(e) => setAvatar(e.target.files[0])} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <input
+              type="file"
+              id="teacherAvatar"
+              name="teacherAvatar"
+              onChange={handleFileChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
+            />
           </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="teacherCourses" className="leading-7 text-sm text-gray-600">Courses</label>
-            <select multiple id="teacherCourses" {...register("teacherCourses")} onChange={handleCourseChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          <div className="relative mb-4">
+            <label htmlFor="teacherIdCardCopy" className="leading-7 text-sm text-gray-600">ID Card Copy</label>
+            <input
+              type="file"
+              id="teacherIdCardCopy"
+              name="teacherIdCardCopy"
+              onChange={handleFileChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
+            />
+          </div>
+          <div className="relative mb-4">
+            <label htmlFor="grades" className="leading-7 text-sm text-gray-600">Grades</label>
+            <select
+              id="grades"
+              name="grades"
+              onChange={handleSelectChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
+              multiple
+            >
+              {grades.map((grade) => (
+                <option key={grade.gradeId} value={JSON.stringify(grade)} selected={selectedGrades.includes(grade.gradeId)}>
+                  {grade.gradeName}
+                </option>
+              ))}
+            </select>
+            <ul>
+              {selectedGrades.map((gradeId) => {
+                const grade = grades.find((g) => g.gradeId === gradeId);
+                return (
+                  <li key={gradeId} className="flex justify-between">
+                    {grade?.gradeName}
+                    <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-600 hover:text-red-900">
+                      Remove
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="relative mb-4">
+            <label htmlFor="courses" className="leading-7 text-sm text-gray-600">Courses</label>
+            <select
+              id="courses"
+              name="courses"
+              onChange={handleSelectChange}
+              className="w-full bg-gray-100 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3"
+              multiple
+            >
               {courses.map((course) => (
-                <option key={course._id} value={course._id}>
+                <option key={course.courseId} value={JSON.stringify(course)} selected={selectedCourses.includes(course.courseId)}>
                   {course.courseName}
                 </option>
               ))}
             </select>
+            <ul>
+              {selectedCourses.map((courseId) => {
+                const course = courses.find((c) => c.courseId === courseId);
+                return (
+                  <li key={courseId} className="flex justify-between">
+                    {course?.courseName}
+                    <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-600 hover:text-red-900">
+                      Remove
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="teacherGrades" className="leading-7 text-sm text-gray-600">Grades</label>
-            <select multiple id="teacherGrades" {...register("teacherGrades")} onChange={handleGradeChange} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              {grades.map((grade) => (
-                <option key={grade._id} value={grade._id}>
-                  {grade.gradeName}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="teacherGradeIncharge" className="leading-7 text-sm text-gray-600">Grade In-Charge</label>
-            <select id="teacherGradeIncharge" {...register("teacherGradeIncharge")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <option value="">Select Grade</option>
-              {grades.map((grade) => (
-                <option key={grade._id} value={grade._id}>
-                  {grade.gradeName}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="sm:col-span-2">
-            <button type="submit" className="w-full bg-[#033e71] text-white p-2 rounded">
-              {loading ? <ThreeDotLoader /> : "Add Teacher"}
+          <div className="flex justify-between">
+            <button onClick={handleSubmit} className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg" type="submit">
+              {loading ? <ThreeDotLoader /> : "Submit"}
             </button>
+            <button onClick={() => setIsModalOpen(false)} className="mt-4 text-blue-600 hover:text-blue-900">Close</button>
           </div>
         </form>
       </Modal>
-
-      {/* Teachers Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white">
-          <thead className="bg-gray-800 text-white">
-            <tr>
-              <th className="w-1/3 py-2">Name</th>
-              <th className="w-1/3 py-2">Email</th>
-              <th className="w-1/3 py-2">ID Card Number</th>
-              <th className="w-1/3 py-2">Salary</th>
-              <th className="w-1/3 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-700">
-            {teachers.map((teacher) => (
-              <tr key={teacher._id}>
-                <td className="py-2 px-4 border">{teacher.teacherName}</td>
-                <td className="py-2 px-4 border">{teacher.teacherEmail}</td>
-                <td className="py-2 px-4 border">{teacher.teacherIdCardNumber}</td>
-                <td className="py-2 px-4 border">{teacher.teacherSalary}</td>
-                <td className="py-2 px-4 border flex justify-around">
-                  <button
-                    onClick={() => handleUpdate(teacher._id, {/* updated data here */ })}
-                    className="bg-blue-500 text-white p-1 rounded"
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => handleDelete(teacher._id)}
-                    className="bg-red-500 text-white p-1 rounded"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };
