@@ -281,7 +281,10 @@ export const AdminAddTeacher = () => {
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
             width: '90%',
-            maxWidth: '500px',},
+            maxWidth: '500px',
+          backgroundColor:"black",
+          color: "white",
+          },
         }}
         overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
