@@ -223,8 +223,8 @@ export const AdminAddTeacher = () => {
               <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherEmail}</td>
               <td className="px-6 py-4 text-sm text-gray-500">{teacher.teacherSalary}</td>
               <td className="px-6 py-4 text-sm font-medium">
-                <button onClick={() => openModal(teacher)} className="text-blue-600  hover:text-blue-900 mr-4">Edit</button>
-                <button onClick={() => handleDelete(teacher._id)} className="text-red-600 hover:text-red-900">Delete</button>
+                <button onClick={() => openModal(teacher)} className="text-blue-600 bg-white hover:text-blue-900 mr-4">Edit</button>
+                <button onClick={() => handleDelete(teacher._id)} className="text-red-600 bg-white hover:text-red-900">Delete</button>
               </td>
             </tr>
           ))}
