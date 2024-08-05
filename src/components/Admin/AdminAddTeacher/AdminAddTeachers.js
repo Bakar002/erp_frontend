@@ -19,7 +19,7 @@ export const AdminAddTeacher = () => {
     teacherAvatar: null,
     teacherIdCardCopy: null,
   });
-  
+
   const [courses, setCourses] = useState([]);
   const [grades, setGrades] = useState([]);
   const [selectedGrades, setSelectedGrades] = useState([]);
@@ -208,10 +208,10 @@ export const AdminAddTeacher = () => {
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Teacher Form"
-        className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg"
-        overlayClassName="fixed inset-0 bg-gray-800 bg-opacity-50"
+        className="relative mx-auto my-8 p-6 bg-white rounded shadow-lg w-full max-w-md"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
-        <h2 className="text-lg font-semibold mb-4">{editingTeacher ? "Edit Teacher" : "Add Teacher"}</h2>
+        <h2 className="text-xl font-semibold mb-4 text-center">{editingTeacher ? "Edit Teacher" : "Add Teacher"}</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
@@ -262,11 +262,11 @@ export const AdminAddTeacher = () => {
                 </option>
               ))}
             </select>
-            <ul>
+            <ul className="mt-2">
               {selectedGrades.map((grade) => {
                 const gradeObj = grades.find((g) => g._id === grade);
                 return (
-                  <li key={grade} className="flex justify-between">
+                  <li key={grade} className="flex justify-between bg-gray-100 p-2 rounded mb-2">
                     {gradeObj?.gradeName}
                     <button type="button" onClick={() => removeSelection(grade, "grades")} className="text-red-600">Remove</button>
                   </li>
@@ -284,11 +284,11 @@ export const AdminAddTeacher = () => {
                 </option>
               ))}
             </select>
-            <ul>
+            <ul className="mt-2">
               {selectedCourses.map((course) => {
                 const courseObj = courses.find((c) => c._id === course);
                 return (
-                  <li key={course} className="flex justify-between">
+                  <li key={course} className="flex justify-between bg-gray-100 p-2 rounded mb-2">
                     {courseObj?.courseName}
                     <button type="button" onClick={() => removeSelection(course, "courses")} className="text-red-600">Remove</button>
                   </li>
@@ -298,8 +298,8 @@ export const AdminAddTeacher = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Submit</button>
-            <button type="button" onClick={() => setIsModalOpen(false)} className="bg-red-500 text-white py-2 px-4 rounded">Close</button>
+            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Submit</button>
+            <button type="button" onClick={() => setIsModalOpen(false)} className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Close</button>
           </div>
         </form>
       </Modal>
