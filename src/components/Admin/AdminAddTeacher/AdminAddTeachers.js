@@ -201,7 +201,7 @@ export const AdminAddTeacher = () => {
   };
 
   return (
-    <div className="md:px-8 mt-4">
+    <div className="h-auto md:px-8 mt-4  ">
       <Toaster />
       <button onClick={() => openModal()} className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg">
         Add New Teacher
