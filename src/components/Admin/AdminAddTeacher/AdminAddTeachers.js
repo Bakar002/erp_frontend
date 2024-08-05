@@ -64,7 +64,17 @@ export const AdminAddTeacher = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-teacher", data);
+      const formData = new FormData();
+      for (const key in data) {
+        if (data[key]) {
+          formData.append(key, data[key]);
+        }
+      }
+      const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-teacher", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       handleShowSuccessToast(response.data.message);
       setTeachers([...teachers, response.data.teacher]);
       setLoading(false);
@@ -124,97 +134,81 @@ export const AdminAddTeacher = () => {
         <h2 className="text-xl font-bold mb-4 text-center" style={{ color: '#033e71' }}>Add Teacher</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="text-gray-600 grid gap-4 grid-cols-1 sm:grid-cols-2">
           <div>
-            <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-            <input type="text" id="name" {...register("name", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.name && <p className="text-red-500 text-xs mt-1">Name is required</p>}
+            <label htmlFor="teacherName" className="leading-7 text-sm text-gray-600">Name</label>
+            <input type="text" id="teacherName" {...register("teacherName", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            {errors.teacherName && <p className="text-red-500 text-xs mt-1">Name is required</p>}
           </div>
           <div>
-            <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-            <input type="email" id="email" {...register("email", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.email && <p className="text-red-500 text-xs mt-1">Email is required</p>}
+            <label htmlFor="teacherEmail" className="leading-7 text-sm text-gray-600">Email</label>
+            <input type="email" id="teacherEmail" {...register("teacherEmail", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            {errors.teacherEmail && <p className="text-red-500 text-xs mt-1">Email is required</p>}
           </div>
           <div>
-            <label htmlFor="password" className="leading-7 text-sm text-gray-600">Password</label>
-            <input type="password" id="password" {...register("password", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.password && <p className="text-red-500 text-xs mt-1">Password is required</p>}
+            <label htmlFor="teacherPassword" className="leading-7 text-sm text-gray-600">Password</label>
+            <input type="password" id="teacherPassword" {...register("teacherPassword", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            {errors.teacherPassword && <p className="text-red-500 text-xs mt-1">Password is required</p>}
           </div>
           <div>
-            <label htmlFor="image" className="leading-7 text-sm text-gray-600">Image</label>
-            <input type="file" id="image" {...register("image")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            <label htmlFor="teacherSalary" className="leading-7 text-sm text-gray-600">Salary</label>
+            <input type="number" id="teacherSalary" {...register("teacherSalary")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
           </div>
           <div>
-            <label htmlFor="joiningDate" className="leading-7 text-sm text-gray-600">Joining Date</label>
-            <input type="date" id="joiningDate" {...register("joiningDate", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.joiningDate && <p className="text-red-500 text-xs mt-1">Joining Date is required</p>}
+            <label htmlFor="teacherIdCardNumber" className="leading-7 text-sm text-gray-600">ID Card Number</label>
+            <input type="text" id="teacherIdCardNumber" {...register("teacherIdCardNumber", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            {errors.teacherIdCardNumber && <p className="text-red-500 text-xs mt-1">ID Card Number is required</p>}
           </div>
           <div>
-            <label htmlFor="idCardNumber" className="leading-7 text-sm text-gray-600">ID Card Number</label>
-            <input type="text" id="idCardNumber" {...register("idCardNumber", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.idCardNumber && <p className="text-red-500 text-xs mt-1">ID Card Number is required</p>}
+            <label htmlFor="teacherIdCardCopy" className="leading-7 text-sm text-gray-600">ID Card Copy</label>
+            <input type="file" id="teacherIdCardCopy" {...register("teacherIdCardCopy")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
           </div>
           <div>
-            <label htmlFor="gradeId" className="leading-7 text-sm text-gray-600">Grade</label>
-            <select id="gradeId" {...register("gradeId", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <option value="">Select Grade</option>
-              {grades.length > 0 ? grades.map((grade) => (
-                <option key={grade._id} value={grade._id}>{grade.name}</option>
-              )) : <option disabled>No Grades Available</option>}
+            <label htmlFor="teacherAvatar" className="leading-7 text-sm text-gray-600">Avatar</label>
+            <input type="file" id="teacherAvatar" {...register("teacherAvatar")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+          </div>
+          <div>
+            <label htmlFor="teacherGradeIncharge" className="leading-7 text-sm text-gray-600">Grade Incharge</label>
+            <select id="teacherGradeIncharge" {...register("teacherGradeIncharge")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              <option value="">Select Grade Incharge</option>
+              {grades.map((grade) => (
+                <option key={grade._id} value={grade._id}>{grade.gradeName}</option>
+              ))}
             </select>
-            {errors.gradeId && <p className="text-red-500 text-xs mt-1">Grade is required</p>}
           </div>
-          <div>
-            <label htmlFor="courseIds" className="leading-7 text-sm text-gray-600">Courses</label>
-            <select id="courseIds" {...register("courseIds", { required: true })} multiple className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              {courses.length > 0 ? courses.map((course) => (
-                <option key={course._id} value={course._id}>{course.name}</option>
-              )) : <option disabled>No Courses Available</option>}
-            </select>
-            {errors.courseIds && <p className="text-red-500 text-xs mt-1">Courses are required</p>}
+          <div className="sm:col-span-2 flex justify-center">
+            <button type="submit" className="bg-[#033e71] text-white px-4 py-2 rounded">Add Teacher</button>
           </div>
-          <div className="flex justify-center sm:col-span-2">
-            {loading ? (
+          {loading && (
+            <div className="sm:col-span-2 flex justify-center">
               <ThreeDotLoader />
-            ) : (
-              <button type="submit" className="bg-[#033e71] text-white p-2 rounded">Submit</button>
-            )}
-          </div>
+            </div>
+          )}
         </form>
       </Modal>
-      <h2 className="text-2xl font-bold mb-4">Teachers List</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white text-black">
-          <thead>
+        <table className="min-w-full bg-white">
+          <thead className="bg-[#033e71] text-white">
             <tr>
-              <th className="py-2 px-4 border-b">Name</th>
-              <th className="py-2 px-4 border-b">Email</th>
-              <th className="py-2 px-4 border-b">Grade</th>
-              <th className="py-2 px-4 border-b">Courses</th>
-              <th className="py-2 px-4 border-b">Actions</th>
+              <th className="w-1/4 py-2">Name</th>
+              <th className="w-1/4 py-2">Email</th>
+              <th className="w-1/4 py-2">ID Card Number</th>
+              <th className="w-1/4 py-2">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {teachers.length > 0 ? teachers.map((teacher) => (
-              <tr key={teacher._id}>
-                <td className="py-2 px-4 border-b">{teacher.teacherName || ''}</td>
-                <td className="py-2 px-4 border-b">{teacher.teacherEmail || ''}</td>
-                <td className="py-2 px-4 border-b">{grades.find(grade => grade._id === teacher.gradeId)?.name || 'N/A'}</td>
-                <td className="py-2 px-4 border-b">{teacher.email || ''}</td>
-
-                <td className="py-2 px-4 border-b">
-                  <button onClick={() => handleUpdate(teacher._id)} className="bg-yellow-500 text-white px-2 py-1 rounded mr-2">Update</button>
+          <tbody className="text-gray-600">
+            {teachers.map((teacher) => (
+              <tr key={teacher._id} className="border-t">
+                <td className="py-2">{teacher.teacherName}</td>
+                <td className="py-2">{teacher.teacherEmail}</td>
+                <td className="py-2">{teacher.teacherIdCardNumber}</td>
+                <td className="py-2 flex justify-around">
+                  <button onClick={() => handleUpdate(teacher._id, teacher)} className="bg-yellow-400 text-white px-2 py-1 rounded">Update</button>
                   <button onClick={() => handleDelete(teacher._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                 </td>
               </tr>
-            )) : (
-              <tr>
-                <td className="py-2 px-4 border-b text-center" colSpan="5">No teachers available</td>
-              </tr>
-            )}
+            ))}
           </tbody>
         </table>
       </div>
     </div>
   );
 };
-
-export default AdminAddTeacher;
