@@ -180,23 +180,18 @@ export const AdminAddTeacher = () => {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-      marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       padding: '2rem',
       borderRadius: '0.5rem',
       width: '90%',
-      maxWidth: '600px',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      overflowY: 'auto',
       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     },
     overlay: {
       backgroundColor: 'rgba(0, 0, 0, 0.75)',
     },
-  };
-
-  // Custom styles for the select elements and options
-  const selectStyles = {
-    select: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c] bg-black text-white",
-    option: "block w-full px-4 py-2 text-white bg-black hover:bg-gray-700",
   };
 
   return (
@@ -235,164 +230,93 @@ export const AdminAddTeacher = () => {
       </table>
 
       <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} style={customStyles}>
-        <h2 className="text-2xl mb-4">{editingTeacher ? 'Edit Teacher' : 'Add Teacher'}</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700">Name</label>
-            <input
-              type="text"
-              name="teacherName"
-              value={formData.teacherName}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
+        <h2 className="text-2xl mb-4">{editingTeacher ? "Edit Teacher" : "Add New Teacher"}</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" name="teacherName" value={formData.teacherName} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" name="teacherEmail" value={formData.teacherEmail} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Email</label>
-            <input
-              type="email"
-              name="teacherEmail"
-              value={formData.teacherEmail}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Password</label>
+              <input type="password" name="teacherPassword" value={formData.teacherPassword} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Salary</label>
+              <input type="number" name="teacherSalary" value={formData.teacherSalary} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Password</label>
-            <input
-              type="password"
-              name="teacherPassword"
-              value={formData.teacherPassword}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">ID Card Number</label>
+              <input type="text" name="teacherIdCardNumber" value={formData.teacherIdCardNumber} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Job Date</label>
+              <input type="date" name="teacherJobDate" value={formData.teacherJobDate} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Salary</label>
-            <input
-              type="number"
-              name="teacherSalary"
-              value={formData.teacherSalary}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Avatar</label>
+              <input type="file" name="teacherAvatar" onChange={handleFileChange} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">ID Card Copy</label>
+              <input type="file" name="teacherIdCardCopy" onChange={handleFileChange} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">ID Card Number</label>
-            <input
-              type="text"
-              name="teacherIdCardNumber"
-              value={formData.teacherIdCardNumber}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Job Date</label>
-            <input
-              type="date"
-              name="teacherJobDate"
-              value={formData.teacherJobDate}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Avatar</label>
-            <input
-              type="file"
-              name="teacherAvatar"
-              onChange={handleFileChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">ID Card Copy</label>
-            <input
-              type="file"
-              name="teacherIdCardCopy"
-              onChange={handleFileChange}
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#40b08c]"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Grades</label>
-            <select
-              name="grades"
-              onChange={handleSelectChange}
-              className={selectStyles.select}
-            >
-              <option value="">Select Grades</option>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Grades</label>
+            <select name="grades" onChange={handleSelectChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option value="" disabled selected>Select grades</option>
               {grades.map((grade) => (
-                <option key={grade._id} value={JSON.stringify({ gradeId: grade._id, gradeName: grade.gradeName })} className={selectStyles.option}>
+                <option key={grade._id} value={JSON.stringify({ gradeId: grade._id, gradeName: grade.gradeName })}>
                   {grade.gradeName}
                 </option>
               ))}
             </select>
-            <div className="flex flex-wrap mt-2">
-              {selectedGrades.map((gradeId, index) => {
+            <div className="mt-2 flex flex-wrap">
+              {selectedGrades.map((gradeId) => {
                 const grade = grades.find((g) => g._id === gradeId);
                 return (
-                  <span key={index} className="bg-gray-200 text-gray-700 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
-                    {grade?.gradeName}
-                    <button
-                      type="button"
-                      onClick={() => removeSelection(gradeId, "grades")}
-                      className="ml-1 text-red-600 hover:text-red-800"
-                    >
-                      &times;
-                    </button>
+                  <span key={gradeId} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    {grade.gradeName} <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500 ml-2">x</button>
                   </span>
                 );
               })}
             </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Courses</label>
-            <select
-              name="courses"
-              onChange={handleSelectChange}
-              className={selectStyles.select}
-            >
-              <option value="">Select Courses</option>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Courses</label>
+            <select name="courses" onChange={handleSelectChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option value="" disabled selected>Select courses</option>
               {courses.map((course) => (
-                <option key={course._id} value={JSON.stringify({ courseId: course._id, courseName: course.courseName })} className={selectStyles.option}>
+                <option key={course._id} value={JSON.stringify({ courseId: course._id, courseName: course.courseName })}>
                   {course.courseName}
                 </option>
               ))}
             </select>
-            <div className="flex flex-wrap mt-2">
-              {selectedCourses.map((courseId, index) => {
+            <div className="mt-2 flex flex-wrap">
+              {selectedCourses.map((courseId) => {
                 const course = courses.find((c) => c._id === courseId);
                 return (
-                  <span key={index} className="bg-gray-200 text-gray-700 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
-                    {course?.courseName}
-                    <button
-                      type="button"
-                      onClick={() => removeSelection(courseId, "courses")}
-                      className="ml-1 text-red-600 hover:text-red-800"
-                    >
-                      &times;
-                    </button>
+                  <span key={courseId} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    {course.courseName} <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-500 ml-2">x</button>
                   </span>
                 );
               })}
             </div>
           </div>
           <div className="flex justify-end">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(false)}
-              className="mr-2 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 focus:outline-none"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className={`px-4 py-2 ${loading ? 'bg-gray-400' : 'bg-[#40b08c] hover:bg-[#75dbbb]'} text-white rounded focus:outline-none`}
-              disabled={loading}
-            >
-              {loading ? <ThreeDotLoader /> : "Save"}
+            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#40b08c] hover:bg-[#75dbbb] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              {loading ? <ThreeDotLoader /> : editingTeacher ? "Update Teacher" : "Add Teacher"}
             </button>
           </div>
         </form>
