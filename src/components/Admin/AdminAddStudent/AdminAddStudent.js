@@ -18,9 +18,11 @@ export const AdminAddStudent = () => {
     studentIdCardNumber: "",
     studentIdCardCopy: null,
     studentAvatar: null,
+    studentCourses: [],
   });
 
   const [grades, setGrades] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [students, setStudents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +38,16 @@ export const AdminAddStudent = () => {
       }
     };
     fetchAllGrades();
+
+    const fetchAllCourses = async () => {
+      try {
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses");
+        setCourses(response.data.courses);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    };
+    fetchAllCourses();
 
     const fetchAllStudents = async () => {
       try {
@@ -58,15 +70,20 @@ export const AdminAddStudent = () => {
     setFormData((prev) => ({ ...prev, [name]: files[0] }));
   };
 
+  const handleCoursesChange = (e) => {
+    const selectedCourses = Array.from(e.target.selectedOptions, option => option.value);
+    setFormData((prev) => ({ ...prev, studentCourses: selectedCourses }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (Object.values(formData).some((val) => !val)) {
+    if (Object.values(formData).some((val) => !val && val !== formData.studentCourses)) {
       handleShowFailureToast("Please fill all fields!");
       return;
     }
 
-    const { studentAvatar, studentIdCardCopy, studentName, studentEmail, studentPassword, studentId, studentGrade, studentIdCardNumber } = formData;
+    const { studentAvatar, studentIdCardCopy, studentName, studentEmail, studentPassword, studentId, studentGrade, studentIdCardNumber, studentCourses } = formData;
     const data = {
       studentName,
       studentEmail,
@@ -76,6 +93,7 @@ export const AdminAddStudent = () => {
       studentIdCardNumber,
       studentAvatar,
       studentIdCardCopy,
+      studentCourses,
     };
 
     try {
@@ -94,6 +112,7 @@ export const AdminAddStudent = () => {
         studentIdCardNumber: "",
         studentAvatar: null,
         studentIdCardCopy: null,
+        studentCourses: [],
       });
       setIsModalOpen(false);
       setEditingStudent(null);
@@ -119,6 +138,7 @@ export const AdminAddStudent = () => {
       studentIdCardNumber: student?.studentIdCardNumber || "",
       studentAvatar: null,
       studentIdCardCopy: null,
+      studentCourses: student?.studentCourses || [],
     });
     setIsModalOpen(true);
   };
@@ -219,21 +239,33 @@ export const AdminAddStudent = () => {
                 <option value="">Select Grade</option>
                 {grades.map((grade) => (
                   <option key={grade._id} value={grade._id}>
-                    {grade.name}
+                    {grade.gradeCategory}
                   </option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">ID Card Number</label>
-              <input type="text" name="studentIdCardNumber" value={formData.studentIdCardNumber} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+              <label className="block text-sm font-medium text-gray-700">Courses</label>
+              <select multiple name="studentCourses" value={formData.studentCourses} onChange={handleCoursesChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                {courses.map((course) => (
+                  <option key={course._id} value={course._id}>
+                    {course.courseTitle}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
+              <label className="block text-sm font-medium text-gray-700">ID Card Number</label>
+              <input type="text" name="studentIdCardNumber" value={formData.studentIdCardNumber} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-gray-700">ID Card Copy</label>
               <input type="file" name="studentIdCardCopy" onChange={handleFileChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">Avatar</label>
               <input type="file" name="studentAvatar" onChange={handleFileChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
