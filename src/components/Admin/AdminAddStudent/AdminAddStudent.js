@@ -266,16 +266,16 @@ export const AdminAddStudent = () => {
                 </option>
               ))}
             </select>
-            {selectedGrades.length > 0 && (
-              <div className="mt-2">
-                {selectedGrades.map((gradeId) => (
-                  <span key={gradeId} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {grades.find((grade) => grade._id === gradeId).gradeName}
-                    <button onClick={() => removeSelection(gradeId, "grades")} className="ml-2 text-red-500">x</button>
+            <div className="mt-2 flex flex-wrap">
+              {selectedGrades.map((gradeId) => {
+                const grade = grades.find((g) => g._id === gradeId);
+                return (
+                  <span key={gradeId} className="inline-block bg-white text-black rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2">
+                    {grade.gradeCategory} <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500 ml-2">x</button>
                   </span>
-                ))}
-              </div>
-            )}
+                );
+              })}
+            </div>
           </div>
 
           <div className="mb-4">
