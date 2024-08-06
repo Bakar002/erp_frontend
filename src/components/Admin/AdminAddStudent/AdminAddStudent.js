@@ -277,11 +277,32 @@ export const AdminAddStudent = () => {
               })}
             </div>
           </div>
-
-          <div className="mb-4">
-            <label htmlFor="courses" className="block text-sm font-medium text-gray-700">Select Courses</label>
-            <select name="courses" id="courses" onChange={handleSelectChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-            {courses.map((course) => (
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Grades</label>
+            <select name="grades" onChange={handleSelectChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option value="" disabled selected>Select grades</option>
+              {grades.map((grade) => (
+                <option key={grade._id} className="" value={JSON.stringify({ gradeId: grade._id, gradeCategory: grade.gradeCategory })}>
+                  {grade.gradeCategory}
+                </option>
+              ))}
+            </select>
+            <div className="mt-2 flex flex-wrap">
+              {selectedGrades.map((gradeId) => {
+                const grade = grades.find((g) => g._id === gradeId);
+                return (
+                  <span key={gradeId} className="inline-block bg-white text-black rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2">
+                    {grade.gradeCategory} <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500 ml-2">x</button>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Courses</label>
+            <select name="courses" onChange={handleSelectChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option value="" disabled selected>Select courses</option>
+              {courses.map((course) => (
                 <option key={course._id} value={JSON.stringify({ courseId: course._id, courseTitle: course.courseTitle })}>
                   {course.courseTitle}
                 </option>
