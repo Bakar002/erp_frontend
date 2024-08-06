@@ -277,8 +277,8 @@ export const AdminAddTeacher = () => {
             <select name="grades" onChange={handleSelectChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option value="" disabled selected>Select grades</option>
               {grades.map((grade) => (
-                <option key={grade._id} value={JSON.stringify({ gradeId: grade._id, gradeName: grade.gradeName })}>
-                  {grade.gradeName}
+                <option key={grade._id} className="" value={JSON.stringify({ gradeId: grade._id, gradeCategory: grade.gradeCategory })}>
+                  {grade.gradeCategory}
                 </option>
               ))}
             </select>
@@ -286,8 +286,8 @@ export const AdminAddTeacher = () => {
               {selectedGrades.map((gradeId) => {
                 const grade = grades.find((g) => g._id === gradeId);
                 return (
-                  <span key={gradeId} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {grade.gradeName} <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500 ml-2">x</button>
+                  <span key={gradeId} className="inline-block bg-white text-black rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2">
+                    {grade.gradeCategory} <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500 ml-2">x</button>
                   </span>
                 );
               })}
@@ -298,8 +298,8 @@ export const AdminAddTeacher = () => {
             <select name="courses" onChange={handleSelectChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option value="" disabled selected>Select courses</option>
               {courses.map((course) => (
-                <option key={course._id} value={JSON.stringify({ courseId: course._id, courseName: course.courseName })}>
-                  {course.courseName}
+                <option key={course._id} value={JSON.stringify({ courseId: course._id, courseTitle: course.courseTitle })}>
+                  {course.courseTitle}
                 </option>
               ))}
             </select>
@@ -308,7 +308,7 @@ export const AdminAddTeacher = () => {
                 const course = courses.find((c) => c._id === courseId);
                 return (
                   <span key={courseId} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {course.courseName} <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-500 ml-2">x</button>
+                    {course.courseTitle} <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-500 ml-2">x</button>
                   </span>
                 );
               })}
