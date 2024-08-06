@@ -1,222 +1,252 @@
+import "react-toastify/dist/ReactToastify.css";
 import React, { useEffect, useState } from "react";
-import Modal from "react-modal";
-import { useForm } from "react-hook-form";
-import {
-  handleShowFailureToast,
-  handleShowSuccessToast,
-} from "../../../components/ToastMessages/ToastMessage";
 import axios from "axios";
+import { handleShowFailureToast, handleShowSuccessToast } from "../../ToastMessages/ToastMessage";
 import { Toaster } from "react-hot-toast";
-import ThreeDotLoader from "../../../components/Loaders/ThreeDotLoader";
+import ThreeDotLoader from "../../Loaders/ThreeDotLoader";
+import Modal from "react-modal";
 
-// Modal styles
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    maxWidth: '500px',
-  },
-};
-
-Modal.setAppElement('#root');
+Modal.setAppElement('#root'); // Ensure accessibility
 
 export const AdminAddStudent = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  const [students, setStudents] = useState([]);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    studentName: "",
+    studentEmail: "",
+    studentPassword: "",
+    studentId: "",
+    studentGrade: "",
+    studentIdCardNumber: "",
+    studentIdCardCopy: null,
+    studentAvatar: null,
+  });
+
   const [grades, setGrades] = useState([]);
-  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [students, setStudents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingStudent, setEditingStudent] = useState(null);
 
   useEffect(() => {
     const fetchAllGrades = async () => {
       try {
         const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades");
         setGrades(response.data.grades);
-
       } catch (error) {
         console.log(error.response.data.message);
       }
     };
     fetchAllGrades();
 
-    const fetchAllCourses = async () => {
+    const fetchAllStudents = async () => {
       try {
-        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses");
-        setCourses(response.data.courses);
+        const response = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-students");
+        setStudents(response.data.students);
       } catch (error) {
         console.log(error.response.data.message);
       }
     };
-    fetchAllCourses();
+    fetchAllStudents();
   }, []);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: files[0] }));
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // useEffect(() => {
-  //   const fetchGradesAndCourses = async () => {
-  //     try {
-  //       const [gradesResponse, coursesResponse] = await Promise.all([
-  //         axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-grades"),
-  //         axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-courses")
-  //       ]);
-  //       setGrades(gradesResponse.data.grades || []);
-  //       console.log(gradesResponse.data.grades)
-  //       setCourses(coursesResponse.data.courses || []);
-  //       console.log(gradesResponse.data.courses)
+    if (Object.values(formData).some((val) => !val)) {
+      handleShowFailureToast("Please fill all fields!");
+      return;
+    }
 
-  //     } catch (error) {
-  //       console.log("API Error:", error?.response?.data?.message);
-  //     }
-  //   };
-  //   fetchGradesAndCourses();
-  // }, []);
+    const { studentAvatar, studentIdCardCopy, studentName, studentEmail, studentPassword, studentId, studentGrade, studentIdCardNumber } = formData;
+    const data = {
+      studentName,
+      studentEmail,
+      studentPassword,
+      studentId,
+      studentGrade,
+      studentIdCardNumber,
+      studentAvatar,
+      studentIdCardCopy,
+    };
 
-  const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const response = await axios.post("https://belikeerp-3.onrender.com/api/v1/admin/add-student", data);
+      const url = editingStudent ? `https://belikeerp-3.onrender.com/api/v1/admin/update-student/${editingStudent._id}` : "https://belikeerp-3.onrender.com/api/v1/admin/add-student";
+      const response = await axios.post(url, data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       handleShowSuccessToast(response.data.message);
-      setStudents([...students, response.data.student]);
-      setLoading(false);
-      closeModal();
-      reset();
+      setFormData({
+        studentName: "",
+        studentEmail: "",
+        studentPassword: "",
+        studentId: "",
+        studentGrade: "",
+        studentIdCardNumber: "",
+        studentAvatar: null,
+        studentIdCardCopy: null,
+      });
+      setIsModalOpen(false);
+      setEditingStudent(null);
+
+      // Fetch updated students
+      const studentsResponse = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-students");
+      setStudents(studentsResponse.data.students);
     } catch (error) {
-      handleShowFailureToast(error.response.data.message);
+      handleShowFailureToast(error.response?.data?.message || error.message);
+    } finally {
       setLoading(false);
     }
   };
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal = (student = null) => {
+    setEditingStudent(student);
+    setFormData({
+      studentName: student?.studentName || "",
+      studentEmail: student?.studentEmail || "",
+      studentPassword: student?.studentPassword || "",
+      studentId: student?.studentId || "",
+      studentGrade: student?.studentGrade || "",
+      studentIdCardNumber: student?.studentIdCardNumber || "",
+      studentAvatar: null,
+      studentIdCardCopy: null,
+    });
+    setIsModalOpen(true);
+  };
 
   const handleDelete = async (id) => {
     try {
-      setLoading(true);
-      const response = await axios.delete(`https://belikeerp-3.onrender.com/api/v1/admin/delete-student/${id}`);
-      handleShowSuccessToast(response.data.message);
-      setStudents(students.filter(student => student._id !== id));
-      setLoading(false);
+      await axios.delete(`https://belikeerp-3.onrender.com/api/v1/admin/delete-student/${id}`);
+      handleShowSuccessToast("Student deleted successfully!");
+      // Fetch updated students
+      const studentsResponse = await axios.get("https://belikeerp-3.onrender.com/api/v1/admin/load-all-students");
+      setStudents(studentsResponse.data.students);
     } catch (error) {
-      handleShowFailureToast(error.response.data.message);
-      setLoading(false);
+      handleShowFailureToast(error.response?.data?.message || error.message);
     }
   };
 
-  const handleUpdate = async (id, updatedData) => {
-    try {
-      setLoading(true);
-      const response = await axios.put(`https://belikeerp-3.onrender.com/api/v1/admin/update-student/${id}`, updatedData);
-      handleShowSuccessToast(response.data.message);
-      const updatedStudents = students.map(student => {
-        if (student._id === id) {
-          return { ...student, ...updatedData };
-        }
-        return student;
-      });
-      setStudents(updatedStudents);
-      setLoading(false);
-    } catch (error) {
-      handleShowFailureToast(error.response.data.message);
-      setLoading(false);
-    }
+  // Custom modal styles
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      transform: 'translate(-50%, -50%)',
+      padding: '2rem',
+      borderRadius: '0.5rem',
+      width: '90%',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      overflowY: 'auto',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    },
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    },
   };
 
   return (
-    <div className="md:px-8 mt-4">
+    <div className="h-auto md:px-8 mt-4">
       <Toaster />
-      <div className="flex justify-end mb-4">
-        <button onClick={openModal} className="bg-[#033e71] text-white p-2 rounded">Add Student</button>
-      </div>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Add Student">
-        <div className="flex justify-end">
-          <button onClick={closeModal} className="bg-gray-500 text-white p-2 rounded">✕</button>
-        </div>
-        <h2 className="text-xl font-bold mb-4 text-center" style={{ color: '#033e71' }}>Add Student</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="text-gray-600 grid gap-4 grid-cols-1 sm:grid-cols-2">
-          <div>
-            <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-            <input type="text" id="name" {...register("name", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.name && <p className="text-red-500 text-xs mt-1">Name is required</p>}
-          </div>
-          <div>
-            <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-            <input type="email" id="email" {...register("email", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.email && <p className="text-red-500 text-xs mt-1">Email is required</p>}
-          </div>
-          <div>
-            <label htmlFor="password" className="leading-7 text-sm text-gray-600">Password</label>
-            <input type="password" id="password" {...register("password", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.password && <p className="text-red-500 text-xs mt-1">Password is required</p>}
-          </div>
-          <div>
-            <label htmlFor="image" className="leading-7 text-sm text-gray-600">Image</label>
-            <input type="file" id="image" {...register("image")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-          </div>
-          <div>
-            <label htmlFor="joiningDate" className="leading-7 text-sm text-gray-600">Joining Date</label>
-            <input type="date" id="joiningDate" {...register("joiningDate", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            {errors.joiningDate && <p className="text-red-500 text-xs mt-1">Joining Date is required</p>}
-          </div>
-          <div>
-            <label htmlFor="idCardNumber" className="leading-7 text-sm text-gray-600">ID Card Number</label>
-            <input type="text" id="idCardNumber" {...register("idCardNumber")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-          </div>
-          <div>
-            <label htmlFor="grade" className="leading-7 text-sm text-gray-600">Grade</label>
-            <select id="grade" {...register("grade", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <option value="">Select Grade</option>
-              {grades.map(grade => (
-                <option key={grade.gradeId} value={grade.gradeId}>{grade.gradeName}</option>
-              ))}
-            </select>
-            {errors.grade && <p className="text-red-500 text-xs mt-1">Grade is required</p>}
-          </div>
-          <div>
-            <label htmlFor="course" className="leading-7 text-sm text-gray-600">Course</label>
-            <select id="course" {...register("course", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#033e71] focus:bg-white focus:ring-2 focus:ring-[#033e71] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <option value="">Select Course</option>
-              {courses.map(course => (
-                <option key={course.courseId} value={course.courseId}>{course.courseName}</option>
-              ))}
-            </select>
-            {errors.course && <p className="text-red-500 text-xs mt-1">Course is required</p>}
-          </div>
-          <button type="submit" className="bg-[#033e71] text-white py-2 px-4 rounded">{loading ? <ThreeDotLoader /> : 'Submit'}</button>
-        </form>
-      </Modal>
+      <button onClick={() => openModal()} className="flex mx-auto justify-center items-center text-white bg-[#40b08c] border-0 py-1 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg">
+        Add New Student
+      </button>
 
-      <table className="w-full text-sm text-left text-gray-500 mt-8">
-        <thead className="text-xs text-white uppercase bg-black">
+      <table className="min-w-full divide-y divide-gray-200 mt-4">
+        <thead>
           <tr>
-            <th className="px-6 py-3">Name</th>
-            <th className="px-6 py-3">Email</th>
-            <th className="px-6 py-3">Grade</th>
-            <th className="px-6 py-3">Course</th>
-            <th className="px-6 py-3">Actions</th>
+            <th className="px-6 py-3 bg-black text-white">Name</th>
+            <th className="px-6 py-3 bg-black text-white">Email</th>
+            <th className="px-6 py-3 bg-black text-white">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-white divide-y divide-gray-200">
           {students.map((student) => (
-            <tr key={student._id} className="bg-white border-b hover:bg-gray-50">
-              <td className="px-6 py-4">{student.name}</td>
-              <td className="px-6 py-4">{student.email}</td>
-              <td className="px-6 py-4">{student.gradeName}</td>
-              <td className="px-6 py-4">{student.courseName}</td>
-              <td className="px-6 py-4 flex space-x-2">
-                <button onClick={() => handleUpdate(student._id, { /* updated data */ })} className="bg-blue-500 text-white p-2 rounded">Update</button>
-                <button onClick={() => handleDelete(student._id)} className="bg-red-500 text-white p-2 rounded">Delete</button>
+            <tr key={student._id}>
+              <td className="px-6 py-4 text-sm font-medium text-gray-900">{student.studentName}</td>
+              <td className="px-6 py-4 text-sm text-gray-500">{student.studentEmail}</td>
+              <td className="px-6 py-4 text-sm font-medium">
+                <button onClick={() => openModal(student)} className="text-blue-600 bg-white hover:text-blue-900">
+                  Edit
+                </button>
+                <button onClick={() => handleDelete(student._id)} className="text-red-600 bg-white hover:text-red-900 ml-4">
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} style={customStyles}>
+        <h2 className="text-2xl mb-4">{editingStudent ? "Edit Student" : "Add New Student"}</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" name="studentName" value={formData.studentName} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" name="studentEmail" value={formData.studentEmail} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Password</label>
+              <input type="password" name="studentPassword" value={formData.studentPassword} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">ID</label>
+              <input type="text" name="studentId" value={formData.studentId} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Grade</label>
+              <select name="studentGrade" value={formData.studentGrade} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Select Grade</option>
+                {grades.map((grade) => (
+                  <option key={grade._id} value={grade._id}>
+                    {grade.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">ID Card Number</label>
+              <input type="text" name="studentIdCardNumber" value={formData.studentIdCardNumber} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">ID Card Copy</label>
+              <input type="file" name="studentIdCardCopy" onChange={handleFileChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Avatar</label>
+              <input type="file" name="studentAvatar" onChange={handleFileChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+          </div>
+          <div>
+            <button type="submit" className="text-white bg-[#40b08c] border-0 py-2 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg">
+              {editingStudent ? "Update Student" : "Add Student"}
+            </button>
+          </div>
+        </form>
+        {loading && <ThreeDotLoader />}
+      </Modal>
     </div>
   );
 };
