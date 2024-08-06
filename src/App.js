@@ -214,7 +214,7 @@ function App() {
             isTeacherAuthenticated ? (
               <Tec />
             ) : (
-              <Tec />
+              <TeacherLogin />
             )
           }
         />
@@ -451,7 +451,7 @@ function App() {
 <Route
             path="/students"
             element={
-              isStudentAuthenticated ? <Stu /> : <Stu />
+              isStudentAuthenticated ? <Stu /> : <StudentLogin />
             }
           />
 
