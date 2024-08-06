@@ -14,16 +14,15 @@ export const AdminAddStudent = () => {
     studentEmail: "",
     studentPassword: "",
     studentId: "",
-    studentGrade: "",
     studentIdCardNumber: "",
-    studentIdCardCopy: null,
     studentAvatar: null,
-    studentCourses: [],
+    studentIdCardCopy: null,
   });
+
+  const [courses, setCourses] = useState([]);
+  const [grades, setGrades] = useState([]);
   const [selectedGrades, setSelectedGrades] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const [grades, setGrades] = useState([]);
-  const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [students, setStudents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,30 +70,36 @@ export const AdminAddStudent = () => {
     setFormData((prev) => ({ ...prev, [name]: files[0] }));
   };
 
-  const handleCoursesChange = (e) => {
-    const selectedCourses = Array.from(e.target.selectedOptions, option => option.value);
-    setFormData((prev) => ({ ...prev, studentCourses: selectedCourses }));
+  const handleSelectChange = (e) => {
+    const { value, name } = e.target;
+    const selectedOption = JSON.parse(value);
+
+    if (name === "grades") {
+      setSelectedGrades((prev) => [...new Set([...prev, selectedOption.gradeId])]);
+    } else if (name === "courses") {
+      setSelectedCourses((prev) => [...new Set([...prev, selectedOption.courseId])]);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (Object.values(formData).some((val) => !val && val !== formData.studentCourses)) {
-      handleShowFailureToast("Please fill all fields!");
+    if (Object.values(formData).some((val) => !val) || selectedGrades.length === 0 || selectedCourses.length === 0) {
+      handleShowFailureToast("Please fill all fields and select at least one grade and course!");
       return;
     }
 
-    const { studentAvatar, studentIdCardCopy, studentName, studentEmail, studentPassword, studentId, studentGrade, studentIdCardNumber, studentCourses } = formData;
+    const { studentAvatar, studentIdCardCopy, studentName, studentEmail, studentPassword, studentId, studentIdCardNumber } = formData;
     const data = {
       studentName,
       studentEmail,
       studentPassword,
       studentId,
-      studentGrade,
       studentIdCardNumber,
       studentAvatar,
       studentIdCardCopy,
-      studentCourses,
+      studentGrades: selectedGrades.map((grade) => ({ gradeId: grade })),
+      studentCourses: selectedCourses.map((course) => ({ courseId: course })),
     };
 
     try {
@@ -109,12 +114,12 @@ export const AdminAddStudent = () => {
         studentEmail: "",
         studentPassword: "",
         studentId: "",
-        studentGrade: "",
         studentIdCardNumber: "",
         studentAvatar: null,
         studentIdCardCopy: null,
-        studentCourses: [],
       });
+      setSelectedGrades([]);
+      setSelectedCourses([]);
       setIsModalOpen(false);
       setEditingStudent(null);
 
@@ -128,6 +133,14 @@ export const AdminAddStudent = () => {
     }
   };
 
+  const removeSelection = (id, type) => {
+    if (type === "grades") {
+      setSelectedGrades((prev) => prev.filter((item) => item !== id));
+    } else if (type === "courses") {
+      setSelectedCourses((prev) => prev.filter((item) => item !== id));
+    }
+  };
+
   const openModal = (student = null) => {
     setEditingStudent(student);
     setFormData({
@@ -135,12 +148,12 @@ export const AdminAddStudent = () => {
       studentEmail: student?.studentEmail || "",
       studentPassword: student?.studentPassword || "",
       studentId: student?.studentId || "",
-      studentGrade: student?.studentGrade || "",
       studentIdCardNumber: student?.studentIdCardNumber || "",
       studentAvatar: null,
       studentIdCardCopy: null,
-      studentCourses: student?.studentCourses || [],
     });
+    setSelectedGrades(student?.studentGrades.map((g) => g.gradeId) || []);
+    setSelectedCourses(student?.studentCourses.map((c) => c.courseId) || []);
     setIsModalOpen(true);
   };
 
@@ -189,6 +202,7 @@ export const AdminAddStudent = () => {
           <tr>
             <th className="px-6 py-3 bg-black text-white">Name</th>
             <th className="px-6 py-3 bg-black text-white">Email</th>
+            <th className="px-6 py-3 bg-black text-white">ID</th>
             <th className="px-6 py-3 bg-black text-white">Actions</th>
           </tr>
         </thead>
@@ -197,11 +211,12 @@ export const AdminAddStudent = () => {
             <tr key={student._id}>
               <td className="px-6 py-4 text-sm font-medium text-gray-900">{student.studentName}</td>
               <td className="px-6 py-4 text-sm text-gray-500">{student.studentEmail}</td>
+              <td className="px-6 py-4 text-sm text-gray-500">{student.studentId}</td>
               <td className="px-6 py-4 text-sm font-medium">
                 <button onClick={() => openModal(student)} className="text-blue-600 bg-white hover:text-blue-900">
                   Edit
                 </button>
-                <button onClick={() => handleDelete(student._id)} className="text-red-600 bg-white hover:text-red-900 ml-4">
+                <button onClick={() => handleDelete(student._id)} className="text-red-600 bg-white hover:text-red-900 ml-2">
                   Delete
                 </button>
               </td>
@@ -211,77 +226,84 @@ export const AdminAddStudent = () => {
       </table>
 
       <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} style={customStyles}>
-        <h2 className="text-2xl mb-4">{editingStudent ? "Edit Student" : "Add New Student"}</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Name</label>
-              <input type="text" name="studentName" value={formData.studentName} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Email</label>
-              <input type="email" name="studentEmail" value={formData.studentEmail} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
+        <h2 className="text-2xl font-semibold mb-4">{editingStudent ? "Edit Student" : "Add New Student"}</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="studentName" className="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" name="studentName" id="studentName" value={formData.studentName} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
-              <input type="password" name="studentPassword" value={formData.studentPassword} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">ID</label>
-              <input type="text" name="studentId" value={formData.studentId} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
+          <div className="mb-4">
+            <label htmlFor="studentEmail" className="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="studentEmail" id="studentEmail" value={formData.studentEmail} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Grade</label>
-              <select name="studentGrade" value={formData.studentGrade} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <option value="">Select Grade</option>
-                {grades.map((grade) => (
-                <option key={grade._id} className="" value={JSON.stringify({ gradeId: grade._id, gradeCategory: grade.gradeCategory })}>
-                  {grade.gradeCategory}
+          <div className="mb-4">
+            <label htmlFor="studentPassword" className="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" name="studentPassword" id="studentPassword" value={formData.studentPassword} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="studentId" className="block text-sm font-medium text-gray-700">ID</label>
+            <input type="text" name="studentId" id="studentId" value={formData.studentId} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="studentIdCardNumber" className="block text-sm font-medium text-gray-700">ID Card Number</label>
+            <input type="text" name="studentIdCardNumber" id="studentIdCardNumber" value={formData.studentIdCardNumber} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="studentAvatar" className="block text-sm font-medium text-gray-700">Avatar</label>
+            <input type="file" name="studentAvatar" id="studentAvatar" onChange={handleFileChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="studentIdCardCopy" className="block text-sm font-medium text-gray-700">ID Card Copy</label>
+            <input type="file" name="studentIdCardCopy" id="studentIdCardCopy" onChange={handleFileChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="grades" className="block text-sm font-medium text-gray-700">Select Grades</label>
+            <select name="grades" id="grades" onChange={handleSelectChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+              {grades.map((grade) => (
+                <option key={grade._id} value={JSON.stringify({ gradeId: grade._id })}>
+                  {grade.gradeName}
                 </option>
               ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Courses</label>
-              <select multiple name="studentCourses" value={formData.studentCourses} onChange={handleCoursesChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              {selectedGrades.map((gradeId) => {
-                const grade = grades.find((g) => g._id === gradeId);
-                return (
-                  <span key={gradeId} className="inline-block bg-white text-black rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2">
-                    {grade.gradeCategory} <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500 ml-2">x</button>
+            </select>
+            {selectedGrades.length > 0 && (
+              <div className="mt-2">
+                {selectedGrades.map((gradeId) => (
+                  <span key={gradeId} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    {grades.find((grade) => grade._id === gradeId).gradeName}
+                    <button onClick={() => removeSelection(gradeId, "grades")} className="ml-2 text-red-500">x</button>
                   </span>
-                );
-              })}
-              </select>
-            </div>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">ID Card Number</label>
-              <input type="text" name="studentIdCardNumber" value={formData.studentIdCardNumber} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">ID Card Copy</label>
-              <input type="file" name="studentIdCardCopy" onChange={handleFileChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
+
+          <div className="mb-4">
+            <label htmlFor="courses" className="block text-sm font-medium text-gray-700">Select Courses</label>
+            <select name="courses" id="courses" onChange={handleSelectChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+              {courses.map((course) => (
+                <option key={course._id} value={JSON.stringify({ courseId: course._id })}>
+                  {course.courseName}
+                </option>
+              ))}
+            </select>
+            {selectedCourses.length > 0 && (
+              <div className="mt-2">
+                {selectedCourses.map((courseId) => (
+                  <span key={courseId} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    {courses.find((course) => course._id === courseId).courseName}
+                    <button onClick={() => removeSelection(courseId, "courses")} className="ml-2 text-red-500">x</button>
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Avatar</label>
-              <input type="file" name="studentAvatar" onChange={handleFileChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
-          </div>
-          <div>
-            <button type="submit" className="text-white bg-[#40b08c] border-0 py-2 px-4 focus:outline-none hover:bg-[#75dbbb] rounded text-lg">
-              {editingStudent ? "Update Student" : "Add Student"}
-            </button>
+
+          <div className="text-center">
+            {loading ? <ThreeDotLoader /> : <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">{editingStudent ? "Update Student" : "Add Student"}</button>}
+            <button onClick={() => setIsModalOpen(false)} className="ml-2 px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400">Cancel</button>
           </div>
         </form>
-        {loading && <ThreeDotLoader />}
       </Modal>
     </div>
   );
