@@ -287,16 +287,16 @@ export const AdminAddStudent = () => {
                 </option>
               ))}
             </select>
-            {selectedCourses.length > 0 && (
-              <div className="mt-2">
-                {selectedCourses.map((courseId) => (
-                  <span key={courseId} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {courses.find((course) => course._id === courseId).courseName}
-                    <button onClick={() => removeSelection(courseId, "courses")} className="ml-2 text-red-500">x</button>
+            <div className="mt-2 flex flex-wrap">
+              {selectedCourses.map((courseId) => {
+                const course = courses.find((c) => c._id === courseId);
+                return (
+                  <span key={courseId} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    {course.courseTitle} <button type="button" onClick={() => removeSelection(courseId, "courses")} className="text-red-500 ml-2">x</button>
                   </span>
-                ))}
-              </div>
-            )}
+                );
+              })}
+            </div>
           </div>
 
           <div className="text-center">
