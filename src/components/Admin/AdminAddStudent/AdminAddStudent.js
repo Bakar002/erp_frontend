@@ -230,31 +230,31 @@ export const AdminAddStudent = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="studentName" className="block text-sm font-medium text-gray-700">Name</label>
-            <input type="text" name="studentName" id="studentName" value={formData.studentName} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+            <input type="text" name="studentName" id="studentName" value={formData.studentName} onChange={handleInputChange} className="text-black mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-4">
             <label htmlFor="studentEmail" className="block text-sm font-medium text-gray-700">Email</label>
-            <input type="email" name="studentEmail" id="studentEmail" value={formData.studentEmail} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+            <input type="email" name="studentEmail" id="studentEmail" value={formData.studentEmail} onChange={handleInputChange} className="text-black mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-4">
             <label htmlFor="studentPassword" className="block text-sm font-medium text-gray-700">Password</label>
-            <input type="password" name="studentPassword" id="studentPassword" value={formData.studentPassword} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+            <input type="password" name="studentPassword" id="studentPassword" value={formData.studentPassword} onChange={handleInputChange} className="text-black mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-4">
             <label htmlFor="studentId" className="block text-sm font-medium text-gray-700">ID</label>
-            <input type="text" name="studentId" id="studentId" value={formData.studentId} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+            <input type="text" name="studentId" id="studentId" value={formData.studentId} onChange={handleInputChange} className="text-black mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-4">
             <label htmlFor="studentIdCardNumber" className="block text-sm font-medium text-gray-700">ID Card Number</label>
-            <input type="text" name="studentIdCardNumber" id="studentIdCardNumber" value={formData.studentIdCardNumber} onChange={handleInputChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+            <input type="text" name="studentIdCardNumber" id="studentIdCardNumber" value={formData.studentIdCardNumber} onChange={handleInputChange} className="text-black mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-4">
             <label htmlFor="studentAvatar" className="block text-sm font-medium text-gray-700">Avatar</label>
-            <input type="file" name="studentAvatar" id="studentAvatar" onChange={handleFileChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+            <input type="file" name="studentAvatar" id="studentAvatar" onChange={handleFileChange} className="text-black mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-4">
             <label htmlFor="studentIdCardCopy" className="block text-sm font-medium text-gray-700">ID Card Copy</label>
-            <input type="file" name="studentIdCardCopy" id="studentIdCardCopy" onChange={handleFileChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+            <input type="file" name="studentIdCardCopy" id="studentIdCardCopy" onChange={handleFileChange} className="text-black  mt-1 block w-full p-2 border border-gray-300 rounded-md" />
           </div>
 
           <div className="mb-4">
