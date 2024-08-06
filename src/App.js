@@ -129,6 +129,7 @@ import Adm from './components/School/SchoolPortal/Admins/Adm.js';
 import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
 import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
 import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
+import { TeacherAddTask } from './components/Teacher/TeacherAddTask/TeacherAddTask';
 
 
 function App() {
@@ -217,6 +218,9 @@ function App() {
             )
           }
         />
+
+<Route path="/teacher-lms" element={<TeacherAddTask />} />
+
            
            
 
@@ -444,9 +448,11 @@ function App() {
 <Route
             path="/students"
             element={
-              isStudentAuthenticated ? <Stu /> : <Stu />
+              isStudentAuthenticated ? <Stu /> : <StudentLogin />
             }
           />
+
+
 
 
 

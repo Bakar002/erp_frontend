@@ -17,7 +17,7 @@ const Tec = () => {
                   <div className="card-body">
                     <NavLink
                       className="text-center text-decoration-none text-reset"
-                      href="https://example.com"
+                      href="/"
                     >
                       <h6 className="text-center pt-2">Time Table</h6>
                     </NavLink>
@@ -103,27 +103,20 @@ const Tec = () => {
                     </NavLink>
                   </div>
                 </div>
-                <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3 flex flex-col justify-center items-center">
-                  <a
+                <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+                  <NavLink
                     className="text-center text-decoration-none text-reset"
-                    href="https://example.com"
+                    to={"/teacher-lms"}
                   >
-                    <img
-                      alt="learning"
-                      className="mt-3 bg-[#40b08c]"
-                      src={Learning}
-                      style={{ height: "40px" }}
-                    />
-                  </a>
+                    <i className="fa-solid fa-calendar-check text-center fa-2x mt-3" />
+                  </NavLink>
                   <div className="card-body">
-                    <a
+                    <NavLink
                       className="text-center text-decoration-none text-reset"
-                      href="https://example.com"
+                      to={"/teacher-lms"}
                     >
-                      <h6 className="text-center pt-2">
-                        Learning Management System
-                      </h6>
-                    </a>
+                      <h6 className="text-center pt-2">Learning Management System</h6>
+                    </NavLink>
                   </div>
                 </div>
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
