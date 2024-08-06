@@ -51,9 +51,10 @@ const StudentYearlyAtttendance = () => {
   ];
   return (
     <>
-      <div className="view-attendance-container h-screen w-screen overflow-auto">
+      <div className="view-attendance-container h-auto w-auto overflow-hidden">
+
         <div className="attendance-container w-full h-full">
-          <div className="flex w-full justify-center py-5">
+          <div className="flex w-full justify-center py-2">
             <h1 className="text-3xl font-bold">Student Attendance Report</h1>
           </div>
           <div className="student-details ml-10 mb-10">

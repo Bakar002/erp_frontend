@@ -30,9 +30,9 @@ const StudentAtttendance = () => {
   console.log(attendance);
   return (
     <>
-      <div className="view-attendance-container h-screen w-screen overflow-auto">
+      <div className="view-attendance-container h-auto w-auto overflow-hidden">
         <div className="attendance-container w-full h-full">
-          <div className="flex w-full justify-center py-5">
+          <div className="flex w-full justify-center py-2">
             <h1 className="text-3xl font-bold">Student Attendance Report</h1>
           </div>
           <div className="student-details ml-10 mb-10">
@@ -42,17 +42,17 @@ const StudentAtttendance = () => {
                 currentStudentData?.currentStudent?.studentAvatar
               }
               alt=""
-              className="w-40 h-40"
+              className="w-32 h-32"
             />
             <div>
-              <div className="flex items-center gap-5  mt-4">
-                <h1 className="text-xl font-semibold">Student Name:</h1>
+              <div className="flex text-white items-center gap-5  mt-4">
+                <h1 className="text-xl  font-semibold">Student Name:</h1>
                 <h1>
                   {currentStudentData &&
                     currentStudentData?.currentStudent?.studentName}
                 </h1>
               </div>
-              <div className="flex gap-5 mt-4 items-center">
+              <div className="text-white flex gap-5 mt-4 items-center">
                 <h1 className="text-xl font-semibold ">Student Id:</h1>
                 <h1>
                   {currentStudentData &&
@@ -60,7 +60,7 @@ const StudentAtttendance = () => {
                 </h1>
               </div>
               <div>
-                <div className="flex gap-5 mt-4 items-center">
+                <div className="text-white flex gap-5 mt-4 items-center">
                   <h1 className="text-xl font-semibold">Student Grade:</h1>
                   <h1>
                     {currentStudentData &&

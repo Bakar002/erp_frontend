@@ -50,9 +50,9 @@ const Stu = () => {
   };
 
   return (
-    <div className="flex bg-white  h-screen text-black">
+    <div className="flex   h-screen text-black">
       {/* Sidebar Menu */}
-      <ul className="w-64 pt-4 pl-5 pr-3 pb-8 bg-blue-800 flex-shrink-0 mb-4 h-screen">
+      <ul className="w-64 pt-4 pl-5 pr-3 pb-8 bg-blue-800 flex-shrink-0 mb-4 h-screen z-90">
         <li>
           <h1 className="font-bold text-5xl md:text-3xl  text-white">Quick as</h1>
         </li>
