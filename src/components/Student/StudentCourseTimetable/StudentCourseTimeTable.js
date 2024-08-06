@@ -43,7 +43,7 @@ const StudentCourseTimeTable = () => {
             </span>
           </h1>
           <h1 className="text-2xl">
-            Student Id:{" "}
+            Student Roll #:{" "}
             <span className="font-bold">
               {currentStudentData && currentStudentData.currentStudent.studentId
                 ? currentStudentData.currentStudent.studentId
