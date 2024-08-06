@@ -104,7 +104,7 @@ export const AdminAddStudent = () => {
 
     try {
       setLoading(true);
-      const url = editingStudent ? `https://belikeerp-3.onrender.com/api/v1/admin/update-student/${editingStudent._id}` : "https://belikeerp-3.onrender.com/api/v1/admin/add-student";
+      const url = editingStudent ? `https://belikeerp-3.onrender.com/api/v1/admin/update-student/${editingStudent._id}` : `https://belikeerp-3.onrender.com/api/v1/admin/add-student/${selectedGrades}`;
       const response = await axios.post(url, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
