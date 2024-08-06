@@ -260,9 +260,9 @@ export const AdminAddStudent = () => {
           <div className="mb-4">
             <label htmlFor="grades" className="block text-sm font-medium text-gray-700">Select Grades</label>
             <select name="grades" id="grades" onChange={handleSelectChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-              {grades.map((grade) => (
-                <option key={grade._id} value={JSON.stringify({ gradeId: grade._id })}>
-                  {grade.gradeName}
+            {grades.map((grade) => (
+                <option key={grade._id} className="" value={JSON.stringify({ gradeId: grade._id, gradeCategory: grade.gradeCategory })}>
+                  {grade.gradeCategory}
                 </option>
               ))}
             </select>
@@ -281,9 +281,9 @@ export const AdminAddStudent = () => {
           <div className="mb-4">
             <label htmlFor="courses" className="block text-sm font-medium text-gray-700">Select Courses</label>
             <select name="courses" id="courses" onChange={handleSelectChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-              {courses.map((course) => (
-                <option key={course._id} value={JSON.stringify({ courseId: course._id })}>
-                  {course.courseName}
+            {courses.map((course) => (
+                <option key={course._id} value={JSON.stringify({ courseId: course._id, courseTitle: course.courseTitle })}>
+                  {course.courseTitle}
                 </option>
               ))}
             </select>
