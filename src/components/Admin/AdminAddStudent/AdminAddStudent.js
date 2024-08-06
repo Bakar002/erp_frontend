@@ -20,7 +20,8 @@ export const AdminAddStudent = () => {
     studentAvatar: null,
     studentCourses: [],
   });
-
+  const [selectedGrades, setSelectedGrades] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState([]);
   const [grades, setGrades] = useState([]);
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -238,20 +239,23 @@ export const AdminAddStudent = () => {
               <select name="studentGrade" value={formData.studentGrade} onChange={handleInputChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option value="">Select Grade</option>
                 {grades.map((grade) => (
-                  <option key={grade._id} value={grade._id}>
-                    {grade.gradeCategory}
-                  </option>
-                ))}
+                <option key={grade._id} className="" value={JSON.stringify({ gradeId: grade._id, gradeCategory: grade.gradeCategory })}>
+                  {grade.gradeCategory}
+                </option>
+              ))}
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Courses</label>
               <select multiple name="studentCourses" value={formData.studentCourses} onChange={handleCoursesChange} className="text-black p-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                {courses.map((course) => (
-                  <option key={course._id} value={course._id}>
-                    {course.courseTitle}
-                  </option>
-                ))}
+              {selectedGrades.map((gradeId) => {
+                const grade = grades.find((g) => g._id === gradeId);
+                return (
+                  <span key={gradeId} className="inline-block bg-white text-black rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2">
+                    {grade.gradeCategory} <button type="button" onClick={() => removeSelection(gradeId, "grades")} className="text-red-500 ml-2">x</button>
+                  </span>
+                );
+              })}
               </select>
             </div>
           </div>
