@@ -214,7 +214,7 @@ function App() {
             isTeacherAuthenticated ? (
               <Tec />
             ) : (
-              <TeacherLogin />
+              <Tec />
             )
           }
         />
@@ -412,7 +412,7 @@ function App() {
           <Route
             path="/student-time-table"
             element={
-              isStudentAuthenticated ? <StudentCourseTimetable /> : <StudentLogin />
+            <StudentCourseTimetable />
             }
 
           />
@@ -423,32 +423,35 @@ function App() {
           <Route
             path="/student-weekly-attendance"
             element={
-              isStudentAuthenticated ? <StudentWeeklyAtttendance /> : <StudentLogin />
+               <StudentWeeklyAtttendance />
             }
           />
           <Route
             path="/student-monthly-attendance"
             element={
-              isStudentAuthenticated ? <StudentMonthlyAtttendance /> : <StudentLogin />
+<StudentMonthlyAtttendance />
+
             }
           />
           <Route
             path="/student-yearly-attendance"
             element={
-              isStudentAuthenticated ? <StudentYearlyAtttendance /> : <StudentLogin />
+<StudentYearlyAtttendance /> 
+
             }
           />
           <Route
             path="/student-add-feedback"
             element={
-              isStudentAuthenticated ? <StudentAddFeedback /> : <StudentLogin />
+ <StudentAddFeedback /> 
+
             }
           />
 
 <Route
             path="/students"
             element={
-              isStudentAuthenticated ? <Stu /> : <StudentLogin />
+              isStudentAuthenticated ? <Stu /> : <Stu />
             }
           />
 
@@ -459,7 +462,9 @@ function App() {
           
           <Route
             path="/student-result"
-            element={isStudentAuthenticated ? <AddResult /> : <StudentLogin/>}
+            element={
+ <AddResult />
+}
           />
           {/* Teacher Routes  */}
           <Route

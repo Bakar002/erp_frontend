@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 import StudentCourseTimeTable from '../../../Student/StudentCourseTimetable/StudentCourseTimeTable';
 import StudentAttendance from '../../../Student/StudentAttendance/StudentAttendance';
 import StudentMonthlyAttendance from '../../../Student/StudentMonthlyAttendance/StudentMonthlyAttendance';
@@ -10,75 +11,39 @@ import StudentMeeting from '../../../Student/StudentMeeting/StudentMeeting';
 import StudentLMS from '../../../Student/StudentLMS/StudentLMS';
 
 const Stu = () => {
-  const [activeComponent, setActiveComponent] = useState('');
+  const navigate = useNavigate();
 
   const menuItems = [
-    { key: 'TimeTable', label: 'Time Table' },
-    { key: 'StudentAttendance', label: 'Attendance' },
-    { key: 'Weekly', label: 'Weekly' },
-    { key: 'Monthly', label: 'Monthly' },
-    { key: 'Annual', label: 'Annual' },
-    { key: 'Meeting', label: 'Meeting' },
-    { key: 'Feedback', label: 'Add Feedback' },
-    { key: 'ViewResult', label: 'View Result' },
-    { key: 'LearningManagementSystem', label: 'LMS' },
+    { key: 'TimeTable', label: 'Time Table', icon: 'fa-clock', component: StudentCourseTimeTable, path: '/student-time-table' },
+    { key: 'StudentAttendance', label: 'Attendance', icon: 'fa-chalkboard-user', component: StudentAttendance, path: '/student-attendance' },
+    { key: 'Weekly', label: 'Weekly', icon: 'fa-calendar-week', component: StudentWeeklyAttendance, path: '/student-weekly-attendance' },
+    { key: 'Monthly', label: 'Monthly', icon: 'fa-calendar-days', component: StudentMonthlyAttendance, path: '/student-monthly-attendance' },
+    { key: 'Annual', label: 'Annual', icon: 'fa-calendar-check', component: StudentYearlyAttendance, path: '/student-annual-attendance' },
+    { key: 'Meeting', label: 'Meeting', icon: 'fa-handshake-simple', component: StudentMeeting, path: '/student-meeting' },
+    { key: 'Feedback', label: 'Add Feedback', icon: 'fa-comments', component: StudentAddFeedback, path: '/student-feedback' },
+    { key: 'ViewResult', label: 'View Result', icon: 'fa-chart-bar', component: StudentResult, path: '/student-result' },
+    { key: 'LearningManagementSystem', label: 'LMS', icon: 'fa-book', component: StudentLMS, path: '/student-lms' },
   ];
 
-  const renderComponent = () => {
-    switch (activeComponent) {
-      case 'TimeTable':
-        return <StudentCourseTimeTable />;
-      case 'StudentAttendance':
-        return <StudentAttendance />;
-      case 'Weekly':
-        return <StudentWeeklyAttendance />;
-      case 'Monthly':
-        return <StudentMonthlyAttendance />;
-      case 'Annual':
-        return <StudentYearlyAttendance />;
-      case 'Meeting':
-        return <StudentMeeting />;
-      case 'Feedback':
-        return <StudentAddFeedback />;
-      case 'ViewResult':
-        return <StudentResult />;
-      case 'LearningManagementSystem':
-        return <StudentLMS />;
-      default:
-        return <StudentCourseTimeTable />;
-    }
-  };
-
   return (
-    <div className="flex   h-screen text-black">
-      {/* Sidebar Menu */}
-      <ul className="w-64 pt-4 pl-5 pr-3 pb-8 bg-blue-800 flex-shrink-0 mb-4 h-screen z-90">
-        <li>
-          <h1 className="font-bold text-5xl md:text-3xl  text-white">Quick as</h1>
-        </li>
+    <div className="container">
+      <h3 className="text-center fw-bold mt-3">Students</h3>
+      <div className="row d-flex justify-content-center">
         {menuItems.map((item) => (
-          <li className="mt-4 text-xl font-semibold relative" key={item.key}>
-            <h1
-              onClick={() => setActiveComponent(item.key)}
-              className={`cursor-pointer inline-block text-white ${activeComponent === item.key ? 'active' : ''}`}
-              style={{ paddingBottom: '10px' }} // Adds spacing for the underline effect
-            >
-              {item.label}
-            </h1>
-            {activeComponent === item.key && (
-              <div
-                className="absolute bottom-0 left-0 w-64 border-b-2 border-white"
-                style={{ transform: 'translateY(10px)' }} // Moves underline below the text
-              />
-            )}
-          </li>
+          <div key={item.key} className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+            <NavLink to={item.path} className="text-center text-decoration-none text-reset">
+              <div className="cursor-pointer">
+                <i className={`fa-solid ${item.icon} text-center fa-2x mt-3`} />
+                <div className="card-body">
+                  <h6 className="text-center pt-2">{item.label}</h6>
+                </div>
+              </div>
+            </NavLink>
+          </div>
         ))}
-      </ul>
-
-      {/* Render Selected Component */}
-      <div className="flex-1 p-4">
-        {renderComponent()}
       </div>
+
+      
     </div>
   );
 };
