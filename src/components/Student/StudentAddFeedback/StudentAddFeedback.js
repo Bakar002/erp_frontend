@@ -88,7 +88,7 @@ const StudentAddFeedback = () => {
                   )}
                 </div>
               </div>
-              <div className=" ">
+              <div className="">
                 <div className="">
                   <label
                     htmlFor="feedback"

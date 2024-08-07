@@ -130,6 +130,7 @@ import AfaqSubCampus from './components/School/AfaqSubCampus/AfaqSubCampus';
 import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
 import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
 import { TeacherAddTask } from './components/Teacher/TeacherAddTask/TeacherAddTask';
+import { AdminAddReminder } from './components/Admin/AdminAddReminder/AdminAddReminder';
 
 
 function App() {
@@ -331,6 +332,8 @@ function App() {
           <Route path="/legal-home-portal" element={<Legal/>} />
 
 
+
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/student-login" element={<StudentLogin />} />
           <Route path="/student-feedback" element={<StudentAddFeedback />} />
@@ -345,6 +348,13 @@ function App() {
             path="/admin-dashboard"
             element={isAdminAuthenticated ? <AdminDashboard /> : <AdminDashboard />}
           />
+
+
+<Route
+            path="/admin-reminder"
+            element={isAdminAuthenticated ? <AdminAddReminder /> : <AdminDashboard />}
+          />
+
 
 <Route
             path="/receipt"

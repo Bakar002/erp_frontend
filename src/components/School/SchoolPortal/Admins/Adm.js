@@ -58,10 +58,16 @@ const Adm = () => {
                   </NavLink>
                 </div>
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
+
+                <NavLink
+                    to={"/admin-reminder"}
+                    className={"flex justify-center flex-col items-center"}
+                  >
                   <i className="fa-solid fa-calendar-check text-center fa-2x mt-3" />
                   <div className="card-body">
                     <h6 className="text-center pt-2">Reminder</h6>
                   </div>
+                  </NavLink>
                 </div>
                 <div className="card col-6 col-sm-6 col-md-4 col-lg-2 ms-2 mt-3">
                   <i className="fa-solid fa-comments text-center fa-2x mt-3" />
