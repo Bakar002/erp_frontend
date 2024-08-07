@@ -333,6 +333,8 @@ function App() {
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/student-login" element={<StudentLogin />} />
+          <Route path="/student-feedback" element={<StudentAddFeedback />} />
+
           <Route path="/admin-add-course" element={<AddCourse />} />
           <Route path="/school-portal-home" element={<SchoolData />} />
           {/* <Route path="/school-portal-home" element={<SchoolPortalHome />} /> */}
