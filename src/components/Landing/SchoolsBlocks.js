@@ -12,6 +12,8 @@ import schoolportallogo8 from "../../Assets/Img/syed.jpg"; // Replace with your 
 import schoolportallogo9 from "../../Assets/Img/cgs.jpeg"; // Replace with your actual school portal logo pathafaq.jpeg
 import schoolportallogo10 from "../../Assets/Img/greenacademy.png"; // Replace with your actual school portal logo pathafaq.jpeg
 import schoolportallogo11 from "../../Assets/Img/tp.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
+import schoolportallogo12 from "../../Assets/Img/arqam.jpg"; // Replace with your actual school portal logo pathafaq.jpeg
+
 
 
 // import "./SchoolBlocks.css"
@@ -77,6 +79,11 @@ const SchoolBlocks = () => {
     {
       name: "Green Academy",
       logo: schoolportallogo10, // Replace with your actual school logo path
+      link: "/admin-login", // Replace with the actual login link
+    },
+    {
+      name: "The Arqam School Officers Colony #2 Madina Town Faisalabad",
+      logo: schoolportallogo11, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
   ];
