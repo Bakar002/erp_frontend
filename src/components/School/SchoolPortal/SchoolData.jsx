@@ -73,7 +73,7 @@ const SchoolData = () => {
 
   if (currentAdminData) {
     userRole = "admin";
-    displayData = currentAdminData;
+    displayData = currentAdminData.admin;
     console.log(displayData.admin);
   } else if (currentTeacherData) {
     userRole = "teacher";
