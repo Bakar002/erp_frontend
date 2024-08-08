@@ -131,6 +131,7 @@ import LwssSubCampus from './components/School/LwssSubCampus/LwssSubCampus';
 import PakSubCampus from './components/School/PakSubCampus/PakSubCampus';
 import { TeacherAddTask } from './components/Teacher/TeacherAddTask/TeacherAddTask';
 import { AdminAddReminder } from './components/Admin/AdminAddReminder/AdminAddReminder';
+import { StudentTask } from './components/Student/StudentTask/StudentTask';
 
 
 function App() {
@@ -185,6 +186,7 @@ function App() {
           <Route path="/admin-signup" element={<AdminSignup />} />
           <Route path="/teacher-login" element={<TeacherLogin />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
+          <Route path="/studenttask" element={<StudentTask/>} />
 
 
 

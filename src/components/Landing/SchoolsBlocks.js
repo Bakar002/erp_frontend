@@ -87,7 +87,6 @@ const SchoolBlocks = () => {
       link: "/admin-login", // Replace with the actual login link
     },
   ];
-
   return (
     <div className="container pt-3 mx-auto">
       <div className="text-center d-flex justify-content-center items-center">

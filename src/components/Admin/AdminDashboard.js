@@ -11,6 +11,7 @@ import loadCurrentAdminAction from "../../components/Redux/Admin/Actions/loadCur
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { handleShowFailureToast } from "../ToastMessages/ToastMessage";
+import AdminProfile from './AdminProfile/AdminProfile';
 function AdminDashboard() {
   const [activeComponent, setActiveComponent] = useState("AdminAddTeacher");
   const [Admin, setAdmin] = useState(true);
@@ -62,6 +63,24 @@ function AdminDashboard() {
               <li>
                 <h1 className="font-extrabold xl md:text-2xl">Quick as</h1>
               </li>
+        
+
+
+              <li className="mt-4">
+                <h5
+                  href={""}
+                  onClick={() => setActiveComponent("AdminProfile")}
+                  className={`cursor-pointer ${
+                    activeComponent === "AdminProfile"
+                      ? " border-b-2 border-white"
+                      : ""
+                  }`}
+                >
+                   Admin Profile
+                </h5>
+              </li>
+
+
               <li className="mt-4">
                 <h5
                   href={""}
@@ -75,6 +94,7 @@ function AdminDashboard() {
                   Add Teacher
                 </h5>
               </li>
+
 
               <li className="mt-4">
                 <h5
@@ -163,6 +183,8 @@ function AdminDashboard() {
                 ""
               )}
             </div>
+            {activeComponent === "AdminProfile" && <AdminProfile />}
+
 
             {activeComponent === "AdminAddTeacher" && <AdminAddTeacher />}
             {activeComponent === "AddCourse" && <AddCourse />}
