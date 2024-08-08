@@ -98,10 +98,10 @@ const SchoolData = () => {
           <img
             alt="Admin Avatar"
             className="admin-avatar ms-lg-2"
-            src={displayData.avatar || "/default-avatar.png"}
+            src={displayData.adminAvatar || "/default-avatar.png"}
             style={{ height: "70px", width: "70px" }} // Adjust as needed
           />
-          <div className="d-flex align-items-center">
+          <div className="d-flex items-center">
             <h1 className="admin-heading">{displayData.adminName}</h1>
           </div>
           <div>
