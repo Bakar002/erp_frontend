@@ -72,7 +72,7 @@ const  AdminProfile =()=> {
             name="adminName"
             value={adminDetails.adminName}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 p-3 text-black block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={!isEditing}
           />
         </div>
@@ -83,7 +83,7 @@ const  AdminProfile =()=> {
             name="adminEmail"
             value={adminDetails.adminEmail}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 p-3 text-black block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={!isEditing}
           />
         </div>
@@ -94,7 +94,7 @@ const  AdminProfile =()=> {
             name="address"
             value={adminDetails.address}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 p-3 text-black block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={!isEditing}
           />
         </div>
@@ -105,7 +105,7 @@ const  AdminProfile =()=> {
             name="locationLink"
             value={adminDetails.locationLink}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 p-3 text-black block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={!isEditing}
           />
         </div>
@@ -116,7 +116,7 @@ const  AdminProfile =()=> {
             name="contactNumber"
             value={adminDetails.contactNumber}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 p-3 text-black block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={!isEditing}
           />
         </div>
@@ -126,7 +126,7 @@ const  AdminProfile =()=> {
             type="file"
             name="adminAvatar"
             onChange={handleFileChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 p-3 text-black block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={!isEditing}
           />
         </div>
