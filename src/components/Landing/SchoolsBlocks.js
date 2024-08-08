@@ -83,7 +83,7 @@ const SchoolBlocks = () => {
     },
     {
       name: "The Arqam School Officers Colony #2 Madina Town Faisalabad",
-      logo: schoolportallogo11, // Replace with your actual school logo path
+      logo: schoolportallogo12, // Replace with your actual school logo path
       link: "/admin-login", // Replace with the actual login link
     },
   ];
