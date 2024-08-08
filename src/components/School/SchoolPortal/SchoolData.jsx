@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./SchoolData.css"; // Import your custom styles
 import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import loadCurrentAdminAction from "../../Redux/Admin/Actions/loadCurrentAdminAction.Admin";
+import loadCurrentTeacherAction from "../../Redux/Teacher/Actions/loadCurrentTeacherAction.Teacher";
+import loadCurrentStudentAction from "../../Redux/Student/Actions/loadCurrentStudentAction.Student";
+
+
 import Logo from "../../../Assets/school.png"
 import Logo1 from "../../../Assets/school.png"
+
 // import Logo15 from "../Assets/Medical/medical/pharmancy.jpg";
 // import Logo16 from "../Assets/Medical/medical/ho.jpg";
 // import Logo17 from "../Assets/Medical/medical/labortary.png";
@@ -28,7 +35,6 @@ const services = {
     { name: "Admission For All", img: Logo1 },
     { name: "Board Papers", img: Logo1 },
     { name: "Syllabus Grade 1-10", img: Logo1 },
-   
   ],
   "Portal": [
     { name: "Administration", img: Logo1 },
@@ -40,39 +46,85 @@ const services = {
     { name: "Books", img: Logo1 },
     { name: "Stationary", img: Logo1 },
   ]
- 
-  /* "Managements": [
-    { name: "Office Management", img: Logo9 },
-    { name: "Contact Info", img: Logo10 },
-    { name: "SMM", img: Logo11 },
-    { name: "Client Services", img: Logo12 },
-    { name: "Medical Camp", img: Logo13 },
-  ],   */
 };
+
 
 const SchoolData = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { currentAdminData, loading: adminLoading } = useSelector((state) => state.currentAdminData);
+  const { currentTeacherData, loading: teacherLoading } = useSelector((state) => state.currentTeacherData);
+  const { currentStudentData, loading: studentLoading } = useSelector((state) => state.currentStudentData);
+
+  useEffect(() => {
+    dispatch(loadCurrentAdminAction());
+    dispatch(loadCurrentTeacherAction());
+    dispatch(loadCurrentStudentAction());
+  }, [dispatch]);
+
+  // const handleLogout = () => {
+  //   dispatch(logoutAction());
+  //   navigate('/login');
+  // };
+
+  let userRole = null;
+  let displayData = null;
+
+  if (currentAdminData) {
+    userRole = "admin";
+    displayData = currentAdminData;
+    console.log(displayData);
+  } else if (currentTeacherData) {
+    userRole = "teacher";
+    displayData = currentTeacherData.admin;
+    console.log(displayData);
+
+  } else if (currentStudentData) {
+    userRole = "student";
+    displayData = currentStudentData.admin;
+    console.log(displayData);
+
+  }
+
+  if (adminLoading || teacherLoading || studentLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className=" pt-10 p-20 bg-gradient-to-r from-blue-400 to-green-500">
-      <div className="d-flex justify-content-between align-items-center mb-4 ">
-        <img
-            alt="Logo"
-            className="medical-logo ms-lg-2"
-            src={Logo}
+    <div className="pt-10 p-20 bg-gradient-to-r from-blue-400 to-green-500">
+      {displayData ? (
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <img
+            alt="Admin Avatar"
+            className="admin-avatar ms-lg-2"
+            src={displayData.avatar || "/default-avatar.png"}
             style={{ height: "70px", width: "70px" }} // Adjust as needed
           />
-        <div className="d-flex align-items-center">
-          <h1 className="medical-heading">Belike Edu. Software</h1>
-          
+          <div className="d-flex align-items-center">
+            <h1 className="admin-heading">{displayData.name}</h1>
+          </div>
+          <div>
+            <p>Contact: {displayData.contactNumber}</p>
+            <p>Address: {displayData.address}</p>
+          </div>
+          {/* <button className="btn btn-primary" onClick={handleLogout}>
+            Logout
+          </button> */}
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={() => navigate('/admin-login')}
-        >
-          Login
-        </button>
-      </div>
+      ) : (
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <div className="d-flex align-items-center">
+            <h1 className="admin-heading">Belike Edu. Software</h1>
+          </div>
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate('/login')}
+          >
+            Login
+          </button>
+        </div>
+      )}
 
       {Object.entries(services).map(([heading, blocks]) => (
         <div key={heading} className="service-section">
@@ -97,51 +149,53 @@ const SchoolData = () => {
             ))}
           </div>
         </div>
-
       ))}
-      <section>
-              <div
-                className="ccw_plugin chatbot"
+
+      {!displayData && (
+        <section>
+          <div
+            className="ccw_plugin chatbot"
+            style={{
+              bottom: "20px",
+              right: "20px",
+            }}
+          >
+            <div className="style4 animated no-animation ccw-no-hover-an">
+              <a
+                className="nofocus"
+                href="https://api.whatsapp.com/send?phone=+923475800705&text=Hi, I’m reaching out through Belike!"
                 style={{
-                  bottom: "20px",
-                  right: "20px",
+                  color: "#fff",
+                  textDecoration: "none",
                 }}
               >
-                <div className="style4 animated no-animation ccw-no-hover-an">
-                  <a
-                    className="nofocus"
-                    href="https://api.whatsapp.com/send?phone=+923475800705&text=Hi, I’m reaching out through Belike!"
+                <div
+                  className="chip style-4 ccw-analytics"
+                  data-ccw="style-4"
+                  id="style-4"
+                  style={{
+                    backgroundColor: "#25D366",
+                    borderRadius: "100%",
+                    color: "white !important",
+                    fontSize: "20px",
+                    padding: "18px 20px 15px 20px",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-whatsapp"
                     style={{
-                      color: "#fff",
-                      textDecoration: "none",
+                      fontSize: "36px",
                     }}
-                  >
-                    <div
-                      className="chip style-4 ccw-analytics"
-                      data-ccw="style-4"
-                      id="style-4"
-                      style={{
-                        backgroundColor: "#25D366",
-                        borderRadius: "100%",
-                        color: "white !important",
-                        fontSize: "20px",
-                        padding: "18px 20px 15px 20px",
-                        textTransform: "uppercase",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      <i
-                        aria-hidden="true"
-                        className="fa fa-whatsapp"
-                        style={{
-                          fontSize: "36px",
-                        }}
-                      />
-                    </div>
-                  </a>
+                  />
                 </div>
-              </div>
-            </section>
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
