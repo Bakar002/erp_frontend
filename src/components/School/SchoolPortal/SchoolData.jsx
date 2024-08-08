@@ -74,15 +74,15 @@ const SchoolData = () => {
   if (currentAdminData) {
     userRole = "admin";
     displayData = currentAdminData;
-    console.log(displayData);
+    console.log(displayData.admin);
   } else if (currentTeacherData) {
     userRole = "teacher";
-    displayData = currentTeacherData.admin;
+    displayData = currentTeacherData.teacher;
     console.log(displayData);
 
   } else if (currentStudentData) {
     userRole = "student";
-    displayData = currentStudentData.admin;
+    displayData = currentStudentData.student;
     console.log(displayData);
 
   }
@@ -102,7 +102,7 @@ const SchoolData = () => {
             style={{ height: "70px", width: "70px" }} // Adjust as needed
           />
           <div className="d-flex align-items-center">
-            <h1 className="admin-heading">{displayData.name}</h1>
+            <h1 className="admin-heading">{displayData.adminName}</h1>
           </div>
           <div>
             <p>Contact: {displayData.contactNumber}</p>
