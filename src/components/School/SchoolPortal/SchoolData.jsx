@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SchoolData.css"; // Import custom styles
@@ -8,24 +9,45 @@ import loadCurrentTeacherAction from "../../Redux/Teacher/Actions/loadCurrentTea
 import loadCurrentStudentAction from "../../Redux/Student/Actions/loadCurrentStudentAction.Student";
 import { toast } from "react-toastify"; // Assuming you're using react-toastify for notifications
 
-import Logo from "../../../Assets/school.png";
+
+import Logo from "../../../Assets/school.png"
+import Logo1 from "../../../Assets/school.png"
+
+// import Logo15 from "../Assets/Medical/medical/pharmancy.jpg";
+// import Logo16 from "../Assets/Medical/medical/ho.jpg";
+// import Logo17 from "../Assets/Medical/medical/labortary.png";
+// import Logo18 from "../Assets/Medical/medical/specialclinic.png";
+// import Logo19 from "../Assets/Medical/medical/medicalcomplex.jpg";
+// import Logo1 from "../Assets/Medical/medical/appointment.png"; // Replace with actual logo path
+// import Logo2 from "../Assets/Medical/medical/patientrecord.png"; // Replace with actual logo path
+// import Logo3 from "../Assets/Medical/medical/doctorlist.png"; // Replace with actual logo path
+// import Logo4 from "../Assets/Medical/medical/remindermsg.png"; // Replace with actual logo path
+// //import Logo5 from "../Assets/Medical/medical/patientpannel.jpg"; // Replace with actual logo path
+// import Logo6 from "../Assets/Medical/medical/pr.png"; // Replace with actual logo path
+// import Logo7 from "../Assets/Medical/medical/emergency.jpg"; // Replace with actual logo path
+// import Logo8 from "../Assets/Medical/medical/appointmentform.png"; // Replace with actual logo path
+// import Logo9 from "../Assets/Medical/medical/office mangemnet.png"; // Replace with actual logo path
+// import Logo10 from "../Assets/Medical/medical/contactus.jpg"; // Replace with actual logo path
+// import Logo11 from "../Assets/Medical/medical/SMM.png"; // Replace with actual logo path
+// import Logo12 from "../Assets/Medical/medical/previousclient.png"; // Replace with actual logo path
+// import Logo13 from "../Assets/Medical/medical/medicalcamp.png"; // Replace with actual logo path
 
 const services = {
   "Our Partners": [
-    { name: "All Schools and Academies Collaborations", img: Logo },
-    { name: "Admission For All", img: Logo },
-    { name: "Board Papers", img: Logo },
-    { name: "Syllabus Grade 1-10", img: Logo },
+    { name: "All Schools and Academies Collaborations", img: Logo1 },
+    { name: "Admission For All", img: Logo1 },
+    { name: "Board Papers", img: Logo1 },
+    { name: "Syllabus Grade 1-10", img: Logo1 },
   ],
   "Portal": [
-    { name: "Administration", img: Logo },
-    { name: "Teachers", img: Logo },
-    { name: "Students", img: Logo },
+    { name: "Administration", img: Logo1 },
+    { name: "Teachers", img: Logo1 },
+    { name: "Students", img: Logo1 },
   ],
   "School Store": [
-    { name: "Uniform", img: Logo },
-    { name: "Books", img: Logo },
-    { name: "Stationary", img: Logo },
+    { name: "Uniform", img: Logo1 },
+    { name: "Books", img: Logo1 },
+    { name: "Stationary", img: Logo1 },
   ]
 };
 
@@ -76,62 +98,109 @@ const SchoolData = () => {
     return <div>Loading...</div>;
   }
 
+
   return (
-    <div className="school-data-container">
-      <div className="user-info-container">
-        <div className="user-info">
+    <div className="pt-10 p-20 bg-gradient-to-r from-blue-400 to-green-500">
+      {displayAdmin ? (
+        <div className="d-flex justify-content-between align-items-center mb-4">
           <img
             alt="Admin Avatar"
-            className="user-avatar"
+            className="admin-avatar ms-lg-2"
             src={displayAdmin.adminAvatar || "/default-avatar.png"}
-            style={{ height: "70px", width: "70px" }} // Adjust in CSS if needed
+            style={{ height: "70px", width: "70px" }} // Adjust as needed
           />
-          <div className="user-details">
-            <h1 className="user-name">{displayAdmin.adminName}</h1>
+          <div className="d-flex items-center">
+            <h1 className="admin-heading">{displayAdmin.adminName}</h1>
+          </div>
+          <div>
             <p>Contact: {displayAdmin.contactNumber}</p>
             <p>Address: {displayAdmin.address}</p>
           </div>
+          {/* <button className="btn btn-primary" onClick={handleLogout}>
+            Logout
+          </button> */}
         </div>
-      </div>
-
-      <div className="services-section">
-        {Object.entries(services).map(([heading, blocks]) => (
-          <div key={heading} className="service-category">
-            <h3 className="service-heading">{heading}</h3>
-            <div className="services-grid">
-              {blocks.map((service) => (
-                <div key={service.name} className="service-card">
-                  <NavLink
-                    className="service-link"
-                    to={`/${service.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  >
-                    <div className="service-image-container">
-                      <img
-                        src={service.img}
-                        alt={`${service.name} Logo`}
-                        className="service-img" // Adjust size in CSS if needed
-                      />
-                    </div>
-                    <h1 className="service-name">{service.name}</h1>
-                  </NavLink>
-                </div>
-              ))}
-            </div>
+      ) : (
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <div className="d-flex align-items-center">
+            <h1 className="admin-heading">Belike Group Software Login First </h1>
           </div>
-        ))}
-      </div>
+          {/* <button
+            className="btn btn-primary"
+            onClick={() => navigate('/login')}
+          >
+            Login
+          </button> */}
+        </div>
+      )}
+
+      {Object.entries(services).map(([heading, blocks]) => (
+        <div key={heading} className="service-section">
+          <h3 className="text-center fw-bold service-heading">{heading}</h3>
+          <div className="services-grid">
+            {blocks.map((service) => (
+              <div key={service.name} className="service-card">
+                <NavLink
+                  className="text-reset text-decoration-none text-center"
+                  to={`/${service.name.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  <div className="medical-img-container mb-3">
+                    <img
+                      src={service.img}
+                      alt={`${service.name} Logo`}
+                      className="service-img" // Adjust size here
+                    />
+                  </div>
+                  <h1 className="service-name">{service.name}</h1>
+                </NavLink>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
 
       {!displayAdmin && (
         <section>
-          <div className="chatbot-container">
-            <a
-              href="https://api.whatsapp.com/send?phone=+923475800705&text=Hi, I’m reaching out through Belike!"
-              className="whatsapp-link"
-            >
-              <div className="whatsapp-chip">
-                <i aria-hidden="true" className="fa fa-whatsapp whatsapp-icon" />
-              </div>
-            </a>
+          <div
+            className="ccw_plugin chatbot"
+            style={{
+              bottom: "20px",
+              right: "20px",
+            }}
+          >
+            <div className="style4 animated no-animation ccw-no-hover-an">
+              <a
+                className="nofocus"
+                href="https://api.whatsapp.com/send?phone=+923475800705&text=Hi, I’m reaching out through Belike!"
+                style={{
+                  color: "#fff",
+                  textDecoration: "none",
+                }}
+              >
+                <div
+                  className="chip style-4 ccw-analytics"
+                  data-ccw="style-4"
+                  id="style-4"
+                  style={{
+                    backgroundColor: "#25D366",
+                    borderRadius: "100%",
+                    color: "white !important",
+                    fontSize: "20px",
+                    padding: "18px 20px 15px 20px",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-whatsapp"
+                    style={{
+                      fontSize: "36px",
+                    }}
+                  />
+                </div>
+              </a>
+            </div>
           </div>
         </section>
       )}
