@@ -9,6 +9,7 @@ import loadCurrentTeacherAction from "../../Redux/Teacher/Actions/loadCurrentTea
 import loadCurrentStudentAction from "../../Redux/Student/Actions/loadCurrentStudentAction.Student";
 import { toast } from "react-toastify"; // Assuming you're using react-toastify for notifications
 
+import { Oval } from "react-loader-spinner"; // Import loader
 
 import Logo from "../../../Assets/school.png"
 import Logo1 from "../../../Assets/school.png"
@@ -95,8 +96,24 @@ const SchoolData = () => {
   }, [admins, currentAdminData, currentTeacherData, currentStudentData]);
 
   if (!displayAdmin) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Oval
+          height={80}
+          width={80}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel='oval-loading'
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
   }
+
 
 
   return (
